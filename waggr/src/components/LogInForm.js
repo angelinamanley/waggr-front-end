@@ -31,18 +31,19 @@ class LoginForm extends React.Component {
           name="email"
           type="email"
           placeholder="email"
-          autocomplete="email"
+          autoComplete="email"
           value={this.state.email}
         />
         <Form.Input
           name="password"
           type="password"
           placeholder="password"
-          autocomplete="password"
+          autoComplete="password"
           value={this.state.password}
         />
         <Form.Button>Submit</Form.Button>
       </Form>
+      
     )
   }
 }

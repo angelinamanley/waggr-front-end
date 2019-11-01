@@ -21,7 +21,7 @@ export const routes = [
     }, 
     {   title: 'Log out', 
         path: '/logout',
-        component: props => {props.logout()
+        component:    props => {props.logout()
         return null }
     } 
 

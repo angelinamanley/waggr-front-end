@@ -38,35 +38,35 @@ class SignUpForm extends React.Component{
           name="email"
           type="email"
           placeholder="email"
-          autocomplete="email"
+          autoComplete="email"
           value={this.state.email}
         />
         <Form.Input
           name="password"
           type="password"
           placeholder="password"
-          autocomplete="new-password"
+          autoComplete="new-password"
           value={this.state.password}
         />
              <Form.Input
           name="password_confirmation"
           type="password"
           placeholder="password confirmation"
-          autocomplete="new-password"
+          autoComplete="new-password"
           value={this.state.password_confirmation}
         />
              <Form.Input
           name="first_name"
           type="text"
           placeholder="First Name"
-          autocomplete="name"
+          autoComplete="name"
           value={this.state.first_name}
         />
         <Form.Input
           name="last_name"
           type="text"
           placeholder="Last Name"
-          autocomplete="name"
+          autoComplete="name"
           value={this.state.last_name}
         />
 
