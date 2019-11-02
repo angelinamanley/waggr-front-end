@@ -58,8 +58,8 @@ allBreeds = [
 'Chihuahua (Smooth Coat)',
 'Chinese Crested',
 'Chow Chow',
-'Cirneco Dell'Etna',
-'Collie (Rough)',
+'Cirneco Dell Etna',
+'Collie (Rough)',  
 'Collie (Smooth)',
 'Coton De Tulear',
 'Dachshund (Long Haired)',
@@ -223,3 +223,5 @@ allBreeds = [
 'Xoloitzcuintle (Mex Hairless) Std',
 'Yorkshire Terrier'
 ]
+
+export default allBreeds

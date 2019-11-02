@@ -6,7 +6,7 @@ const AllGroupsContainer = (props) => {
 
     return(
         <div>
-            <h2>All groups</h2>
+            <h2>Your Groups</h2>
 
             <ul>
                 {props.groups.map(group => 

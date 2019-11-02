@@ -65,6 +65,7 @@ class App extends React.Component {
         <Route exact path="/dashboard" component={routerProps=> <Dashboard user={this.state.user} {...routerProps} /> }/>
         <Route exact path="/map" component={routerProps=> <Map  user={this.state.user} {...routerProps} /> }/>
         <Route exact path="/groups" component={routerProps=> <Groups {...routerProps} /> } />
+
       </div>
 
       //
