@@ -8,6 +8,7 @@ const VALIDATE_URL = `${API_ENDPOINT}validate`;
 const SIGNUP_URL = `${API_ENDPOINT}signup`;
 const USERS_URL = `${API_ENDPOINT}users`;
 const GROUPS_URL = `${API_ENDPOINT}groups`
+const DOGS_URL = `${API_ENDPOINT}dogs`
 
 
 const jsonHeaders = (more = {}) => ({
@@ -50,6 +51,10 @@ const jsonHeaders = (more = {}) => ({
   
   const getPosts = () => fetch(POSTS_URL).then(handleServerResponse)
   const getPost = id => fetch(`${POSTS_URL}/${id}`).then(handleServerResponse)
+
+  const getUser = (id) => {
+    return fetch(`${USERS_URL}/${id}`).then(handleServerResponse)
+  }
   
   const login = userDetails =>
     fetch(LOGIN_URL, {
@@ -115,7 +120,31 @@ const jsonHeaders = (more = {}) => ({
         return fetch(GROUPS_URL).then(handleServerResponse)
     }
 
+
+    const joinGroup = (data) => {
+        return fetch(GROUPS_URL, {
+            method: 'POST',
+            headers: jsonHeaders(authHeader()),
+            body: JSON.stringify({ data })
+          })
+            .then(handleServerResponse)
+            .catch(handleError)
+        }
+
+    const addDog = (dog) => {
+    return fetch(DOGS_URL, {
+        method: 'POST',
+        headers: jsonHeaders(authHeader()),
+        body: JSON.stringify({ dog })
+      })
+        .then(handleServerResponse)
+        .catch(handleError) 
+        
+
+    }
+
   export default {
+      addDog,
       getGroups, 
     getPosts,
     login,
@@ -123,5 +152,6 @@ const jsonHeaders = (more = {}) => ({
     getPost,
     postPost,
     logout, 
-    signup
+    signup, 
+    getUser
   }

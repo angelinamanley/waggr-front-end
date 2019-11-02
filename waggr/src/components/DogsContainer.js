@@ -1,5 +1,6 @@
 import React from 'react';
-import {Card, Image } from 'semantic-ui-react'
+import {Card, Image, Button } from 'semantic-ui-react'
+import {Link, Redirect, NavLink} from 'react-router-dom'
 
 class DogsContainer extends React.Component{
 
@@ -14,7 +15,7 @@ class DogsContainer extends React.Component{
             <Card.Group>
 
             {this.props.dogs.map(dog=> 
-                <Card onClick={()=>this.props.selectDog(dog)} >
+                <Card as={Link} to="/dog" onClick={()=>this.props.selectDog(dog)} >
                     <Card.Content>
                         <Image 
                         floated='right'
@@ -27,6 +28,7 @@ class DogsContainer extends React.Component{
 
 
             </Card.Group>
+            <Button as={NavLink} to='/add_dog' >Add Dog </Button>
             </div>
 
         )

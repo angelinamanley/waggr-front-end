@@ -8,7 +8,6 @@ class Groups extends React.Component{
     state = { 
 
         groups: null, 
-        selectedGroup: null, 
         validating: false 
     }
 
@@ -21,7 +20,7 @@ class Groups extends React.Component{
             return <h1>LOADING</h1>}
             else {
         return(
-            <h2><AllGroupsContainer groups={this.state.groups} /> </h2>
+            <h2><AllGroupsContainer selectGroup={this.props.selectGroup} groups={this.state.groups} /> </h2>
         )
     }
 

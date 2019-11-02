@@ -12,12 +12,15 @@ import Explore from "./components/Explore";
 import Map from "./components/Map";
 import NavBar from "./components/NavBar";
 import DogShowPage from "./components/DogShowPage"
+import AddDogForm from "./components/AddDogForm"
+import GroupShowPage from "./components/GroupShowPage"
 
 
 class App extends React.Component {
   state = {
     user: null, 
-    selectedDog: null
+    selectedDog: null, 
+    selectedGroup: null
   };
 
   componentDidMount() {
@@ -35,9 +38,17 @@ class App extends React.Component {
     this.setState({ selectedDog : dog })
   }
 
+  selectGroup = (group) => {
+    this.setState({ selectedGroup : group })
+  }
+  
+
+
   login = user => {
     this.setState({ user }, () => this.props.history.push("/home"));
   };
+
+  refreshUser = user => this.setState({user})
 
   logout = () => {
     API.logout();
@@ -70,8 +81,10 @@ class App extends React.Component {
           
         <Route exact path="/dashboard" component={routerProps=> <Dashboard selectDog={this.selectDog} user={this.state.user} {...routerProps} /> }/>
         <Route exact path="/map" component={routerProps=> <Map  user={this.state.user} {...routerProps} /> }/>
-        <Route exact path="/groups" component={routerProps=> <Groups {...routerProps} /> } />
-        <Route exact path="/dog" component={routerProps=> <DogShowPage  {...routerProps} />} />
+        <Route exact path="/groups" component={routerProps=> <Groups selectGroup={this.selectGroup} {...routerProps} /> } />
+        <Route exact path="/dog" component={routerProps=> <DogShowPage  dog={this.state.selectedDog}  {...routerProps}  />} />
+        <Route exact path="/add_dog"  component={routerProps=> <AddDogForm  user={this.state.user} refreshUser={this.refreshUser} {...routerProps}  />} />
+        <Route exact path="/group" component={routerProps => <GroupShowPage user={this.state.user} group={this.state.selectedGroup}  {...routerProps}/>} />
 
       </div>
 
