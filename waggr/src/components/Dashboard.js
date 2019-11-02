@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button } from 'semantic-ui-react'
 import DogsContainer from './DogsContainer'
 import YourMeetupsContainer from './YourMeetupsContainer'
 //user profile pic, user dogs, user groups, user upcoming meetups 

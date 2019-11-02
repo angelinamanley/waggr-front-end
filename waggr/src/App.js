@@ -1,14 +1,10 @@
 import React from "react";
 import API from "./adapters/API";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import { Container, Message } from "semantic-ui-react";
-import { routes } from "./config/routes";
+import { Route } from "react-router-dom";
 import Home from "./components/Home";
 import LogInForm from "./components/LogInForm";
-import { PrivateRoute } from "./helpers/PrivateRoute";
 import Dashboard from "./components/Dashboard";
 import Groups from "./components/Groups";
-import Explore from "./components/Explore";
 import Map from "./components/Map";
 import NavBar from "./components/NavBar";
 import DogShowPage from "./components/DogShowPage"

@@ -23,7 +23,7 @@ class GroupInfo extends React.Component {
 
   findMembershipId = () =>
     this.props.user.memberships.find(
-      membership => membership.group_id == this.props.group.id
+      membership => membership.group_id === this.props.group.id
     ).id;
 
   handleLeaveClick = () => {

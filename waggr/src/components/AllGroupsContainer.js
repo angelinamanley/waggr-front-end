@@ -8,7 +8,7 @@ const AllGroupsContainer = props => {
       <h2>All Groups</h2>
 
       {props.groups.map(group => (
-        <Card as={Link} to='/group' onClick={()=>props.selectGroup(group)}>
+        <Card key={group.id} as={Link} to='/group' onClick={()=>props.selectGroup(group)}>
             <Card.Content>
                 <Image 
                 floated='right'
@@ -23,16 +23,3 @@ const AllGroupsContainer = props => {
 };
 
 export default AllGroupsContainer;
-
-{
-  /* <Card as={Link} to="/dog" onClick={()=>this.props.selectDog(dog)} >
-<Card.Content>
-    <Image 
-    floated='right'
-    size='mini'
-    src={dog.photo}
-    />
-    <Card.Header>{dog.name}</Card.Header>
-</Card.Content>
-</Card> */
-}
