@@ -11,11 +11,13 @@ import Groups from "./components/Groups";
 import Explore from "./components/Explore";
 import Map from "./components/Map";
 import NavBar from "./components/NavBar";
+import DogShowPage from "./components/DogShowPage"
 
 
 class App extends React.Component {
   state = {
-    user: null
+    user: null, 
+    selectedDog: null
   };
 
   componentDidMount() {
@@ -27,6 +29,10 @@ class App extends React.Component {
         this.setState({ user })
       }
     });
+  }
+
+  selectDog = (dog) => { 
+    this.setState({ selectedDog : dog })
   }
 
   login = user => {
@@ -62,9 +68,10 @@ class App extends React.Component {
             )}
           />
           
-        <Route exact path="/dashboard" component={routerProps=> <Dashboard user={this.state.user} {...routerProps} /> }/>
+        <Route exact path="/dashboard" component={routerProps=> <Dashboard selectDog={this.selectDog} user={this.state.user} {...routerProps} /> }/>
         <Route exact path="/map" component={routerProps=> <Map  user={this.state.user} {...routerProps} /> }/>
         <Route exact path="/groups" component={routerProps=> <Groups {...routerProps} /> } />
+        <Route exact path="/dog" component={routerProps=> <DogShowPage  {...routerProps} />} />
 
       </div>
 

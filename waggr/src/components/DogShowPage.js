@@ -1,6 +1,15 @@
 import React from 'react';
 
-const DogShowPage = (props) => {
+const DogShowPage = ({dog}) => {
+
+    return( 
+        <div>
+              {dog.name}
+        </div>
+      
+    )
+
+
 
 
 
@@ -13,6 +22,8 @@ const DogShowPage = (props) => {
 
 }
 
+
+export default DogShowPage 
 
 
 

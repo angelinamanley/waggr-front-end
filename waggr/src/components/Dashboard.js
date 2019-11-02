@@ -32,7 +32,7 @@ class Dashboard extends React.Component{
             return( 
                 <div>
                     <h1>{this.props.user.first_name}</h1>
-                    <DogsContainer dogs={this.props.user.dogs} />
+                    <DogsContainer selectDog={this.props.selectDog} dogs={this.props.user.dogs} />
                     <YourMeetupsContainer meetups={this.props.user.meetups} />
 
                     
