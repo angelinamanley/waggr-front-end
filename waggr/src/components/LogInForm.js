@@ -16,8 +16,9 @@ class LoginForm extends React.Component {
 
   submit = e => {
     e.preventDefault()
-    API.login({ email: this.state.email, password: this.state.password }).then(
-      user => this.props.login(user)
+    API.login({ email: this.state.email, password: this.state.password })
+    .then(user => {
+        this.props.login(user)}
     )
   }
 

@@ -23,7 +23,8 @@ class App extends React.Component {
       if (user.errors) {
         this.props.history.push("/login");
       } else {
-        this.setState({ user }, () => this.props.history.push("/home"));
+        // this.setState({ user }, () => this.props.history.push("/home"));
+        this.setState({ user })
       }
     });
   }
@@ -41,7 +42,7 @@ class App extends React.Component {
     return (
       <div>
         { this.state.user? <NavBar logout={this.logout} user={this.user} /> : null}
-
+        
 
           <Route
             exact

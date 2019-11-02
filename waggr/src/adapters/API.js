@@ -7,6 +7,7 @@ const LOGIN_URL = `${API_ENDPOINT}login`;
 const VALIDATE_URL = `${API_ENDPOINT}validate`;
 const SIGNUP_URL = `${API_ENDPOINT}signup`;
 const USERS_URL = `${API_ENDPOINT}users`;
+const GROUPS_URL = `${API_ENDPOINT}groups`
 
 
 const jsonHeaders = (more = {}) => ({
@@ -109,7 +110,13 @@ const jsonHeaders = (more = {}) => ({
   const logout = () => {
     localStorage.removeItem('token')
   }
+
+    const getGroups = () => { 
+        return fetch(GROUPS_URL).then(handleServerResponse)
+    }
+
   export default {
+      getGroups, 
     getPosts,
     login,
     validateUser,
