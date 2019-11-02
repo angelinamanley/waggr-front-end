@@ -9,6 +9,9 @@ const SIGNUP_URL = `${API_ENDPOINT}signup`;
 const USERS_URL = `${API_ENDPOINT}users`;
 const GROUPS_URL = `${API_ENDPOINT}groups`
 const DOGS_URL = `${API_ENDPOINT}dogs`
+const ATTENDANCES_URL = `${API_ENDPOINT}attendances`
+const MEMBERSHIPS_URL = `${API_ENDPOINT}memberships`
+
 
 
 const jsonHeaders = (more = {}) => ({
@@ -122,10 +125,10 @@ const jsonHeaders = (more = {}) => ({
 
 
     const joinGroup = (data) => {
-        return fetch(GROUPS_URL, {
+        return fetch(MEMBERSHIPS_URL, {
             method: 'POST',
             headers: jsonHeaders(authHeader()),
-            body: JSON.stringify({ data })
+            body: JSON.stringify( data )
           })
             .then(handleServerResponse)
             .catch(handleError)
@@ -139,8 +142,11 @@ const jsonHeaders = (more = {}) => ({
       })
         .then(handleServerResponse)
         .catch(handleError) 
-        
+      }
 
+    const leaveGroup = (id) => {
+        return fetch(`${MEMBERSHIPS_URL}/${id}`, {
+            method: 'delete' }).then(handleServerResponse)
     }
 
   export default {
@@ -153,5 +159,7 @@ const jsonHeaders = (more = {}) => ({
     postPost,
     logout, 
     signup, 
-    getUser
+    getUser, 
+    joinGroup, 
+    leaveGroup
   }

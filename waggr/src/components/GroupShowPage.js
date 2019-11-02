@@ -1,27 +1,20 @@
 import React from 'react';
-import { Button} from 'semantic-ui-react'
+import GroupInfo from './GroupInfo'
+import GroupForum from './GroupForum'
+
+const GroupShowPage = props => { 
 
 
-const GroupShowPage = props => {
-
-
-    return(
-        <div> <h2>{props.group.name} </h2> 
-
-        <h3>{props.group.description} </h3>
-
+    return( 
+        <div>
+        <GroupInfo user={props.user} group={props.group}/> 
+        <GroupForum />
         </div>
-
-        <Button  >Join us!</Button>
-
-
 
     )
 
 
-
-
-
 }
 
-export default GroupShowPage
+
+export default GroupShowPage 

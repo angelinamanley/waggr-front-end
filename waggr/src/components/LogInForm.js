@@ -1,6 +1,7 @@
 import React from 'react'
-import { Form } from 'semantic-ui-react'
+import { Form, Button } from 'semantic-ui-react'
 import API from '../adapters/API'
+import {NavLink} from 'react-router-dom'
 
 class LoginForm extends React.Component {
   state = {
@@ -24,6 +25,7 @@ class LoginForm extends React.Component {
 
   render() {
     return (
+        <div> 
       <Form
         onSubmit={this.submit}
         onChange={e => this.handleInputChange(e.target.name, e.target.value)}
@@ -44,7 +46,9 @@ class LoginForm extends React.Component {
         />
         <Form.Button>Submit</Form.Button>
       </Form>
-      
+     <p>or Sign up</p>
+     <Button as={NavLink} to="/signup">Sign Up here</Button>
+      </div>
     )
   }
 }

@@ -13,7 +13,9 @@ import Map from "./components/Map";
 import NavBar from "./components/NavBar";
 import DogShowPage from "./components/DogShowPage"
 import AddDogForm from "./components/AddDogForm"
-import GroupShowPage from "./components/GroupShowPage"
+import GroupShowPage from "./components/GroupShowPage.js"
+import SignUpForm from "./components/SignUpForm"
+
 
 
 class App extends React.Component {
@@ -62,12 +64,7 @@ class App extends React.Component {
         
 
           <Route
-            exact
-            path="/login"
-            component={routerProps => (
-              <LogInForm login={this.login} {...routerProps} />
-            )}
-          />
+            exact path="/login" component={routerProps => <LogInForm login={this.login} {...routerProps} /> }/>
           <Route
             exact
             path="/home"
@@ -85,6 +82,7 @@ class App extends React.Component {
         <Route exact path="/dog" component={routerProps=> <DogShowPage  dog={this.state.selectedDog}  {...routerProps}  />} />
         <Route exact path="/add_dog"  component={routerProps=> <AddDogForm  user={this.state.user} refreshUser={this.refreshUser} {...routerProps}  />} />
         <Route exact path="/group" component={routerProps => <GroupShowPage user={this.state.user} group={this.state.selectedGroup}  {...routerProps}/>} />
+        <Route exact path="/signup" component={routerProps => <SignUpForm login={this.login} {...routerProps} /> } />
 
       </div>
 
