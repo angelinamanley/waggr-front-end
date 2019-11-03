@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, Image, Button } from 'semantic-ui-react'
+import {Card, Image, Button, Container } from 'semantic-ui-react'
 import {Link, NavLink} from 'react-router-dom'
 
 class DogsContainer extends React.Component{
@@ -10,8 +10,9 @@ class DogsContainer extends React.Component{
         return(
 
             <div>
+                <Container>
                 <h3>Your Dogs</h3>
-
+            
             <Card.Group>
 
             {this.props.dogs.map(dog=> 
@@ -28,7 +29,8 @@ class DogsContainer extends React.Component{
 
 
             </Card.Group>
-            <Button as={NavLink} to='/add_dog' >Add Dog </Button>
+            <Button primary as={NavLink} to='/add_dog' >Add Dog </Button>
+            </Container>
             </div>
 
         )

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form } from 'semantic-ui-react'
+import { Container, Form, Button } from 'semantic-ui-react'
 import API from '../adapters/API';
 
 
@@ -30,7 +30,9 @@ class SignUpForm extends React.Component{
 
     render(){
         return( 
-            <Form
+            <div>
+                <Container>
+            <Form 
         onSubmit={this.submit}
         onChange={e => this.handleInputChange(e.target.name, e.target.value)}
       >
@@ -71,7 +73,10 @@ class SignUpForm extends React.Component{
         />
 
         <Form.Button>Submit</Form.Button>
+
       </Form>
+      </Container>
+      </div>
         )
     }
 

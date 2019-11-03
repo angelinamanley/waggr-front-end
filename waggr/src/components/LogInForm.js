@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Button } from 'semantic-ui-react'
+import { Form, Button, Container } from 'semantic-ui-react'
 import API from '../adapters/API'
 import {NavLink} from 'react-router-dom'
 
@@ -26,6 +26,7 @@ class LoginForm extends React.Component {
   render() {
     return (
         <div> 
+            <Container verticalAlign="middle">
       <Form
         onSubmit={this.submit}
         onChange={e => this.handleInputChange(e.target.name, e.target.value)}
@@ -48,6 +49,7 @@ class LoginForm extends React.Component {
       </Form>
      <p>or Sign up</p>
      <Button as={NavLink} to="/signup">Sign Up here</Button>
+     </Container>
       </div>
     )
   }

@@ -1,6 +1,6 @@
 import React from 'react';
 import allBreeds from '../config/data'
-import { Form, Dropdown, Radio } from 'semantic-ui-react'
+import { Container, Form, Dropdown, Radio, Input, Button } from 'semantic-ui-react'
 import API from "../adapters/API";
 
 
@@ -29,6 +29,7 @@ class AddDogForm extends React.Component{
       }
         render(){
       return(
+          <Container>
         <Form onSubmit={this.submit} >
         <Form.Input
         label="Name"
@@ -85,9 +86,11 @@ class AddDogForm extends React.Component{
           value={this.state.bio}
           onChange={e => this.handleInputChange(e.target.name, e.target.value)}
         />      
-        
+   
+
         <Form.Button>Submit</Form.Button>
         </Form>
+        </Container>
       )}
 
 }
