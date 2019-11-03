@@ -1,6 +1,8 @@
 import React from 'react';
-import API from "../adapters/API";
 import AllGroupsContainer from "./AllGroupsContainer"
+import Spinner from './common/Spinner';
+
+
 
 
 class Groups extends React.Component{ 
@@ -11,7 +13,7 @@ class Groups extends React.Component{
 
     render(){
         if (!this.props) {
-            return <h1>LOADING</h1>}
+            return <Spinner />}
             else {
         return(
             <h2><AllGroupsContainer getGroups={this.props.getGroups} selectGroup={this.props.selectGroup} groups={this.props.groups} /> </h2>

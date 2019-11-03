@@ -1,11 +1,12 @@
 import React from "react";
 import { Card, Image } from "semantic-ui-react";
 import {Link} from 'react-router-dom'
+import Spinner from './common/Spinner';
 
 const AllGroupsContainer = props => {
     
     if (!props.groups) {
-    return <div>loading...</div> }
+    return <Spinner /> }
     else {
     
   return (
