@@ -2,7 +2,7 @@ const API_ENDPOINT = "http://localhost:3000/";
 const POSTS_URL = `${API_ENDPOINT}posts`;
 // const USERS_URL = `${API_ENDPOINT}users`;
 // const GROUPS_URL = `${API_ENDPOINT}groups`;
-// const MEETUPS_URL = `${API_ENDPOINT}meetups`;
+const MEETUPS_URL = `${API_ENDPOINT}meetups`;
 const LOGIN_URL = `${API_ENDPOINT}login`;
 const VALIDATE_URL = `${API_ENDPOINT}validate`;
 const SIGNUP_URL = `${API_ENDPOINT}signup`;
@@ -159,6 +159,16 @@ const jsonHeaders = (more = {}) => ({
             .catch(handleError) 
     }
 
+    const postMeetup = (meetup) => {
+        return fetch(MEETUPS_URL, {
+            method: 'POST', 
+            headers: jsonHeaders(authHeader()), 
+            body: JSON.stringify({meetup})
+        })
+        .then(handleServerResponse)
+            .catch(handleError) 
+    }
+
   export default {
       addDog,
       getGroups, 
@@ -172,5 +182,6 @@ const jsonHeaders = (more = {}) => ({
     getUser, 
     joinGroup, 
     leaveGroup, 
-    postComment
+    postComment, 
+    postMeetup
   }

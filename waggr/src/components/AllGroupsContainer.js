@@ -3,6 +3,11 @@ import { Card, Image } from "semantic-ui-react";
 import {Link} from 'react-router-dom'
 
 const AllGroupsContainer = props => {
+    
+    if (!props.groups) {
+    return <div>loading...</div> }
+    else {
+    
   return (
     <div>
       <h2>All Groups</h2>
@@ -19,7 +24,7 @@ const AllGroupsContainer = props => {
         </Card>
       ))}
     </div>
-  );
+  );}
 };
 
 export default AllGroupsContainer;

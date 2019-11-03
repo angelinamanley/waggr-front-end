@@ -5,7 +5,6 @@ import API from "../adapters/API";
 
 
 
-
 class AddDogForm extends React.Component{
 
     state = { 
@@ -71,7 +70,7 @@ class AddDogForm extends React.Component{
         <Form.Input
         label="Birthday"
           name="birthday"
-          type="date"
+          type="calendar"
           autoComplete="date"
           value={this.state.birthday}
           onChange={e => this.handleInputChange(e.target.name, e.target.value)}
@@ -86,7 +85,7 @@ class AddDogForm extends React.Component{
           value={this.state.bio}
           onChange={e => this.handleInputChange(e.target.name, e.target.value)}
         />      
-   
+        
 
         <Form.Button>Submit</Form.Button>
         </Form>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "semantic-ui-react";
+import { Button, Container } from "semantic-ui-react";
 import API from "../adapters/API";
 
 class GroupInfo extends React.Component {
@@ -41,8 +41,8 @@ class GroupInfo extends React.Component {
       );
     } else {
       return (
-        <div>
-          <h2>{this.props.group.name} </h2>
+        <Container>
+        <h2>{this.props.group.name} </h2>
           <h3>{this.props.group.description} </h3>
           <h2>
             {this.props.group.users.find(user => user.id == this.props.user.id)
@@ -52,13 +52,13 @@ class GroupInfo extends React.Component {
           {!this.props.group.users.find(
             user => user.id == this.props.user.id
           ) ? (
-            <Button onClick={() => this.handleJoinClick()}> Join us! </Button>
+            <Button secondary onClick={() => this.handleJoinClick()}> Join us! </Button>
           ) : (
-            <Button onClick={() => this.handleLeaveClick()}>
+            <Button secondary onClick={() => this.handleLeaveClick()}>
               Leave Group
             </Button>
           )}
-        </div>
+        </Container>
       );
     }
   }

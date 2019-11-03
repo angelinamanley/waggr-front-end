@@ -11,15 +11,21 @@ import DogShowPage from "./components/DogShowPage"
 import AddDogForm from "./components/AddDogForm"
 import GroupShowPage from "./components/GroupShowPage.js"
 import SignUpForm from "./components/SignUpForm"
+import MeetupForm from "./components/MeetupForm"
+
 
 
 
 class App extends React.Component {
   state = {
     user: null, 
+    groups: null, 
     selectedDog: null, 
     selectedGroup: null
   };
+
+  getGroups = () => API.getGroups().then(groups => this.setState( { ...this.state, validating: true, groups: groups }))
+
 
   componentDidMount() {
     API.validateUser().then(user => {
@@ -29,7 +35,8 @@ class App extends React.Component {
         // this.setState({ user }, () => this.props.history.push("/home"));
         this.setState({ user })
       }
-    });
+    })
+    this.getGroups();
   }
 
   selectDog = (dog) => { 
@@ -74,11 +81,12 @@ class App extends React.Component {
           
         <Route exact path="/dashboard" component={routerProps=> <Dashboard selectDog={this.selectDog} user={this.state.user} {...routerProps} /> }/>
         <Route exact path="/map" component={routerProps=> <Map  user={this.state.user} {...routerProps} /> }/>
-        <Route exact path="/groups" component={routerProps=> <Groups selectGroup={this.selectGroup} {...routerProps} /> } />
+        <Route exact path="/groups" component={routerProps=> <Groups selectGroup={this.selectGroup}  groups={this.state.groups} {...routerProps} /> } />
         <Route exact path="/dog" component={routerProps=> <DogShowPage  dog={this.state.selectedDog}  {...routerProps}  />} />
         <Route exact path="/add_dog"  component={routerProps=> <AddDogForm  user={this.state.user} refreshUser={this.refreshUser} {...routerProps}  />} />
-        <Route exact path="/group" component={routerProps => <GroupShowPage user={this.state.user} group={this.state.selectedGroup}  {...routerProps}/>} />
+        <Route exact path="/group" component={routerProps => <GroupShowPage user={this.state.user} group={this.state.selectedGroup} groups={this.state.groups} {...routerProps}/>} />
         <Route exact path="/signup" component={routerProps => <SignUpForm login={this.login} {...routerProps} /> } />
+        <Route exact path="/createmeetup"component={routerProps => <MeetupForm user={this.state.user} group={this.state.selectedGroup} getGroups={this.getGroups} {...routerProps}/>} />
 
       </div>
 

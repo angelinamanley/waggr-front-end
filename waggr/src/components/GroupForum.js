@@ -1,6 +1,7 @@
 import React from "react";
 import { Message, Container, Button, Comment, Form } from "semantic-ui-react";
 import API from "../adapters/API";
+import moment from "moment";
 
 
 class GroupForum extends React.Component {
@@ -19,36 +20,6 @@ class GroupForum extends React.Component {
 
     }
 
-     timeSince = (date) => {
-        var aDay = 24*60*60*1000
-        var seconds = Math.floor((new Date() - date) / 1000);
-      
-        var interval = Math.floor(seconds / 31536000);
-      
-        if (interval > 1) {
-          return interval + " years";
-        }
-        interval = Math.floor(seconds / 2592000);
-        if (interval > 1) {
-          return interval + " months";
-        }
-        interval = Math.floor(seconds / 86400);
-        if (interval > 1) {
-          return interval + " days";
-        }
-        interval = Math.floor(seconds / 3600);
-        if (interval > 1) {
-          return interval + " hours";
-        }
-        interval = Math.floor(seconds / 60);
-        if (interval > 1) {
-          return interval + " minutes";
-        }
-        return Math.floor(seconds) + " seconds";
-      }
-    
-  
-    
   render() {
     if (!this.props.group) {
       return (
@@ -58,7 +29,9 @@ class GroupForum extends React.Component {
       );
     } else {
       return (
+
         <React.Fragment>
+            <Container>
           <Comment.Group>
         
             {this.props.group.posts.map(post => 
@@ -66,7 +39,7 @@ class GroupForum extends React.Component {
                   <Comment.Avatar as="a" src={post.user.photo}/>
                 <Comment.Content>
                   <Comment.Author>{post.user.first_name}</Comment.Author>
-                  <Comment.Metadata><div>{(Date.parse(new Date()) - Date.parse(post.created_at))/ (1000 * 3600 * 24)}</div></Comment.Metadata>
+                  <Comment.Metadata><div>{moment(post.created_at).format('MM/DD/YYYY h:mm a')}</div></Comment.Metadata>
                   <Comment.Text>
                     <p>{post.content}</p>
                   </Comment.Text>
@@ -78,6 +51,7 @@ class GroupForum extends React.Component {
       <Button content='Add Comment' labelPosition='left' icon='edit' primary />
     </Form>
           </Comment.Group>
+          </Container>
         </React.Fragment>
       );
     }
