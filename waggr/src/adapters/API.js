@@ -149,6 +149,16 @@ const jsonHeaders = (more = {}) => ({
             method: 'delete' }).then(handleServerResponse)
     }
 
+    const postComment = ( post) => {
+        return fetch(POSTS_URL, {
+            method: 'POST',
+            headers: jsonHeaders(authHeader()),
+            body: JSON.stringify({ post })
+          })
+            .then(handleServerResponse)
+            .catch(handleError) 
+    }
+
   export default {
       addDog,
       getGroups, 
@@ -161,5 +171,6 @@ const jsonHeaders = (more = {}) => ({
     signup, 
     getUser, 
     joinGroup, 
-    leaveGroup
+    leaveGroup, 
+    postComment
   }

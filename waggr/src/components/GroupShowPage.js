@@ -8,7 +8,7 @@ const GroupShowPage = props => {
     return( 
         <div>
         <GroupInfo user={props.user} group={props.group}/> 
-        <GroupForum />
+        <GroupForum user={props.user} group={props.group}/>
         </div>
 
     )
