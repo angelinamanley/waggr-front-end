@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, Container, Grid } from "semantic-ui-react";
+import { Image, Container, Grid, Button } from "semantic-ui-react";
 
 const DogShowPage = props => {
   if (!props.dog) {
@@ -17,6 +17,7 @@ const DogShowPage = props => {
           <li>{props.dog.birthday}</li>
           <li>{props.dog.bio}</li>
         </ul>
+        <Button primary >Edit Dog</Button>
       </Container>
       </Grid.Column>
       </Grid>

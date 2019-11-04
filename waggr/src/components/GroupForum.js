@@ -10,13 +10,16 @@ class GroupForum extends React.Component {
         super(props)
     this.state = { 
         comment: null, 
-        date: new Date().toLocaleString()
+        date: new Date().toLocaleString(), 
     }
 }
-
+  componentDidMount(){
+    this.setState({comments: this.props.group.posts})
+  }
     handleCommentSubmit = e => {
         e.preventDefault()
         API.postComment({group_id: this.props.group.id, user_id: this.props.user.id, content: this.state.comment})
+        .then(console.log)
 
     }
 
@@ -35,7 +38,7 @@ class GroupForum extends React.Component {
           <Comment.Group>
         
             {this.props.group.posts.map(post => 
-              <Comment>
+              <Comment key={post.id}>
                   <Comment.Avatar as="a" src={post.user.photo}/>
                 <Comment.Content>
                   <Comment.Author>{post.user.first_name}</Comment.Author>
