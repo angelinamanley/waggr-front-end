@@ -1,12 +1,12 @@
 import React from "react";
-import { Button } from "semantic-ui-react";
+import { Button, Container } from "semantic-ui-react";
 import { NavLink } from "react-router-dom";
 
 const GroupAbout = props => {
   return (
-    <Button primary as={NavLink} to="/createmeetup">
-      Add a new event
-    </Button>
+    <Container>
+        Members: 
+    </Container>
   );
 };
 

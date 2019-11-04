@@ -4,7 +4,7 @@ import { Menu } from 'semantic-ui-react'
 
 const NavBar = props => {
     return (
-            <Menu>
+            <Menu borderless fluid widths={5}>
             <Menu.Item as={NavLink} exact to="/home" >Home</Menu.Item>
             <Menu.Item as={NavLink} exact to="/groups" >Groups</Menu.Item>
             <Menu.Item as={NavLink} exact to="/map" >Map</Menu.Item>

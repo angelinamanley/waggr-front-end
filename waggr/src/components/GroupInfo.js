@@ -43,12 +43,12 @@ class GroupInfo extends React.Component {
       return (
         <Container>
         <h2>{this.props.group.name} </h2>
-          <h3>{this.props.group.description} </h3>
-          <h2>
+          <p>{this.props.group.description} </p>
+          <p>Are you a member?
             {this.props.group.users.find(user => user.id == this.props.user.id)
-              ? "true"
-              : "false"}
-          </h2>
+              ? "yes"
+              : "no"}
+          </p>
           {!this.props.group.users.find(
             user => user.id == this.props.user.id
           ) ? (
