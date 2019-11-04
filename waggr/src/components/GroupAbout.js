@@ -1,6 +1,5 @@
 import React from "react";
-import { Button, Container } from "semantic-ui-react";
-import { NavLink } from "react-router-dom";
+import { Container } from "semantic-ui-react";
 
 const GroupAbout = props => {
   return (

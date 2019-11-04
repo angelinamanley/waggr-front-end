@@ -9,7 +9,7 @@ const SIGNUP_URL = `${API_ENDPOINT}signup`;
 const USERS_URL = `${API_ENDPOINT}users`;
 const GROUPS_URL = `${API_ENDPOINT}groups`
 const DOGS_URL = `${API_ENDPOINT}dogs`
-const ATTENDANCES_URL = `${API_ENDPOINT}attendances`
+// const ATTENDANCES_URL = `${API_ENDPOINT}attendances`
 const MEMBERSHIPS_URL = `${API_ENDPOINT}memberships`
 const ADDLOCATION_URL = `${API_ENDPOINT}addlocation`
 
@@ -179,6 +179,8 @@ const jsonHeaders = (more = {}) => ({
         .catch(handleError) 
     }
 
+    const getMeetups = () => fetch(MEETUPS_URL).then(handleServerResponse)
+
   export default {
       addDog,
       getGroups, 
@@ -194,5 +196,6 @@ const jsonHeaders = (more = {}) => ({
     leaveGroup, 
     postComment, 
     postMeetup, 
-    addLocationToUser
+    addLocationToUser, 
+    getMeetups
   }

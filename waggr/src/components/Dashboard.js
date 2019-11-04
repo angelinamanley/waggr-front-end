@@ -17,11 +17,7 @@ class Dashboard extends React.Component{
                 })
         }
 
-        // componentDidUpdate(){
-        //     this.setState({
-        //     validating: false 
-        //     })
-        // }
+ 
 
         render(){ 
             if (!this.props.user) {

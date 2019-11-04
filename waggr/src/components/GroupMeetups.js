@@ -12,9 +12,7 @@ export default class GroupMeetups extends React.Component {
 
 
    render() {
-   
-    let newMeetups = this.futureMeetups() 
-    
+       
     if(!this.props.group){
         return(<div> Loading </div> )
 

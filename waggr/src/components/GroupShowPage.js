@@ -1,8 +1,6 @@
 import React from "react";
 import GroupInfo from "./GroupInfo";
 import GroupForum from "./GroupForum";
-import { Button } from "semantic-ui-react";
-import { NavLink } from "react-router-dom";
 import GroupShowMenu from "./GroupShowMenu";
 import GroupMeetups from "./GroupMeetups";
 import GroupAbout from "./GroupAbout";

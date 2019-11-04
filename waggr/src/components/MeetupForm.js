@@ -1,11 +1,6 @@
 import React from 'react';
-import {Form, Button, Container} from 'semantic-ui-react'
-import {
-    DateInput,
-    TimeInput,
-    DateTimeInput,
-    DatesRangeInput
-  } from 'semantic-ui-calendar-react';
+import {Form, Container} from 'semantic-ui-react'
+import { DateTimeInput } from 'semantic-ui-calendar-react';
 import API from '../adapters/API';
 
 

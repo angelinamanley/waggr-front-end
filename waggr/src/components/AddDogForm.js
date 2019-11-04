@@ -1,6 +1,6 @@
 import React from 'react';
 import allBreeds from '../config/data'
-import { Container, Form, Dropdown, Radio, Input, Button } from 'semantic-ui-react'
+import { Container, Form, Dropdown, Radio } from 'semantic-ui-react'
 import API from "../adapters/API";
 
 

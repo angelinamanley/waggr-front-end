@@ -1,5 +1,5 @@
 import React from "react";
-import { Message, Container, Button, Comment, Form } from "semantic-ui-react";
+import { Container, Button, Comment, Form } from "semantic-ui-react";
 import API from "../adapters/API";
 import moment from "moment";
 

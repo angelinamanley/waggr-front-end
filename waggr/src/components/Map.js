@@ -20,7 +20,7 @@ class Map extends React.Component {
       <div>
         <h2> this is the map page </h2>
         <MapSearchBar setLocation={this.setLocation} />
-        <MapComponent />
+        <MapComponent user={this.props.user}/>
       </div>
     );
   }

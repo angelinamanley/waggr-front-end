@@ -37,7 +37,7 @@ class GroupInfo extends React.Component {
         </div>
       );
     } else {
-      const membership = this.props.group.users.find(user => user.id == this.props.user.id)
+      const membership = this.props.group.users.find(user => user.id === this.props.user.id)
       return (
         <Container>
         <h2>{this.props.group.name} </h2>
@@ -47,7 +47,7 @@ class GroupInfo extends React.Component {
               : "no"}
           </p>
           {!this.props.group.users.find(
-            user => user.id == this.props.user.id
+            user => user.id === this.props.user.id
           ) ? (
             <Button secondary onClick={() => this.handleJoinClick()}> Join us! </Button>
           ) : (
