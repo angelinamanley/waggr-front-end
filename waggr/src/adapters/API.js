@@ -11,6 +11,7 @@ const GROUPS_URL = `${API_ENDPOINT}groups`
 const DOGS_URL = `${API_ENDPOINT}dogs`
 const ATTENDANCES_URL = `${API_ENDPOINT}attendances`
 const MEMBERSHIPS_URL = `${API_ENDPOINT}memberships`
+const ADDLOCATION_URL = `${API_ENDPOINT}addlocation`
 
 
 
@@ -169,6 +170,15 @@ const jsonHeaders = (more = {}) => ({
             .catch(handleError) 
     }
 
+    const addLocationToUser = (data) => {
+        return fetch(`${ADDLOCATION_URL}`, {
+            method: 'PATCH',
+        headers: jsonHeaders(),
+        body: JSON.stringify(data)
+        }).then(handleServerResponse)
+        .catch(handleError) 
+    }
+
   export default {
       addDog,
       getGroups, 
@@ -183,5 +193,6 @@ const jsonHeaders = (more = {}) => ({
     joinGroup, 
     leaveGroup, 
     postComment, 
-    postMeetup
+    postMeetup, 
+    addLocationToUser
   }

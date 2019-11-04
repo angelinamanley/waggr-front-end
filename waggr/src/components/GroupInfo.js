@@ -7,12 +7,6 @@ class GroupInfo extends React.Component {
     membership: null
   };
 
-  // componentDidMount(){
-  //     if (this.props && this.props.group.users.find(user => user.id == this.props.user.id)) {
-  //         this.setState({membership: true})
-  //     }
-
-  // }
 
   handleJoinClick = () => {
     API.joinGroup({
@@ -33,20 +27,23 @@ class GroupInfo extends React.Component {
   };
 
   render() {
-    if (!this.props.group) {
+
+   
+    if (!this.props.group) { 
+      
       return (
         <div>
           <h2>Loading</h2>
         </div>
       );
     } else {
+      const membership = this.props.group.users.find(user => user.id == this.props.user.id)
       return (
         <Container>
         <h2>{this.props.group.name} </h2>
           <p>{this.props.group.description} </p>
           <p>Are you a member?
-            {this.props.group.users.find(user => user.id == this.props.user.id)
-              ? "yes"
+              {membership?  "yes"
               : "no"}
           </p>
           {!this.props.group.users.find(
