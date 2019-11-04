@@ -16,7 +16,7 @@ class Groups extends React.Component{
             return <Spinner />}
             else {
         return(
-            <h2><AllGroupsContainer getGroups={this.props.getGroups} selectGroup={this.props.selectGroup} groups={this.props.groups} /> </h2>
+            <h2><AllGroupsContainer getGroups={this.props.getGroups} handleSearchClick={this.props.handleSearchClick} selectGroup={this.props.selectGroup} groups={this.props.groups} /> </h2>
         )
     }
 

@@ -23,7 +23,7 @@ class GroupShowPage extends React.Component {
       component = <GroupMeetups group={this.props.group} />;
     } else if (menuChoice === "chat") {
       component = (
-        <GroupForum user={this.props.user} group={this.props.group} />
+        <GroupForum addPostToGroup={this.props.addPostToGroup} user={this.props.user} group={this.props.group} />
       );
     }
 

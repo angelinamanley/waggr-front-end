@@ -6,7 +6,8 @@ import React from "react";
 const Home = props => {
   return (
     <div>
-      <h2>home</h2>
+      <h2>Your Groups</h2>
+      <h2> Your Meetups </h2>
 
     </div>
   );

@@ -21,10 +21,30 @@ class App extends React.Component {
     user: null, 
     groups: null, 
     selectedDog: null, 
-    selectedGroup: null
+    selectedGroup: null,
+    searchTerm: null
   };
 
   getGroups = () => API.getGroups().then(groups => this.setState( { ...this.state, validating: true, groups: groups }))
+
+    addPostToGroup = (post) => {
+     let newArray = [...this.state.selectedGroup, post]
+    this.setState({selectedGroup: newArray})}
+
+    filterGroups = () => {
+      if (this.state.searchTerm != null) {
+    return this.state.groups.filter(group =>
+      group.name
+        .toLocaleLowerCase()
+        .includes(this.state.searchTerm.toLocaleLowerCase())
+    )} else {
+    return this.state.groups} }
+
+  handleSearchClick = value => {
+    this.setState({ searchTerm: value });
+  }
+
+  
 
 
   componentDidMount() {
@@ -61,17 +81,14 @@ class App extends React.Component {
   };
 
   render() {
+    const filteredGroups = this.filterGroups()
     return (
       <div>
         { this.state.user? <NavBar logout={this.logout} user={this.user} /> : null}
         
 
-          <Route
-            exact path="/login" component={routerProps => <LogInForm login={this.login} {...routerProps} /> }/>
-          <Route
-            exact
-            path="/home"
-            component={routerProps => (
+          <Route exact path="/login" component={routerProps => <LogInForm login={this.login} {...routerProps} /> }/>
+          <Route exact path="/home" component={routerProps => (
               <Home
                 user={this.state.user}
                 {...routerProps}
@@ -79,12 +96,12 @@ class App extends React.Component {
             )}
           />
           
-        <Route exact path="/dashboard" component={routerProps=> <Dashboard selectDog={this.selectDog} user={this.state.user} {...routerProps} /> }/>
+        <Route exact path="/dashboard" component={routerProps=> <Dashboard logout={this.logout} selectDog={this.selectDog} user={this.state.user} {...routerProps} /> }/>
         <Route exact path="/map" component={routerProps=> <Map  user={this.state.user} {...routerProps} /> }/>
-        <Route exact path="/groups" component={routerProps=> <Groups selectGroup={this.selectGroup}  groups={this.state.groups} {...routerProps} /> } />
+        <Route exact path="/groups" component={routerProps=> <Groups handleSearchClick={this.handleSearchClick} selectGroup={this.selectGroup}  groups={filteredGroups} {...routerProps} /> } />
         <Route exact path="/dog" component={routerProps=> <DogShowPage  dog={this.state.selectedDog}  {...routerProps}  />} />
         <Route exact path="/add_dog"  component={routerProps=> <AddDogForm  user={this.state.user} refreshUser={this.refreshUser} {...routerProps}  />} />
-        <Route exact path="/group" component={routerProps => <GroupShowPage user={this.state.user} group={this.state.selectedGroup} groups={this.state.groups} {...routerProps}/>} />
+        <Route exact path="/group" component={routerProps => <GroupShowPage addPostToGroup={this.addPostToGroup}user={this.state.user} group={this.state.selectedGroup} groups={this.state.groups} {...routerProps}/>} />
         <Route exact path="/signup" component={routerProps => <SignUpForm login={this.login} {...routerProps} /> } />
         <Route exact path="/createmeetup"component={routerProps => <MeetupForm user={this.state.user} group={this.state.selectedGroup} getGroups={this.getGroups} {...routerProps}/>} />
 

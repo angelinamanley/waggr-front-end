@@ -1,31 +1,49 @@
 import React from "react";
 import { Card, Image } from "semantic-ui-react";
-import {Link} from 'react-router-dom'
-import Spinner from './common/Spinner';
+import { Link } from "react-router-dom";
+import Spinner from "./common/Spinner";
+import GroupSearchBar from "./GroupSearchBar";
 
-const AllGroupsContainer = props => {
-    
-    if (!props.groups) {
-    return <Spinner /> }
-    else {
-    
-  return (
-    <div>
-      <h2>All Groups</h2>
+class AllGroupsContainer extends React.Component {
 
-      {props.groups.map(group => (
-        <Card key={group.id} as={Link} to='/group' onClick={()=>props.selectGroup(group)}>
-            <Card.Content>
-                <Image 
-                floated='right'
-                seize='mini'
-                src={group.photo} />
-                <Card.Header>{group.name}</Card.Header>
-            </Card.Content>
-        </Card>
-      ))}
-    </div>
-  );}
-};
+
+
+  // filterGroups = () => {
+  //   if (this.props.groups) {return this.props.groups.filter(group =>
+  //     group.name
+  //       .toLocaleLowerCase()
+  //       .includes(this.state.searchTerm.toLocaleLowerCase())
+  //   )}
+  // }
+
+  render() {
+    if (!this.props.groups) {
+      return <Spinner />
+    } else {
+      // const filteredGroups = this.filterGroups();
+      return (
+        <div>
+          <h2>All Groups</h2>
+          <GroupSearchBar handleSearchClick={this.props.handleSearchClick} />
+
+            {this.props.groups.map(group => (
+              <Card
+                key={group.id}
+                as={Link}
+                to="/group"
+                onClick={() => this.props.selectGroup(group)}
+              >
+                <Card.Content>
+                  <Image floated="right" seize="mini" src={group.photo} />
+                  <Card.Header>{group.name}</Card.Header>
+                </Card.Content>
+              </Card>
+            ))}
+          
+        </div>
+      )
+    }
+  }
+}
 
 export default AllGroupsContainer;
