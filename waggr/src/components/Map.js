@@ -4,15 +4,13 @@ import MapComponent from "./MapComponent";
 import API from "../adapters/API";
 
 class Map extends React.Component {
-  state = {
-    userLocation: null
-  };
+
 
   setLocation = input => {
     this.setState(
       { userLocation: input })
       API.addLocationToUser( { location: input, user_id: this.props.user.id})
-    .then(console.log)
+    .then(user => this.props.setUserLocation(user.location, user.latitude, user.longitude))
   };
 
   render() {

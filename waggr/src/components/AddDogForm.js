@@ -36,7 +36,7 @@ class AddDogForm extends React.Component{
     }
 
      widget = window.cloudinary.createUploadWidget({ 
-      cloudName: "angelinashin", uploadPreset: "zdjpntym" }, (error, result) => { this.checkUploadResult(result) });
+      cloudName: "angelinashin", uploadPreset: "zdjpntym" , cropping: true, croppingAspectRatio : 1, showSkipCropButton: false}, (error, result) => { this.checkUploadResult(result) });
 
 
     checkUploadResult = (resultEvent) => {
@@ -50,7 +50,7 @@ class AddDogForm extends React.Component{
           
       return(
           <Container>
-             <Button onClick={this.showWidget}>Upload a Profile Picture for your Group! </Button>
+             <Button secondary onClick={this.showWidget}>Upload your pup's picture!  </Button>
         <Form onSubmit={this.submit} >
         <Form.Input
         label="Name"

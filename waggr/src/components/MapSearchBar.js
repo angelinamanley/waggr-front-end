@@ -9,6 +9,7 @@ export default class MapSearchBar extends React.Component {
   onSubmit = event => {
       event.preventDefault()
       this.props.setLocation(this.state.userLocation)
+      
   }
 
   render() {

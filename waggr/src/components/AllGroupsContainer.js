@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Image, Button, Icon } from "semantic-ui-react";
+import { Card, Image, Button, Icon, Container } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import Spinner from "./common/Spinner";
 import GroupSearchBar from "./GroupSearchBar";
@@ -25,7 +25,8 @@ class AllGroupsContainer extends React.Component {
         <div>
           <h2>All Groups<Button as={Link} to='/addgroup' size='mini' primary icon><Icon name="plus circle"/></Button></h2>
           <GroupSearchBar handleSearchClick={this.props.handleSearchClick} />
-
+          <Container>
+          <Card.Group centered>
             {this.props.groups.map(group => (
               <Card
                 key={group.id}
@@ -39,7 +40,8 @@ class AllGroupsContainer extends React.Component {
                 </Card.Content>
               </Card>
             ))}
-          
+            </Card.Group>
+            </Container>
         </div>
       )
     }

@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Container } from "semantic-ui-react";
+import {Link} from 'react-router-dom'
 import API from "../adapters/API";
 
 class GroupInfo extends React.Component {
@@ -38,6 +39,7 @@ class GroupInfo extends React.Component {
       );
     } else {
       const membership = this.props.group.users.find(user => user.id === this.props.user.id)
+      const admin = this.props.group.admin_id === this.props.user.id 
       return (
         <Container>
         <h2>{this.props.group.name} </h2>
@@ -46,13 +48,14 @@ class GroupInfo extends React.Component {
               {membership?  "yes"
               : "no"}
           </p>
+          { admin? <Button as={Link} to='/editgroup' size='mini' color="yellow" >Edit Group</Button> : null}
           {!membership
            ? (
             <Button size='mini' secondary onClick={() => this.handleJoinClick()}> Join us! </Button>
           ) : (
-            <Button size='mini' secondary onClick={() => this.handleLeaveClick()}>
+            !admin? <Button size='mini' secondary onClick={() => this.handleLeaveClick()}>
               Leave Group
-            </Button>
+            </Button> : null
           )}
         </Container>
       );

@@ -14,6 +14,7 @@ import SignUpForm from "./components/SignUpForm"
 import MeetupForm from "./components/MeetupForm"
 import MeetupShowPage from "./components/MeetupShowPage";
 import AddGroupForm from "./components/AddGroupForm";
+import EditGroupForm from "./components/EditGroupForm";
 
 
 
@@ -52,6 +53,10 @@ class App extends React.Component {
 
   handleSearchClick = value => {
     this.setState({ searchTerm: value });
+  }
+
+  setUserLocation = (userLocation, userLatitude, userLongitutde) => {
+    this.setState({ user: {...this.state.user, location: userLocation, latitude: userLatitude, longitude: userLongitutde }})
   }
 
   componentDidMount() {
@@ -110,6 +115,14 @@ class App extends React.Component {
   addGrouptoGroups = group => {
     this.setState({ groups: [...this.state.groups, group ]})
   }
+  
+  editGroupinGroups = newGroup =>  {
+    let newGroupArray = this.state.groups.filter(group => group.id !== newGroup.id)
+    this.setState({ groups: [...newGroupArray, newGroup ]})
+
+  }
+
+
 
   render() {
     const filteredGroups = this.filterGroups()
@@ -128,7 +141,7 @@ class App extends React.Component {
           />
           
         <Route exact path="/dashboard" component={routerProps=> <Dashboard logout={this.logout} selectDog={this.selectDog} user={this.state.user} {...routerProps} /> }/>
-        <Route exact path="/map" component={routerProps=> <Map  user={this.state.user} meetups={this.state.meetups} {...routerProps} /> }/>
+        <Route exact path="/map" component={routerProps=> <Map  setUserLocation={this.setUserLocation} user={this.state.user} meetups={this.state.meetups} {...routerProps} /> }/>
         <Route exact path="/groups" component={routerProps=> <Groups handleSearchClick={this.handleSearchClick} selectGroup={this.selectGroup}  groups={filteredGroups} {...routerProps} /> } />
         <Route exact path="/dog" component={routerProps=> <DogShowPage  dog={this.state.selectedDog}  {...routerProps}  />} />
         <Route exact path="/add_dog"  component={routerProps=> <AddDogForm  user={this.state.user} refreshUser={this.refreshUser} {...routerProps}  />} />
@@ -137,6 +150,9 @@ class App extends React.Component {
         <Route exact path="/createmeetup"component={routerProps => <MeetupForm user={this.state.user} group={this.state.selectedGroup} getGroups={this.getGroups} {...routerProps}/>} />
         <Route exact path="/meetup" component={routerProps => <MeetupShowPage user={this.state.user} addAttendance={this.addAttendance} removeAttendance={this.removeAttendance} meetup={this.state.selectedMeetup} {...routerProps} />}/>
         <Route exact path='/addgroup' component={routerProps => <AddGroupForm user={this.state.user} addGrouptoGroups={this.addGrouptoGroups} {...routerProps} /> }/>
+        <Route exact path='/editgroup' component={routerProps => <EditGroupForm user={this.state.user} editGroupinGroups={this.editGroupinGroups} group={this.state.selectedGroup} {...routerProps} /> }/>
+
+      
       </div>
 
       //
