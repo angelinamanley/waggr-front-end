@@ -14,8 +14,8 @@ export default class UserMeetups extends React.Component {
           {this.props.user.meetups.map(meetup => (
             <Card
               key={meetup.id}
-            //   as={NavLink}
-            //   to="/meetup"
+              as={NavLink}
+              to="/meetup"
               onClick={() => this.props.userSelectMeetup(meetup.id)}
             >
               <Card.Content>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Form } from "semantic-ui-react";
+import { Form, Icon } from "semantic-ui-react";
 
 export default class MapSearchBar extends React.Component {
   state = {
@@ -19,7 +19,7 @@ export default class MapSearchBar extends React.Component {
         onChange={e => this.setState({ userLocation: e.target.value })}
         placeholder="Enter your location..."
         />
-        <Form.Button content='Search' />
+        <Form.Button icon secondary ><Icon name='crosshairs'/> </Form.Button>
         </Form.Group>
         </Form>
         

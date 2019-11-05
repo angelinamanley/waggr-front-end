@@ -118,7 +118,7 @@ class App extends React.Component {
         <Route exact path="/group" component={routerProps => <GroupShowPage addPostToGroup={this.addPostToGroup}user={this.state.user} group={this.state.selectedGroup} groups={this.state.groups} {...routerProps}/>} />
         <Route exact path="/signup" component={routerProps => <SignUpForm login={this.login} {...routerProps} /> } />
         <Route exact path="/createmeetup"component={routerProps => <MeetupForm user={this.state.user} group={this.state.selectedGroup} getGroups={this.getGroups} {...routerProps}/>} />
-        <Route exact path="/meetup" component={routerProps => <MeetupShowPage user={this.state.user} selectedMeetup={this.selectedMeetup} {...routerProps} />}/>
+        <Route exact path="/meetup" component={routerProps => <MeetupShowPage user={this.state.user} meetup={this.state.selectedMeetup} {...routerProps} />}/>
       </div>
 
       //
