@@ -1,7 +1,5 @@
 const API_ENDPOINT = "http://localhost:3000/";
 const POSTS_URL = `${API_ENDPOINT}posts`;
-// const USERS_URL = `${API_ENDPOINT}users`;
-// const GROUPS_URL = `${API_ENDPOINT}groups`;
 const MEETUPS_URL = `${API_ENDPOINT}meetups`;
 const LOGIN_URL = `${API_ENDPOINT}login`;
 const VALIDATE_URL = `${API_ENDPOINT}validate`;
@@ -9,7 +7,7 @@ const SIGNUP_URL = `${API_ENDPOINT}signup`;
 const USERS_URL = `${API_ENDPOINT}users`;
 const GROUPS_URL = `${API_ENDPOINT}groups`
 const DOGS_URL = `${API_ENDPOINT}dogs`
-// const ATTENDANCES_URL = `${API_ENDPOINT}attendances`
+const ATTENDANCES_URL = `${API_ENDPOINT}attendances`
 const MEMBERSHIPS_URL = `${API_ENDPOINT}memberships`
 const ADDLOCATION_URL = `${API_ENDPOINT}addlocation`
 
@@ -181,6 +179,22 @@ const jsonHeaders = (more = {}) => ({
         .catch(handleError) 
     }
 
+      const postAttendance = ( userId, meetupId ) => {
+      return fetch(ATTENDANCES_URL, {
+          method: 'POST',
+          headers: jsonHeaders(),
+          body: JSON.stringify({ user_id: userId, meetup_id: meetupId })
+        })
+          .then(handleServerResponse)
+          .catch(handleError) 
+  }
+
+  const cancelAttendance = (id) => {
+    return fetch(`${ATTENDANCES_URL}/${id}`, {
+        method: 'delete' }).then(handleServerResponse)
+}
+
+
     const getMeetups = () => fetch(MEETUPS_URL).then(handleServerResponse)
 
   export default {
@@ -199,5 +213,7 @@ const jsonHeaders = (more = {}) => ({
     postComment, 
     postMeetup, 
     addLocationToUser, 
-    getMeetups
+    getMeetups, 
+    postAttendance,
+    cancelAttendance
   }
