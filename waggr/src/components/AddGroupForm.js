@@ -1,19 +1,15 @@
 import React from 'react';
-import allBreeds from '../config/data'
 import { Container, Form, Dropdown, Radio, Button } from 'semantic-ui-react'
 import API from "../adapters/API";
 
 
 
-class AddDogForm extends React.Component{
+class AddGroupForm extends React.Component{
 
     state = { 
         name: "", 
-        breed: "", 
-        birthday: "", 
-        gender: "", 
-        bio: "", 
-        photo: ""
+       description: "", 
+       
     }
 
    
@@ -117,4 +113,4 @@ class AddDogForm extends React.Component{
 
 }
 
-export default AddDogForm
+export default AddGroupForm
