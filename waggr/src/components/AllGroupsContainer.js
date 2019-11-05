@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Image } from "semantic-ui-react";
+import { Card, Image, Button, Icon } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import Spinner from "./common/Spinner";
 import GroupSearchBar from "./GroupSearchBar";
@@ -23,7 +23,7 @@ class AllGroupsContainer extends React.Component {
       // const filteredGroups = this.filterGroups();
       return (
         <div>
-          <h2>All Groups</h2>
+          <h2>All Groups<Button size='mini' primary icon><Icon name="plus circle"/></Button></h2>
           <GroupSearchBar handleSearchClick={this.props.handleSearchClick} />
 
             {this.props.groups.map(group => (

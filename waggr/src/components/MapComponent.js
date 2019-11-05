@@ -9,16 +9,11 @@ const mapStyles = {
 };
 
 class MapContainer extends React.Component {
-  state = {
-    meetups: null
-  };
 
-  componentDidMount() {
-    API.getMeetups().then(meetups => this.setState({ meetups }));
-  }
+
 
   displayMarkers = () => {
-    return this.state.meetups.map((meetup, index) => {
+    return this.props.meetups.map((meetup, index) => {
       return (
         <Marker
           key={index}
@@ -34,7 +29,7 @@ class MapContainer extends React.Component {
   };
 
   render() {
-    if (!this.state.meetups) {
+    if (!this.props.meetups) {
       return <div>loading</div>
     } else{
 

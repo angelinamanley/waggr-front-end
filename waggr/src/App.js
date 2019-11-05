@@ -12,6 +12,7 @@ import AddDogForm from "./components/AddDogForm"
 import GroupShowPage from "./components/GroupShowPage.js"
 import SignUpForm from "./components/SignUpForm"
 import MeetupForm from "./components/MeetupForm"
+import MeetupShowPage from "./components/MeetupShowPage";
 
 
 
@@ -22,14 +23,21 @@ class App extends React.Component {
     groups: null, 
     selectedDog: null, 
     selectedGroup: null,
-    searchTerm: null
+    searchTerm: null, 
+    meetups : null, 
+    selectedMeetup : null 
   };
 
   getGroups = () => API.getGroups().then(groups => this.setState( { ...this.state, validating: true, groups: groups }))
 
     addPostToGroup = (post) => {
-     let newArray = [...this.state.selectedGroup, post]
-    this.setState({selectedGroup: newArray})}
+     let newPosts = []
+     console.log(this.state.selectedGroup.posts)
+     newPosts = [...this.state.selectedGroup.posts, post]
+    //  console.log({selectedGroup: {...this.state.selectedGroup, posts: newposts}})
+    
+    this.setState({selectedGroup: {...this.state.selectedGroup, posts: newPosts}})
+  }
 
     filterGroups = () => {
       if (this.state.searchTerm != null) {
@@ -44,9 +52,6 @@ class App extends React.Component {
     this.setState({ searchTerm: value });
   }
 
-  
-
-
   componentDidMount() {
     API.validateUser().then(user => {
       if (user.errors) {
@@ -57,6 +62,7 @@ class App extends React.Component {
       }
     })
     this.getGroups();
+    API.getMeetups().then(meetups => this.setState({ meetups }));
   }
 
   selectDog = (dog) => { 
@@ -67,7 +73,15 @@ class App extends React.Component {
     this.setState({ selectedGroup : group })
   }
   
+  userSelectGroup = (groupId) => {
+    let selectGroup = this.state.groups.find(group => group.id === groupId)
+    this.setState({ selectedGroup : selectGroup })
+  }
 
+  userSelectMeetup = (meetupId) => {
+    let selectMeetup = this.state.meetups.find(meetup => meetup.id === meetupId)
+    this.setState({ selectedMeetup : selectMeetup })
+  }
 
   login = user => {
     this.setState({ user }, () => this.props.history.push("/home"));
@@ -90,21 +104,21 @@ class App extends React.Component {
           <Route exact path="/login" component={routerProps => <LogInForm login={this.login} {...routerProps} /> }/>
           <Route exact path="/home" component={routerProps => (
               <Home
-                user={this.state.user}
+                user={this.state.user} userSelectMeetup={this.userSelectMeetup} selectGroup={this.selectGroup} userSelectGroup={this.userSelectGroup}
                 {...routerProps}
               />
             )}
           />
           
         <Route exact path="/dashboard" component={routerProps=> <Dashboard logout={this.logout} selectDog={this.selectDog} user={this.state.user} {...routerProps} /> }/>
-        <Route exact path="/map" component={routerProps=> <Map  user={this.state.user} {...routerProps} /> }/>
+        <Route exact path="/map" component={routerProps=> <Map  user={this.state.user} meetups={this.state.meetups} {...routerProps} /> }/>
         <Route exact path="/groups" component={routerProps=> <Groups handleSearchClick={this.handleSearchClick} selectGroup={this.selectGroup}  groups={filteredGroups} {...routerProps} /> } />
         <Route exact path="/dog" component={routerProps=> <DogShowPage  dog={this.state.selectedDog}  {...routerProps}  />} />
         <Route exact path="/add_dog"  component={routerProps=> <AddDogForm  user={this.state.user} refreshUser={this.refreshUser} {...routerProps}  />} />
         <Route exact path="/group" component={routerProps => <GroupShowPage addPostToGroup={this.addPostToGroup}user={this.state.user} group={this.state.selectedGroup} groups={this.state.groups} {...routerProps}/>} />
         <Route exact path="/signup" component={routerProps => <SignUpForm login={this.login} {...routerProps} /> } />
         <Route exact path="/createmeetup"component={routerProps => <MeetupForm user={this.state.user} group={this.state.selectedGroup} getGroups={this.getGroups} {...routerProps}/>} />
-
+        <Route exact path="/meetup" component={routerProps => <MeetupShowPage user={this.state.user} selectedMeetup={this.selectedMeetup} {...routerProps} />}/>
       </div>
 
       //

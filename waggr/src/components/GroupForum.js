@@ -17,8 +17,8 @@ class GroupForum extends React.Component {
     handleCommentSubmit = e => {
         e.preventDefault()
         API.postComment({group_id: this.props.group.id, user_id: this.props.user.id, content: this.state.comment})
-        .then(console.log)
-        // post => this.props.addPostToGroup(post)
+        .then(post => this.props.addPostToGroup(post))
+        // 
     }
 
   render() {

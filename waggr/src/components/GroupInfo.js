@@ -29,7 +29,7 @@ class GroupInfo extends React.Component {
   render() {
 
    
-    if (!this.props.group) { 
+    if (!this.props && !this.props.group && !this.props.group.users) { 
       
       return (
         <div>
@@ -46,12 +46,11 @@ class GroupInfo extends React.Component {
               {membership?  "yes"
               : "no"}
           </p>
-          {!this.props.group.users.find(
-            user => user.id === this.props.user.id
-          ) ? (
-            <Button secondary onClick={() => this.handleJoinClick()}> Join us! </Button>
+          {!membership
+           ? (
+            <Button size='mini' secondary onClick={() => this.handleJoinClick()}> Join us! </Button>
           ) : (
-            <Button secondary onClick={() => this.handleLeaveClick()}>
+            <Button size='mini' secondary onClick={() => this.handleLeaveClick()}>
               Leave Group
             </Button>
           )}
