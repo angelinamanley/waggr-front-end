@@ -1,116 +1,90 @@
-import React from 'react';
-import { Container, Form, Dropdown, Radio, Button } from 'semantic-ui-react'
+import React from "react";
+import { Container, Form, Dropdown, Radio, Button } from "semantic-ui-react";
 import API from "../adapters/API";
 
+class AddGroupForm extends React.Component {
+  state = {
+    name: "",
+    description: "",
+    photo: ""
+  };
 
-
-class AddGroupForm extends React.Component{
-
-    state = { 
-        name: "", 
-       description: "", 
-       
+  checkUploadResult = resultEvent => {
+    if (resultEvent.event === "success") {
+      console.log("success");
+      this.setState({ photo: resultEvent.info.secure_url });
     }
+  };
 
-   
+  handleInputChange = (key, value) => {
+    this.setState({
+      [key]: value
+    });
+  };
 
-  
-    checkUploadResult = (resultEvent) => {
-      if (resultEvent.event === 'success') {
-        console.log("success") 
-        this.setState({photo: resultEvent.info.secure_url})
-      }
+  submit = e => {
+    e.preventDefault();
+    API.postGroup({
+      name: this.state.name,
+      description: this.state.descrption,
+      photo: this.state.photo,
+      admin_id: this.props.user.id
+    })
+      .then( group => 
+        this.props.addGrouptoGroups(group)
+      )
+      .then(() => this.props.history.push("/groups"));
+  };
+
+     showWidget = () => {
+    this.widget.open()
+  }
+
+   widget = window.cloudinary.createUploadWidget({ 
+    cloudName: "angelinashin", uploadPreset: "zdjpntym", sources: [ 'local', 'url'],  cropping: true, croppingAspectRatio : 1, showSkipCropButton: false}, (error, result) => { this.checkUploadResult(result) });
+
+
+  checkUploadResult = (resultEvent) => {
+    if (resultEvent.event === 'success') {
+      console.log("success") 
+      this.setState({photo: resultEvent.info.secure_url})
     }
-    
-        handleInputChange = (key, value) => {
-        this.setState({
-          [key]: value
-        })
-      }
-    
-      submit = e => {
-        e.preventDefault()
-        API.addDog({ name: this.state.name, breed: this.state.breed, birthday: this.state.birthday, gender: this.state.gender, bio: this.state.bio, photo: this.state.photo, user_id: this.props.user.id}).then(API.getUser(this.props.user.id).then(user => this.props.refreshUser(user))).then(() => this.props.history.push('/dashboard'))
-      }
+  }
 
-      showWidget = () => {
-      this.widget.open()
-    }
-
-     widget = window.cloudinary.createUploadWidget({ 
-      cloudName: "angelinashin", uploadPreset: "zdjpntym" }, (error, result) => { this.checkUploadResult(result) });
-
-
-        render(){
-          
-      return(
-          <Container>
-             <Button onClick={this.showWidget}>Upload Picture</Button>
-        <Form onSubmit={this.submit} >
-        <Form.Input
-        label="Name"
-          name="name"
-          type="text"
-          placeholder="name"
-          autoComplete="name"
-          value={this.state.name}
-          onChange={e => this.handleInputChange(e.target.name, e.target.value)}
-        />
-        
-        <Dropdown 
-        label="Breed"
-        placeholder="Select Breed"
-        name="breed"
-        search
-        selection 
-        options={allBreeds}
-        onChange={(event,data) => this.setState({breed: data.value})}
-        />
-
-          <Form.Field>
-          <Radio
-            label='Female'
-            value='Female'
-            checked={this.state.gender === 'female'}
-            onChange={() => this.setState({gender: "female"})}
+  render() {
+    return (
+      <Container>
+        <Button onClick={this.showWidget}>Upload Picture</Button>
+        <Form onSubmit={this.submit}>
+          <Form.Input
+            label="Name"
+            name="name"
+            type="text"
+            placeholder="name"
+            autoComplete="name"
+            value={this.state.name}
+            onChange={e =>
+              this.handleInputChange(e.target.name, e.target.value)
+            }
           />
-        </Form.Field>
-        <Form.Field>
-          <Radio
-            label='Male'
-            value='Male'
-            checked={this.state.gender === 'male'}
-            onChange={() => this.setState({gender: "male"})}
+
+          <Form.TextArea
+            label="description"
+            name="description"
+            type="text"
+            placeholder="Tell us more about your group!"
+            autoComplete="text"
+            value={this.state.description}
+            onChange={e =>
+              this.handleInputChange(e.target.name, e.target.value)
+            }
           />
-        </Form.Field>
 
-        <Form.Input
-        label="Birthday"
-          name="birthday"
-          type="date"
-          autoComplete="date"
-          value={this.state.birthday}
-          onChange={e => this.handleInputChange(e.target.name, e.target.value)}
-        />
-
-            <Form.TextArea
-            label="Bio"
-          name="bio"
-          type="text"
-          placeholder="Tell us more about your dog!"
-          autoComplete="name"
-          value={this.state.bio}
-          onChange={e => this.handleInputChange(e.target.name, e.target.value)}
-        />      
-
-       
-        
-
-        <Form.Button>Submit</Form.Button>
+          <Form.Button>Submit</Form.Button>
         </Form>
-        </Container>
-      )}
-
+      </Container>
+    );
+  }
 }
 
-export default AddGroupForm
+export default AddGroupForm;

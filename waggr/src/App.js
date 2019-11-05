@@ -13,6 +13,8 @@ import GroupShowPage from "./components/GroupShowPage.js"
 import SignUpForm from "./components/SignUpForm"
 import MeetupForm from "./components/MeetupForm"
 import MeetupShowPage from "./components/MeetupShowPage";
+import AddGroupForm from "./components/AddGroupForm";
+
 
 
 
@@ -105,6 +107,10 @@ class App extends React.Component {
     this.setState({selectedMeetup: {...this.state.selectedMeetup, attendances: newAttendances}})
   }
 
+  addGrouptoGroups = group => {
+    this.setState({ groups: [...this.state.groups, group ]})
+  }
+
   render() {
     const filteredGroups = this.filterGroups()
     return (
@@ -130,6 +136,7 @@ class App extends React.Component {
         <Route exact path="/signup" component={routerProps => <SignUpForm login={this.login} {...routerProps} /> } />
         <Route exact path="/createmeetup"component={routerProps => <MeetupForm user={this.state.user} group={this.state.selectedGroup} getGroups={this.getGroups} {...routerProps}/>} />
         <Route exact path="/meetup" component={routerProps => <MeetupShowPage user={this.state.user} addAttendance={this.addAttendance} removeAttendance={this.removeAttendance} meetup={this.state.selectedMeetup} {...routerProps} />}/>
+        <Route exact path='/addgroup' component={routerProps => <AddGroupForm user={this.state.user} addGrouptoGroups={this.addGrouptoGroups} {...routerProps} /> }/>
       </div>
 
       //

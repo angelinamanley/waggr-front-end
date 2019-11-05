@@ -23,7 +23,7 @@ class AllGroupsContainer extends React.Component {
       // const filteredGroups = this.filterGroups();
       return (
         <div>
-          <h2>All Groups<Button size='mini' primary icon><Icon name="plus circle"/></Button></h2>
+          <h2>All Groups<Button as={Link} to='/addgroup' size='mini' primary icon><Icon name="plus circle"/></Button></h2>
           <GroupSearchBar handleSearchClick={this.props.handleSearchClick} />
 
             {this.props.groups.map(group => (

@@ -194,7 +194,15 @@ const jsonHeaders = (more = {}) => ({
         method: 'delete' }).then(handleServerResponse)
 }
 
-
+    const postGroup = ( group ) => {
+    return fetch(GROUPS_URL, {
+      method: 'POST',
+      headers: jsonHeaders(),
+      body: JSON.stringify(group)
+    })
+      .then(handleServerResponse)
+      .catch(handleError) 
+}
     const getMeetups = () => fetch(MEETUPS_URL).then(handleServerResponse)
 
   export default {
@@ -215,5 +223,6 @@ const jsonHeaders = (more = {}) => ({
     addLocationToUser, 
     getMeetups, 
     postAttendance,
-    cancelAttendance
+    cancelAttendance, 
+    postGroup
   }

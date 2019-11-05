@@ -19,12 +19,6 @@ class AddDogForm extends React.Component{
    
 
   
-    checkUploadResult = (resultEvent) => {
-      if (resultEvent.event === 'success') {
-        console.log("success") 
-        this.setState({photo: resultEvent.info.secure_url})
-      }
-    }
     
         handleInputChange = (key, value) => {
         this.setState({
@@ -45,11 +39,18 @@ class AddDogForm extends React.Component{
       cloudName: "angelinashin", uploadPreset: "zdjpntym" }, (error, result) => { this.checkUploadResult(result) });
 
 
+    checkUploadResult = (resultEvent) => {
+      if (resultEvent.event === 'success') {
+        console.log("success") 
+        this.setState({photo: resultEvent.info.secure_url})
+      }
+    }
+
         render(){
           
       return(
           <Container>
-             <Button onClick={this.showWidget}>Upload Picture</Button>
+             <Button onClick={this.showWidget}>Upload a Profile Picture for your Group! </Button>
         <Form onSubmit={this.submit} >
         <Form.Input
         label="Name"
