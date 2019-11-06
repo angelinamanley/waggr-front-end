@@ -54,6 +54,7 @@ class EditDogForm extends React.Component {
   render() {
     return (
       <Container>
+          <h2>Edit Group</h2>
         <Button onClick={this.showWidget}>Upload Picture</Button>
         <Form onSubmit={this.submit}>
           <Form.Input

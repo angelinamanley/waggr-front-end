@@ -12,6 +12,7 @@ render(){
     } else {
     return(
         <div>
+            <Card.Group centered>
         {this.props.user.groups.map(group => 
             <Card
               key={group.id}
@@ -20,13 +21,13 @@ render(){
               onClick={() => this.props.userSelectGroup(group.id)}
             >
               <Card.Content>
-                <Image floated="right" seize="mini" src={group.photo} />
+                <Image floated="right"  src={group.photo} />
                 <Card.Header>{group.name}</Card.Header>
               </Card.Content>
             </Card>
     
-)
+)   
 
-}</div>)
+} </Card.Group></div>)
 } }
 }

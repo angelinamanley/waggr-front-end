@@ -54,6 +54,7 @@ class AddGroupForm extends React.Component {
   render() {
     return (
       <Container>
+          <h3>Create a Group</h3>
         <Button onClick={this.showWidget}>Upload Picture</Button>
         <Form onSubmit={this.submit}>
           <Form.Input

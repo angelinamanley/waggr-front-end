@@ -35,7 +35,7 @@ class AllGroupsContainer extends React.Component {
                 onClick={() => this.props.selectGroup(group)}
               >
                 <Card.Content>
-                  <Image floated="right" seize="mini" src={group.photo} />
+                  <Image floated="right" src={group.photo} />
                   <Card.Header>{group.name}</Card.Header>
                 </Card.Content>
               </Card>

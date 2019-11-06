@@ -1,5 +1,6 @@
 import React from 'react';
 import {Container, List, Image, Button} from 'semantic-ui-react'
+import {Link} from 'react-router-dom'
 import moment from "moment"
 import API from "../adapters/API";
 
@@ -42,10 +43,10 @@ const MeetupShowPage = props => {
             <h4>Attendees:</h4>
             <List>
             {props.meetup.attendances.map(attendance => 
-                <List.Item> 
+                <List.Item > 
                     <Image avatar src={attendance.user.photo} />
                     <List.Content>
-                        <List.Header as='a'>{attendance.user.first_name}</List.Header>
+                        <List.Header as={Link} to="/usershow" onClick={() => props.selectUser(attendance.user.id)}>{attendance.user.first_name}</List.Header>
                     </List.Content>
                 </List.Item>
             

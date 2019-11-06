@@ -10,9 +10,9 @@ export default class UserMeetups extends React.Component {
     } else {
       return (
         <div>
-        
+            <Card.Group centered>
           {this.props.user.meetups.map(meetup => (
-            <Card
+            <Card fluid color='yellow' 
               key={meetup.id}
               as={NavLink}
               to="/meetup"
@@ -20,10 +20,10 @@ export default class UserMeetups extends React.Component {
             >
               <Card.Content>
                 <Image floated="right" seize="mini" src={meetup.photo} />
-                <Card.Header>{meetup.name}</Card.Header>
+                <Card.Header size='medium'>{meetup.name}</Card.Header>
               </Card.Content>
             </Card>
-          ))}
+          ))}</Card.Group>
         </div>
       );
     }

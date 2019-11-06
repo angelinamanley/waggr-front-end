@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Button, Comment, Form } from "semantic-ui-react";
+import { Container, Button, Comment, Form, Icon } from "semantic-ui-react";
 import API from "../adapters/API";
 import moment from "moment";
 
@@ -40,7 +40,7 @@ class GroupForum extends React.Component {
                   <Comment.Avatar as="a" src={post.user.photo}/>
                 <Comment.Content>
                   <Comment.Author>{post.user.first_name}</Comment.Author>
-                  <Comment.Metadata><div>{moment(post.created_at).format('MM/DD/YYYY h:mm a')}</div></Comment.Metadata>
+                  <Comment.Metadata>{moment(post.created_at).fromNow()} <Icon name='x' color='red'/> </Comment.Metadata>
                   <Comment.Text>
                     <p>{post.content}</p>
                   </Comment.Text>
