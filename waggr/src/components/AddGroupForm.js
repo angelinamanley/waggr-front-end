@@ -26,7 +26,7 @@ class AddGroupForm extends React.Component {
     e.preventDefault();
     API.postGroup({
       name: this.state.name,
-      description: this.state.descrption,
+      description: this.state.description,
       photo: this.state.photo,
       admin_id: this.props.user.id
     })

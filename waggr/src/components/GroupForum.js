@@ -53,7 +53,7 @@ class GroupForum extends React.Component {
                 </Comment.Content>
               </Comment>
             )}
-             <Form onSubmit={this.handleCommentSubmit} reply>
+             <Form onSubmit={this.handleCommentSubmit} >
       <Form.TextArea onChange={event => this.setState({comment: event.target.value})}/>
       <Button content='Add Comment' labelPosition='left' icon='edit' primary />
     </Form>

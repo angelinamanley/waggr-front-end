@@ -218,6 +218,16 @@ const editGroup = ( group, id ) => {
     .catch(handleError) 
 }
 
+ const editProfilePicture = (id, data) => {
+   return fetch(`${USERS_URL}/${id}`, {
+    method: 'PATCH',
+    headers: jsonHeaders(),
+    body: JSON.stringify({photo: data})
+  })
+    .then(handleServerResponse)
+    .catch(handleError) 
+ }
+
   const getMeetups = () => fetch(MEETUPS_URL).then(handleServerResponse)
 
   export default {
@@ -241,5 +251,6 @@ const editGroup = ( group, id ) => {
     cancelAttendance, 
     postGroup, 
     editGroup,  
-    deletePost
+    deletePost, 
+    editProfilePicture
   }

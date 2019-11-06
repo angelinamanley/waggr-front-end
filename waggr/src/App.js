@@ -132,6 +132,10 @@ class App extends React.Component {
     this.setState({selectedGroup: {...this.state.selectedGroup, posts: newPosts}})
   }
 
+  editProfilePicture = (id, data) => {
+    API.editProfilePicture(id, data).then(newUser => this.setState({ user: newUser}))  
+  }
+
 
 
   render() {
@@ -150,7 +154,7 @@ class App extends React.Component {
             )}
           />
           
-        <Route exact path="/dashboard" component={routerProps=> <Dashboard logout={this.logout} selectDog={this.selectDog} user={this.state.user} {...routerProps} /> }/>
+        <Route exact path="/dashboard" component={routerProps=> <Dashboard editProfilePicture={this.editProfilePicture} logout={this.logout} selectDog={this.selectDog} user={this.state.user} {...routerProps} /> }/>
         <Route exact path="/map" component={routerProps=> <Map  setUserLocation={this.setUserLocation} user={this.state.user} meetups={this.state.meetups} {...routerProps} /> }/>
         <Route exact path="/groups" component={routerProps=> <Groups handleSearchClick={this.handleSearchClick} selectGroup={this.selectGroup}  groups={filteredGroups} {...routerProps} /> } />
         <Route exact path="/dog" component={routerProps=> <DogShowPage  dog={this.state.selectedDog}  {...routerProps}  />} />

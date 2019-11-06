@@ -9,8 +9,11 @@ import AccountSettings from './AccountSettings'
 class Dashboard extends React.Component{ 
 
     state = {
-        validating : true 
+        validating : true, 
+        photo: null
     }
+
+       
 
 
         componentDidMount() {
@@ -19,7 +22,20 @@ class Dashboard extends React.Component{
                 })
         }
 
- 
+        showWidget = () => {
+            this.widget.open()
+          }
+      
+           widget = window.cloudinary.createUploadWidget({ 
+            cloudName: "angelinashin", uploadPreset: "zdjpntym" , cropping: true, croppingAspectRatio : 1, showSkipCropButton: false}, (error, result) => { this.checkUploadResult(result) });
+      
+      
+          checkUploadResult = (resultEvent) => {
+            if (resultEvent.event === 'success') {
+              console.log(resultEvent.info.secure_url) 
+              this.props.editProfilePicture(this.props.user.id, resultEvent.info.secure_url)
+            }
+          }
 
         render(){ 
             if (!this.props.user) {
@@ -33,6 +49,7 @@ class Dashboard extends React.Component{
                     <h1>{this.props.user.first_name} <Button as={NavLink} exact to="/login" onClick={()=> this.props.logout()} secondary size='mini'>Log Out </Button> </h1>
                     <DogsContainer selectDog={this.props.selectDog} dogs={this.props.user.dogs} />
                     <AccountSettings />
+                    <Button secondary onClick={this.showWidget}>Edit Profile Picture</Button>
 
 
                     
