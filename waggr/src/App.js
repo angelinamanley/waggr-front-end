@@ -126,6 +126,12 @@ class App extends React.Component {
 
   }
 
+  removePost = (id ) => {
+  
+    let newPosts = this.state.selectedGroup.posts.filter(post => post.id !== id )
+    this.setState({selectedGroup: {...this.state.selectedGroup, posts: newPosts}})
+  }
+
 
 
   render() {
@@ -149,7 +155,7 @@ class App extends React.Component {
         <Route exact path="/groups" component={routerProps=> <Groups handleSearchClick={this.handleSearchClick} selectGroup={this.selectGroup}  groups={filteredGroups} {...routerProps} /> } />
         <Route exact path="/dog" component={routerProps=> <DogShowPage  dog={this.state.selectedDog}  {...routerProps}  />} />
         <Route exact path="/add_dog"  component={routerProps=> <AddDogForm  user={this.state.user} refreshUser={this.refreshUser} {...routerProps}  />} />
-        <Route exact path="/group" component={routerProps => <GroupShowPage userSelectMeetup={this.userSelectMeetup} addPostToGroup={this.addPostToGroup}user={this.state.user} group={this.state.selectedGroup} groups={this.state.groups} {...routerProps}/>} />
+        <Route exact path="/group" component={routerProps => <GroupShowPage removePost={this.removePost} userSelectMeetup={this.userSelectMeetup} addPostToGroup={this.addPostToGroup}user={this.state.user} group={this.state.selectedGroup} groups={this.state.groups} {...routerProps}/>} />
         <Route exact path="/signup" component={routerProps => <SignUpForm login={this.login} {...routerProps} /> } />
         <Route exact path="/createmeetup"component={routerProps => <MeetupForm user={this.state.user} group={this.state.selectedGroup} getGroups={this.getGroups} {...routerProps}/>} />
         <Route exact path="/meetup" component={routerProps => <MeetupShowPage selectUser={this.selectUser} user={this.state.user} addAttendance={this.addAttendance} removeAttendance={this.removeAttendance} meetup={this.state.selectedMeetup} {...routerProps} />}/>

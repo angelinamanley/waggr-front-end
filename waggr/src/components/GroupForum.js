@@ -21,6 +21,10 @@ class GroupForum extends React.Component {
         // 
     }
 
+    handleCommentDelete = (id) => {
+      API.deletePost(id).then(()=> this.props.removePost(id))
+    }
+
   render() {
     if (!this.props.group) {
       return (
@@ -29,6 +33,8 @@ class GroupForum extends React.Component {
         </div>
       );
     } else {
+
+    
       return (
 
         <React.Fragment>
@@ -40,7 +46,7 @@ class GroupForum extends React.Component {
                   <Comment.Avatar as="a" src={post.user.photo}/>
                 <Comment.Content>
                   <Comment.Author>{post.user.first_name}</Comment.Author>
-                  <Comment.Metadata>{moment(post.created_at).fromNow()} <Icon name='x' color='red'/> </Comment.Metadata>
+                  <Comment.Metadata>{moment(post.created_at).fromNow()} {this.props.user.id === post.user.id? <Icon onClick={()=> this.handleCommentDelete(post.id)} name='x' color='pink'/> : null} </Comment.Metadata>
                   <Comment.Text>
                     <p>{post.content}</p>
                   </Comment.Text>

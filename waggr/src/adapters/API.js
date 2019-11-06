@@ -193,6 +193,10 @@ const jsonHeaders = (more = {}) => ({
     return fetch(`${ATTENDANCES_URL}/${id}`, {
         method: 'delete' }).then(handleServerResponse)
 }
+const deletePost = (id) => {
+  return fetch(`${POSTS_URL}/${id}`, {
+      method: 'delete' }).then(handleServerResponse)
+}
 
     const postGroup = ( group ) => {
     return fetch(GROUPS_URL, {
@@ -214,7 +218,7 @@ const editGroup = ( group, id ) => {
     .catch(handleError) 
 }
 
-    const getMeetups = () => fetch(MEETUPS_URL).then(handleServerResponse)
+  const getMeetups = () => fetch(MEETUPS_URL).then(handleServerResponse)
 
   export default {
       addDog,
@@ -236,5 +240,6 @@ const editGroup = ( group, id ) => {
     postAttendance,
     cancelAttendance, 
     postGroup, 
-    editGroup
+    editGroup,  
+    deletePost
   }
