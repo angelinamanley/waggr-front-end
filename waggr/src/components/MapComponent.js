@@ -1,6 +1,5 @@
 import React from "react";
 import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
-import API from "../adapters/API";
 import apiKey from "../config/config_keys"
 
 const mapStyles = {

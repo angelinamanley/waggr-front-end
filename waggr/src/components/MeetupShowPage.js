@@ -28,7 +28,7 @@ class MeetupShowPage extends React.Component{
 
     handleCancelClick = () => {
         let attendanceId = this.findAttendanceId()
-        let newAttendances = this.state.meetup.attendances.filter(attendance => attendance.user.id != this.props.user.id)
+        let newAttendances = this.state.meetup.attendances.filter(attendance => attendance.user.id !== this.props.user.id)
         API.cancelAttendance(attendanceId).then(this.setState({ meetup: {...this.state.meetup, attendances: newAttendances}}))
     }
 

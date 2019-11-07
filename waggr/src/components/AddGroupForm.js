@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Form, Dropdown, Radio, Button } from "semantic-ui-react";
+import { Container, Form, Button } from "semantic-ui-react";
 import API from "../adapters/API";
 
 class AddGroupForm extends React.Component {

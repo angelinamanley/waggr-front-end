@@ -43,14 +43,14 @@ class Dashboard extends React.Component{
                 else{
 
             return( 
-                <div>
-                    <Image src={this.props.user.photo} centered size='small'/>
+                <React.Fragment>
+                    <Image src={this.props.user.photo} centered size='medium' style={ {width : "auto"}} />
 
                     <h1>{this.props.user.first_name} <Button as={NavLink} exact to="/login" onClick={()=> this.props.logout()} secondary size='mini'>Log Out </Button> </h1>
                     <DogsContainer dogs={this.props.user.dogs} />
                     <AccountSettings />
                     <Button secondary onClick={this.showWidget}>Edit Profile Picture</Button>
-
+                    </React.Fragment>
 
                     
                     
@@ -61,7 +61,6 @@ class Dashboard extends React.Component{
                 
 
                     
-                </div>
             )
         }
     }

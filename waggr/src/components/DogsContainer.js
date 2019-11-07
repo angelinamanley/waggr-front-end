@@ -13,14 +13,14 @@ class DogsContainer extends React.Component{
                 <Container>
                 <h3>Your Dogs</h3>
             
-            <Card.Group>
+            <Card.Group centered>
 
             {this.props.dogs.map(dog=> 
-                <Card as={Link} to={`/dogs/${dog.id}`} >
+                <Card key={dog.id} as={Link} to={`/dogs/${dog.id}`} >
                     <Card.Content>
-                        <Image 
-                        floated='right'
-                        size='mini'
+                        <Image circular
+                        floated='left'
+                        size='small'
                         src={dog.photo}
                         />
                         <Card.Header>{dog.name}</Card.Header>

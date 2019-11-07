@@ -1,10 +1,6 @@
 import React from 'react';
 import AllGroupsContainer from "./AllGroupsContainer"
 import Spinner from './common/Spinner';
-import API from '../adapters/API'
-
-
-
 
 class Groups extends React.Component{ 
 

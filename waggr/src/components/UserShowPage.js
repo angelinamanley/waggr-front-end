@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, Image, Segment, Container} from 'semantic-ui-react'
+import { Image } from 'semantic-ui-react'
 import DogsContainer from './DogsContainer'
 import UserMeetups from './UserMeetups'
 import API from '../adapters/API'
@@ -19,7 +19,6 @@ class UserShowPage extends React.Component {
     if (!this.state.user) {
        return <h3>Loading</h3>
     } else {
-        const { user } = this.state
     return(
 
        <div>

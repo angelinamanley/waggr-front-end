@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, List, Image } from "semantic-ui-react";
+import { Button, List } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
 export default class GroupMeetups extends React.Component {

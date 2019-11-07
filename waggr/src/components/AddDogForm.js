@@ -36,7 +36,7 @@ class AddDogForm extends React.Component{
     }
 
      widget = window.cloudinary.createUploadWidget({ 
-      cloudName: "angelinashin", uploadPreset: "zdjpntym" ,  sources: [ 'local', 'url'], resourceType: 'image', cropping: true, croppingAspectRatio : 1, showSkipCropButton: false, cropping_coordinates_mode: 'custom'}, (error, result) => { this.checkUploadResult(result) });
+      cloudName: "angelinashin", uploadPreset: "zdjpntym" ,  sources: [ 'local', 'url'], resourceType: 'image', cropping: true, croppingAspectRatio : 1, showSkipCropButton: false}, (error, result) => { this.checkUploadResult(result) });
 
 
     checkUploadResult = (resultEvent) => {
