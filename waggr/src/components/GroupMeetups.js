@@ -1,8 +1,10 @@
 import React from "react";
 import { Button, List, Image } from "semantic-ui-react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default class GroupMeetups extends React.Component {
+
+
    
     futureMeetups = () => {
         let  whatdayisit = new Date()
@@ -20,12 +22,12 @@ export default class GroupMeetups extends React.Component {
   return (
    
       <div>
-      <Button primary as={NavLink} to="/createmeetup">Add a new Meetup</Button>
+      <Button primary as={Link} to={`/groups/${this.props.group.id}/createmeetup`}>Add a new Meetup</Button>
       <List>
       {this.props.group.meetups.map(meetup => 
       <List.Item>
       {/* <Image avatar src='./common/pawprint.jpg'/> */}
-      <List.Content onClick={()=> this.props.userSelectMeetup(meetup.id) } as={NavLink} to='/meetup'>
+      <List.Content onClick={()=> this.props.userSelectMeetup(meetup.id) } as={Link} to={`/meetups/${meetup.id}`}>
         <List.Header >{meetup.name}</List.Header>
         </List.Content>
         </List.Item>

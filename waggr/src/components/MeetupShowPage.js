@@ -5,48 +5,62 @@ import moment from "moment"
 import API from "../adapters/API";
 
 
-const MeetupShowPage = props => {
+class MeetupShowPage extends React.Component{
 
-    const handleAttendClick = () => {
-        API.postAttendance(props.user.id, props.meetup.id).then(attendance => props.addAttendance(attendance))
+    state = {
+        meetup : null 
     }
 
-    const findAttendanceId = () => {
-    return props.meetup.attendances.find(
-      attendance => attendance.user.id === props.user.id
+    componentDidMount(){
+        API.getMeetup(this.props.match.params.id).then(meetup => this.setState({ meetup}))
+    }
+
+    handleAttendClick = () => {
+        let newAttendances = [...this.state.meetup.attendances]
+        API.postAttendance(this.props.user.id, this.state.meetup.id).then(attendance => this.setState({meetup: {...this.state.meetup, attendances: [...newAttendances, attendance]}}))
+    }
+
+    findAttendanceId = () => {
+    return this.state.meetup.attendances.find(
+      attendance => attendance.user.id === this.props.user.id
     ).id }
 
 
-    const handleCancelClick = () => {
-        let attendanceId = findAttendanceId()
-        API.cancelAttendance(attendanceId).then(props.removeAttendance(attendanceId))
+    handleCancelClick = () => {
+        let attendanceId = this.findAttendanceId()
+        let newAttendances = this.state.meetup.attendances.filter(attendance => attendance.user.id != this.props.user.id)
+        API.cancelAttendance(attendanceId).then(this.setState({ meetup: {...this.state.meetup, attendances: newAttendances}}))
     }
 
-    if (!props.meetup || !props.user) {
+    render() {
+    if (!this.props.user || !this.state.meetup) {
         return( <div>Loading..</div>)
     } else {
 
-        const attending = props.meetup.attendances.find(attendance => attendance.user.id === props.user.id)
-    
-
-        
+        const attending = this.state.meetup.attendances.find(attendance => attendance.user.id === this.props.user.id)
+        const {meetup} = this.state 
 
     return(
+
         <Container>
-            <h1>{props.meetup.name}</h1>
+            <h1>{meetup.name}</h1>
             {!attending? 
-            <Button onClick={()=> handleAttendClick(props.user.id, props.meetup.id)} secondary>Attend</Button> :
-            <Button secondary onClick={()=>handleCancelClick()}> Cancel </Button> }
-            <h4>When: {moment(props.meetup.datetime).format('MMM Do YYYY')}</h4>
-            <h4>Where: {props.meetup.location}</h4>
-            <h4>{props.meetup.description}</h4>
+            <Button onClick={()=> this.handleAttendClick(this.props.user.id, meetup.id)} secondary>Attend</Button> :
+            <Button secondary onClick={()=>this.handleCancelClick()}> Cancel </Button> }
+            { meetup.admin_id === this.props.user.id? 
+                <Button >Edit Meetup</Button> : null }
+            <h4>{meetup.group.name}</h4>
+            <h4>{meetup.admin_id}</h4>
+            <h4>When: {moment(meetup.datetime).format('MMM Do YYYY')}</h4>
+            <h4>Where: {meetup.location}</h4>
+            <h4>{meetup.description}</h4>
             <h4>Attendees:</h4>
             <List>
-            {props.meetup.attendances.map(attendance => 
+            {meetup.attendances.map(attendance => 
                 <List.Item > 
                     <Image avatar src={attendance.user.photo} />
                     <List.Content>
-                        <List.Header as={Link} to="/usershow" onClick={() => props.selectUser(attendance.user.id)}>{attendance.user.first_name}</List.Header>
+                        <List.Header as={Link} to="/usershow" onClick={() => this.props.selectUser(attendance.user.id)}>{attendance.user.first_name}</List.Header>
                     </List.Content>
                 </List.Item>
             
@@ -57,7 +71,7 @@ const MeetupShowPage = props => {
 
 
 
-    ) }
+    ) } }
     }
 
 export default MeetupShowPage

@@ -9,7 +9,7 @@ import API from "../adapters/API";
 
 class GroupShowPage extends React.Component {
   state = {
-    menuSelect: "home",
+    menuSelect: "chat",
     group: null 
   };
 
@@ -36,7 +36,7 @@ class GroupShowPage extends React.Component {
 
     return (
       <div>
-        <GroupInfo user={this.props.user} group={this.props.group} />
+        <GroupInfo user={this.props.user} group={this.state.group} />
         <GroupShowMenu handleMenuSelect={this.handleMenuSelect} />
         {component}
       </div>

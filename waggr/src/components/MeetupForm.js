@@ -13,7 +13,12 @@ class MeetupForm extends React.Component{
         description: null, 
         datetime: null, 
         location: null, 
+        groupId: null
 
+    }
+
+    componentDidMount(){
+      this.setState({groupId: this.props.match.params.id})
     }
 
     handleInputChange = (key, value) => {
@@ -24,10 +29,7 @@ class MeetupForm extends React.Component{
     
       submit = e => {
         e.preventDefault()
-        API.postMeetup({name: this.state.name, description: this.state.description, datetime: this.state.datetime, location: this.state.location, group_id: this.props.group.id }).then(()=> this.props.getGroups()).then(() => this.props.history.push('/group'))
-        // API.signup({ email: this.state.email, password: this.state.password, password_confirmation: this.state.password_confirmation, first_name: this.state.first_name, last_name: this.state.last_name}).then(
-        //   user => this.props.login(user)
-        // )
+        API.postMeetup({name: this.state.name, description: this.state.description, datetime: this.state.datetime, location: this.state.location, group_id: this.state.groupId }).then(meetup => this.props.history.push(`/meetups/${meetup.id}`))
       }
 
       handleChange = (event, {name, value}) => {
@@ -39,13 +41,13 @@ class MeetupForm extends React.Component{
 
     render(){
 
-            if (!this.props.group) {
+            if (!this.state.groupId) {
                 return( <div>Loading...</div> )
             } else{
 
         return(
             <Container>
-                <h3>Create a new Meetup for {this.props.group.name}</h3> 
+                <h3>Create a new Meetup</h3> 
             <Form 
         onSubmit={this.submit}
         onChange={e => this.handleInputChange(e.target.name, e.target.value)}

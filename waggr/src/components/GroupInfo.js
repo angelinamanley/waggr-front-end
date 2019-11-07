@@ -8,6 +8,7 @@ class GroupInfo extends React.Component {
     membership: null
   };
 
+  
 
   handleJoinClick = () => {
     API.joinGroup({
@@ -23,21 +24,21 @@ class GroupInfo extends React.Component {
 
   handleLeaveClick = () => {
     API.leaveGroup(this.findMembershipId()).then(
-      this.setState({ member: false })
+      this.setState({ membership: false })
     );
   };
 
   render() {
-
-   
-    if (!this.props && !this.props.group && !this.props.group.users) { 
+    if (!this.props.group || !this.props.user || !this.props.group.users) { 
       
-      return (
-        <div>
-          <h2>Loading</h2>
-        </div>
-      );
-    } else {
+          return (
+            <div>
+              <h2>Loading</h2>
+            </div>
+          );
+        } else {
+
+ 
       const membership = this.props.group.users.find(user => user.id === this.props.user.id)
       const admin = this.props.group.admin_id === this.props.user.id 
       return (
@@ -58,9 +59,9 @@ class GroupInfo extends React.Component {
             </Button> : null
           )}
         </Container>
-      );
-    }
-  }
+      )
+
+  } }
 }
 
 export default GroupInfo;

@@ -234,6 +234,9 @@ const editGroup = ( group, id ) => {
 
   const getMeetups = () => fetch(MEETUPS_URL).then(handleServerResponse)
 
+  const getMeetup = (id) => fetch(`${MEETUPS_URL}/${id}`).then(handleServerResponse)
+
+
   export default {
       addDog,
       getGroups, 
@@ -257,5 +260,6 @@ const editGroup = ( group, id ) => {
     editGroup,  
     deletePost, 
     editProfilePicture, 
-    getGroup
+    getGroup, 
+    getMeetup
   }
