@@ -31,7 +31,7 @@ class AllGroupsContainer extends React.Component {
               <Card
                 key={group.id}
                 as={Link}
-                to="/group"
+                to={`/groups/${group.id}`}
                 onClick={() => this.props.selectGroup(group)}
               >
                 <Card.Content>

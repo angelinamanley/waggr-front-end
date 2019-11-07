@@ -121,6 +121,10 @@ const jsonHeaders = (more = {}) => ({
     const getGroups = () => { 
         return fetch(GROUPS_URL).then(handleServerResponse)
     }
+   
+    const getGroup = (id) => { 
+      return fetch(`${GROUPS_URL}/${id}`).then(handleServerResponse)
+    }
 
 
     const joinGroup = (data) => {
@@ -252,5 +256,6 @@ const editGroup = ( group, id ) => {
     postGroup, 
     editGroup,  
     deletePost, 
-    editProfilePicture
+    editProfilePicture, 
+    getGroup
   }
