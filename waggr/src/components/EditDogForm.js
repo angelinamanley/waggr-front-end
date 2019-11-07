@@ -1,6 +1,6 @@
 import React from 'react';
 import allBreeds from '../config/data'
-import { Container, Form, Dropdown, Radio, Button } from 'semantic-ui-react'
+import { Container, Form, Dropdown, Radio, Button, Image } from 'semantic-ui-react'
 import API from "../adapters/API";
 
 
@@ -13,13 +13,16 @@ class EditDogForm extends React.Component{
         birthday: "", 
         gender: "", 
         bio: "", 
-        photo: ""
+        photo: "", 
+        dog: ""
     }
 
 
-      
   
-    
+    componentDidMount(){ 
+      API.getDog(this.props.match.params.id).then(dog => this.setState({ dog }))
+    }
+  
       handleInputChange = (key, value) => {
         this.setState({
           [key]: value
@@ -36,7 +39,7 @@ class EditDogForm extends React.Component{
     }
 
      widget = window.cloudinary.createUploadWidget({ 
-      cloudName: "angelinashin", uploadPreset: "zdjpntym" , resourceType: 'image', cropping: true, croppingAspectRatio : 1, showSkipCropButton: false}, (error, result) => { this.checkUploadResult(result) });
+      cloudName: "angelinashin", uploadPreset: "zdjpntym" , sources: [ 'local', 'url'],resourceType: 'image', cropping: true, croppingAspectRatio : 1, showSkipCropButton: false}, (error, result) => { this.checkUploadResult(result) });
 
 
     checkUploadResult = (resultEvent) => {
@@ -50,6 +53,7 @@ class EditDogForm extends React.Component{
           
       return(
           <Container>
+            <Image size='mini' src={this.state.dog.photo} />
              <Button secondary onClick={this.showWidget}>Upload your pup's picture!  </Button>
         <Form onSubmit={this.submit} >
         <Form.Input
@@ -58,7 +62,7 @@ class EditDogForm extends React.Component{
           type="text"
           placeholder="name"
           autoComplete="name"
-          value={this.state.name}
+          value={this.state.dog.name}
           onChange={e => this.handleInputChange(e.target.name, e.target.value)}
         />
         
@@ -67,7 +71,8 @@ class EditDogForm extends React.Component{
         placeholder="Select Breed"
         name="breed"
         search
-        selection 
+        selection
+        value={this.state.dog.breed}
         options={allBreeds}
         onChange={(event,data) => this.setState({breed: data.value})}
         />
@@ -76,7 +81,7 @@ class EditDogForm extends React.Component{
           <Radio
             label='Female'
             value='Female'
-            checked={this.state.gender === 'female'}
+            checked={this.state.dog.gender === "Female"}
             onChange={() => this.setState({gender: "female"})}
           />
         </Form.Field>
@@ -84,7 +89,7 @@ class EditDogForm extends React.Component{
           <Radio
             label='Male'
             value='Male'
-            checked={this.state.gender === 'male'}
+            checked={this.state.dog.gender === 'male'}
             onChange={() => this.setState({gender: "male"})}
           />
         </Form.Field>
@@ -94,7 +99,7 @@ class EditDogForm extends React.Component{
           name="birthday"
           type="date"
           autoComplete="date"
-          value={this.state.birthday}
+          value={this.state.dog.birthday}
           onChange={e => this.handleInputChange(e.target.name, e.target.value)}
         />
 
@@ -104,7 +109,7 @@ class EditDogForm extends React.Component{
           type="text"
           placeholder="Tell us more about your dog!"
           autoComplete="name"
-          value={this.state.bio}
+          value={this.state.dog.bio}
           onChange={e => this.handleInputChange(e.target.name, e.target.value)}
         />      
 

@@ -19,9 +19,6 @@ import UserShowPage from "./components/UserShowPage";
 import EditDogForm from "./components/EditDogForm";
 
 
-
-
-
 class App extends React.Component {
   state = {
     user: null, 
@@ -38,11 +35,9 @@ class App extends React.Component {
 
   componentDidMount() {
     API.validateUser().then(user => {
-      if (user.errors) {
-        this.props.history.push("/login");
+      if (user.errors) { this.props.history.push("/login");
       } else {
-        // this.setState({ user }, () => this.props.history.push("/home"));
-        this.setState({ user })
+      this.setState({ user })
       }
     })
   }
@@ -64,17 +59,8 @@ class App extends React.Component {
     return (
       <div>
         { this.state.user? <NavBar logout={this.logout} user={this.user} /> : null}
-        
-
-          <Route exact path="/login" component={routerProps => <LogInForm login={this.login} {...routerProps} /> }/>
-          <Route exact path="/home" component={routerProps => (
-              <Home
-                user={this.state.user}  selectGroup={this.selectGroup} userSelectGroup={this.userSelectGroup}
-                {...routerProps}
-              />
-            )}
-          />
-          
+        <Route exact path="/login" component={routerProps => <LogInForm login={this.login} {...routerProps} /> }/>
+        <Route exact path="/home" component={routerProps =>  <Home user={this.state.user}  selectGroup={this.selectGroup} userSelectGroup={this.userSelectGroup} {...routerProps} />} />
         <Route exact path="/dashboard" component={routerProps=> <Dashboard editProfilePicture={this.editProfilePicture} logout={this.logout}  user={this.state.user} {...routerProps} /> }/>
         <Route exact path="/map" component={routerProps=> <Map  setUserLocation={this.setUserLocation} user={this.state.user}  {...routerProps} /> }/>
         <Route exact path="/groups" component={routerProps=> <Groups  {...routerProps} /> } />

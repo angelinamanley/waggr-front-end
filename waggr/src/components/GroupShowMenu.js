@@ -2,7 +2,7 @@ import React from "react";
 import { Menu } from "semantic-ui-react";
 
 export default class GroupShowMenu extends React.Component {
-  state = { activeItem: "about" };
+  state = { activeItem: "chat" };
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name }, ()=>this.props.handleMenuSelect(name));
 

@@ -1,6 +1,7 @@
 import React from "react";
 import { Image, Container, Grid, Button } from "semantic-ui-react";
 import API from '../adapters/API'
+import {Link} from 'react-router-dom'
 
 class DogShowPage extends React.Component {
 
@@ -30,7 +31,7 @@ class DogShowPage extends React.Component {
           <li>{dog.birthday}</li>
           <li>{dog.bio}</li>
         </ul>
-        <Button primary >Edit Dog</Button>
+        <Button as={Link} to={`/dogs/${dog.id}/edit`} primary >Edit Dog</Button>
       </Container>
       </Grid.Column>
       </Grid>
