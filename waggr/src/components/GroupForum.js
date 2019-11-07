@@ -6,18 +6,18 @@ import moment from "moment";
 
 class GroupForum extends React.Component {
 
-    constructor(props){
-        super(props)
-    this.state = { 
+
+    state = { 
         comment: null, 
-        date: new Date().toLocaleString(), 
     }
-}
+
+
+  
 
     handleCommentSubmit = e => {
         e.preventDefault()
         API.postComment({group_id: this.props.group.id, user_id: this.props.user.id, content: this.state.comment})
-        .then(post => this.props.addPostToGroup(post))
+        .then(post => this.props.addPostToGroup(post)).then(this.setState({ comment: ""}))
         // 
     }
 
@@ -26,7 +26,7 @@ class GroupForum extends React.Component {
     }
 
   render() {
-    if (!this.props.group) {
+    if (!this.props.group || !this.props.user) {
       return (
         <div>
           <h2>Loading...</h2>

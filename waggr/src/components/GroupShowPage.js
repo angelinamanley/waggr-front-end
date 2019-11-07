@@ -21,16 +21,29 @@ class GroupShowPage extends React.Component {
     this.setState({ menuSelect: menuItem });
   };
 
+  addPostToGroup = (post) => {
+    // let newPosts = []
+    // newPosts = [...this.state.group.posts, post]
+   this.setState({group: {...this.state.group, posts: [...this.state.group.posts, post]}})
+ }
+
+  removePost = (id ) => {
+  
+    let newPosts = this.state.group.posts.filter(post => post.id !== id )
+    this.setState({group: {...this.state.selectedGroup, posts: newPosts}})
+  }
+
+
   render() {
     let component;
     const menuChoice = this.state.menuSelect;
     if (menuChoice === "about") {
       component = <GroupAbout group={this.state.group} />;
     } else if (menuChoice === "meetups") {
-      component = <GroupMeetups userSelectMeetup={this.props.userSelectMeetup} group={this.state.group} />;
+      component = <GroupMeetups  group={this.state.group} />;
     } else if (menuChoice === "chat") {
       component = (
-        <GroupForum removePost={this.props.removePost} addPostToGroup={this.props.addPostToGroup} user={this.props.user} group={this.state.group} />
+        <GroupForum removePost={this.removePost} addPostToGroup={this.addPostToGroup} user={this.props.user} group={this.state.group} />
       );
     }
 

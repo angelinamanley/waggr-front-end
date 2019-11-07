@@ -27,7 +27,7 @@ export default class GroupMeetups extends React.Component {
       {this.props.group.meetups.map(meetup => 
       <List.Item>
       {/* <Image avatar src='./common/pawprint.jpg'/> */}
-      <List.Content onClick={()=> this.props.userSelectMeetup(meetup.id) } as={Link} to={`/meetups/${meetup.id}`}>
+      <List.Content as={Link} to={`/meetups/${meetup.id}`}>
         <List.Header >{meetup.name}</List.Header>
         </List.Content>
         </List.Item>

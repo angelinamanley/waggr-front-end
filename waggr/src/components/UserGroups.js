@@ -17,8 +17,7 @@ render(){
             <Card
               key={group.id}
               as={NavLink}
-              to="/group"
-              onClick={() => this.props.userSelectGroup(group.id)}
+              to={`/groups/${group.id}`}
             >
               <Card.Content>
                 <Image floated="right"  src={group.photo} />

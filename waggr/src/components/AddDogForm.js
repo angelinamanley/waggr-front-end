@@ -28,7 +28,7 @@ class AddDogForm extends React.Component{
     
       submit = e => {
         e.preventDefault()
-        API.addDog({ name: this.state.name, breed: this.state.breed, birthday: this.state.birthday, gender: this.state.gender, bio: this.state.bio, photo: this.state.photo, user_id: this.props.user.id}).then(API.getUser(this.props.user.id).then(user => this.props.refreshUser(user))).then(() => this.props.history.push('/dashboard'))
+        API.addDog({ name: this.state.name, breed: this.state.breed, birthday: this.state.birthday, gender: this.state.gender, bio: this.state.bio, photo: this.state.photo, user_id: this.props.user.id}).then(dog => this.props.addDogtoUser(dog)).then(() => this.props.history.push('/dashboard'))
       }
 
       showWidget = () => {

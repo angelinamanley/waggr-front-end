@@ -5,6 +5,15 @@ import API from "../adapters/API";
 
 class Map extends React.Component {
 
+  state = {
+    meetups: null
+  }
+
+  componentDidMount(){
+
+    API.getMeetups().then(meetups => this.setState({meetups}))
+  }
+
 
   setLocation = input => {
     this.setState(
@@ -18,7 +27,7 @@ class Map extends React.Component {
       <div>
         <h2> this is the map page </h2>
         <MapSearchBar setLocation={this.setLocation} />
-        <MapComponent meetups={this.props.meetups} user={this.props.user}/>
+        <MapComponent meetups={this.state.meetups} user={this.props.user}/>
       </div>
     );
   }

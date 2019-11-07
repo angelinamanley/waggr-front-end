@@ -16,11 +16,11 @@ class EditDogForm extends React.Component{
         photo: ""
     }
 
-   
 
+      
   
     
-        handleInputChange = (key, value) => {
+      handleInputChange = (key, value) => {
         this.setState({
           [key]: value
         })

@@ -1,28 +1,41 @@
 import React from "react";
 import { Image, Container, Grid, Button } from "semantic-ui-react";
+import API from '../adapters/API'
 
-const DogShowPage = props => {
-  if (!props.dog) {
+class DogShowPage extends React.Component {
+
+  state = { 
+    dog: null
+  }
+
+  componentDidMount(){ 
+    API.getDog(this.props.match.params.id).then(dog => this.setState({ dog }))
+  }
+
+
+  render(){
+  if (!this.state.dog) {
     return <div> Loading Info</div>;
   } else {
+    const { dog} = this.state
     return (
         <Grid centered columns={1}>
             <Grid.Column>
       <Container>
-        <Image src={props.dog.photo} size="medium" circular />
-        <h2>{props.dog.name}</h2>
+        <Image src={dog.photo} size="medium" circular />
+        <h2>{dog.name}</h2>
         <ul> 
-        <li>{props.dog.gender}</li>
-          <li>{props.dog.breed}</li>
-          <li>{props.dog.birthday}</li>
-          <li>{props.dog.bio}</li>
+        <li>{dog.gender}</li>
+          <li>{dog.breed}</li>
+          <li>{dog.birthday}</li>
+          <li>{dog.bio}</li>
         </ul>
         <Button primary >Edit Dog</Button>
       </Container>
       </Grid.Column>
       </Grid>
     );
-  }
+  }}
 };
 
 export default DogShowPage;

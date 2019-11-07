@@ -60,7 +60,7 @@ class MeetupShowPage extends React.Component{
                 <List.Item > 
                     <Image avatar src={attendance.user.photo} />
                     <List.Content>
-                        <List.Header as={Link} to="/usershow" onClick={() => this.props.selectUser(attendance.user.id)}>{attendance.user.first_name}</List.Header>
+                        <List.Header as={Link} to={`/users/${attendance.user.id}`}>{attendance.user.first_name}</List.Header>
                     </List.Content>
                 </List.Item>
             

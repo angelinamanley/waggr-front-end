@@ -49,7 +49,7 @@ class GroupInfo extends React.Component {
               {membership?  "yes"
               : "no"}
           </p>
-          { admin? <Button as={Link} to='/editgroup' size='mini' color="yellow" >Edit Group</Button> : null}
+          { admin? <Button as={Link} to={`/groups/${this.props.group.id}/edit`} size='mini' color="yellow" label="Edit Group" /> : null}
           {!membership
            ? (
             <Button size='mini' secondary onClick={() => this.handleJoinClick()}> Join us! </Button>

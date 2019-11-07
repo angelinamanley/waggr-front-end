@@ -16,7 +16,7 @@ class DogsContainer extends React.Component{
             <Card.Group>
 
             {this.props.dogs.map(dog=> 
-                <Card as={Link} to="/dog" onClick={()=>this.props.selectDog(dog)} >
+                <Card as={Link} to={`/dogs/${dog.id}`} >
                     <Card.Content>
                         <Image 
                         floated='right'

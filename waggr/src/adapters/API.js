@@ -55,8 +55,7 @@ const jsonHeaders = (more = {}) => ({
   const getPost = id => fetch(`${POSTS_URL}/${id}`).then(handleServerResponse)
 
   const getUser = (id) => {
-    return fetch(`${USERS_URL}/${id}`).then(handleServerResponse)
-  }
+    return fetch(`${USERS_URL}/${id}`).then(handleServerResponse)  }
   
   const login = userDetails =>
     fetch(LOGIN_URL, {
@@ -235,6 +234,7 @@ const editGroup = ( group, id ) => {
   const getMeetups = () => fetch(MEETUPS_URL).then(handleServerResponse)
 
   const getMeetup = (id) => fetch(`${MEETUPS_URL}/${id}`).then(handleServerResponse)
+  const getDog = (id) => fetch(`${DOGS_URL}/${id}`).then(handleServerResponse)
 
 
   export default {
@@ -261,5 +261,6 @@ const editGroup = ( group, id ) => {
     deletePost, 
     editProfilePicture, 
     getGroup, 
-    getMeetup
+    getMeetup, 
+    getDog
   }

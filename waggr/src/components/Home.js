@@ -11,7 +11,7 @@ const Home = props => {
       <h2>Your Groups</h2>
       <UserGroups userSelectGroup={props.userSelectGroup} user={props.user}/>
       <h2> Your Meetups </h2>
-      <UserMeetups user={props.user} userSelectMeetup={props.userSelectMeetup}/>
+      <UserMeetups user={props.user} />
 
     </div>
   );

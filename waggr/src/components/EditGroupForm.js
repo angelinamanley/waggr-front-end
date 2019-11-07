@@ -4,10 +4,13 @@ import API from "../adapters/API";
 
 class EditDogForm extends React.Component {
   state = {
-    name: this.props.group.name,
-    description: this.props.group.description,
-    photo: this.props.group.photo
+    group: null
   };
+
+
+  componentDidMount(){
+    API.getGroup(this.props.match.params.id).then(group => this.setState({group}))
+  }
 
   checkUploadResult = resultEvent => {
     if (resultEvent.event === "success") {
@@ -28,11 +31,7 @@ class EditDogForm extends React.Component {
       name: this.state.name,
       description: this.state.descrption,
       photo: this.state.photo,
-      admin_id: this.props.user.id
-    }, this.props.group.id)
-      .then( group => 
-        this.props.editGroupinGroups(group)
-      )
+    }, this.state.group.id)
       .then(() => this.props.history.push("/groups"));
   };
 
@@ -52,6 +51,9 @@ class EditDogForm extends React.Component {
   }
 
   render() {
+    if (!this.state.group){
+      return <div>loading form...</div>
+    }
     return (
       <Container>
           <h2>Edit Group</h2>
@@ -63,7 +65,7 @@ class EditDogForm extends React.Component {
             type="text"
             placeholder="name"
             autoComplete="name"
-            value={this.state.name}
+            value={this.state.group.name}
             onChange={e =>
               this.handleInputChange(e.target.name, e.target.value)
             }
@@ -75,7 +77,7 @@ class EditDogForm extends React.Component {
             type="text"
             placeholder="Tell us more about your group!"
             autoComplete="text"
-            value={this.state.description}
+            value={this.state.group.description}
             onChange={e =>
               this.handleInputChange(e.target.name, e.target.value)
             }

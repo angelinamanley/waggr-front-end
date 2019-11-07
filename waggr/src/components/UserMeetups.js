@@ -15,8 +15,8 @@ export default class UserMeetups extends React.Component {
             <Card fluid color='yellow' 
               key={meetup.id}
               as={NavLink}
-              to="/meetup"
-              onClick={() => this.props.userSelectMeetup(meetup.id)}
+              to={`/meetup/${meetup.id}`}
+              
             >
               <Card.Content>
                 <Image floated="right" seize="mini" src={meetup.photo} />

@@ -47,7 +47,7 @@ class Dashboard extends React.Component{
                     <Image src={this.props.user.photo} centered size='small'/>
 
                     <h1>{this.props.user.first_name} <Button as={NavLink} exact to="/login" onClick={()=> this.props.logout()} secondary size='mini'>Log Out </Button> </h1>
-                    <DogsContainer selectDog={this.props.selectDog} dogs={this.props.user.dogs} />
+                    <DogsContainer dogs={this.props.user.dogs} />
                     <AccountSettings />
                     <Button secondary onClick={this.showWidget}>Edit Profile Picture</Button>
 
