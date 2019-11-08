@@ -36,7 +36,8 @@ filterGroups = () => {
   
       return (
         <React.Fragment>
-          <h2>All Groups<Button as={Link} to='/addgroup' size='mini' primary icon><Icon name="plus circle"/></Button></h2>
+          All Groups
+          <Button as={Link} to='/addgroup' size='mini' primary icon><Icon name="plus circle"/></Button>
           <GroupSearchBar handleSearchClick={this.handleSearchClick} />
           <Container>
           <Card.Group centered>

@@ -2,6 +2,7 @@ import React from 'react';
 import {Form, Container} from 'semantic-ui-react'
 import { DateTimeInput } from 'semantic-ui-calendar-react';
 import API from '../adapters/API';
+import LocationSearchInput from './LocationSearchInput'
 
 
 
@@ -11,10 +12,14 @@ class MeetupForm extends React.Component{
     state = { 
         name: null, 
         description: null, 
-        datetime: null, 
+        datetime: "", 
         location: null, 
         groupId: null
 
+    }
+
+    selectLocation = (location, latitude, longitude) => {
+      this.setState( {location, latitude, longitude})
     }
 
     componentDidMount(){
@@ -48,6 +53,8 @@ class MeetupForm extends React.Component{
         return(
             <Container>
                 <h3>Create a new Meetup</h3> 
+
+                <LocationSearchInput />
             <Form 
         onSubmit={this.submit}
         onChange={e => this.handleInputChange(e.target.name, e.target.value)}
