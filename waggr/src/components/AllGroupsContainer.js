@@ -35,7 +35,7 @@ filterGroups = () => {
       const filteredGroups = this.filterGroups()
   
       return (
-        <div>
+        <React.Fragment>
           <h2>All Groups<Button as={Link} to='/addgroup' size='mini' primary icon><Icon name="plus circle"/></Button></h2>
           <GroupSearchBar handleSearchClick={this.handleSearchClick} />
           <Container>
@@ -54,7 +54,7 @@ filterGroups = () => {
             ))}
             </Card.Group>
             </Container>
-        </div>
+            </React.Fragment>
       )
     }
   }
