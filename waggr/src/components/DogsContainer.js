@@ -7,13 +7,22 @@ class DogsContainer extends React.Component{
 
     render(){
 
-        return(
-
-            <div>
-                <Container>
-                <h3>Your Dogs</h3>
+        if (this.props.dogs.length === 0)
+            { return(
+                            
             
-            <Card.Group centered>
+                <Container>
+            < Card> 
+            <Card.Content>
+            <Card.Header>
+            No dogs...yet! 
+                </Card.Header></Card.Content></Card>
+                <Button primary as={NavLink} to='/add_dog' >Add Dog </Button>
+                </Container> )
+        } else { return(
+                <Container>
+                    <Card.Group centered>
+                <h3>Your Dogs</h3>
 
             {this.props.dogs.map(dog=> 
                 <Card key={dog.id} as={Link} to={`/dogs/${dog.id}`} >
@@ -31,11 +40,9 @@ class DogsContainer extends React.Component{
             </Card.Group>
             <Button primary as={NavLink} to='/add_dog' >Add Dog </Button>
             </Container>
-            </div>
 
-        )
-
-    }
+            ) 
+            }      }   
 }
 
 export default DogsContainer

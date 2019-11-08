@@ -30,7 +30,7 @@ class GroupShowPage extends React.Component {
   removePost = (id ) => {
   
     let newPosts = this.state.group.posts.filter(post => post.id !== id )
-    this.setState({group: {...this.state.selectedGroup, posts: newPosts}})
+    this.setState({group: {...this.state.group, posts: newPosts}})
   }
 
 

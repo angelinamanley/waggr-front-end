@@ -25,7 +25,7 @@ class Map extends React.Component {
   render() {
     return (
       <div>
-        <h2> this is the map page </h2>
+        <h3>Search for meetups by location </h3>
         <MapSearchBar setLocation={this.setLocation} />
         <MapComponent meetups={this.state.meetups} user={this.props.user}/>
       </div>

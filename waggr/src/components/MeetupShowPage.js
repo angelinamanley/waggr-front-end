@@ -48,8 +48,8 @@ class MeetupShowPage extends React.Component{
             <Button onClick={()=> this.handleAttendClick(this.props.user.id, meetup.id)} secondary>Attend</Button> :
             <Button secondary onClick={()=>this.handleCancelClick()}> Cancel </Button> }
             { meetup.admin_id === this.props.user.id? 
-                <Button >Edit Meetup</Button> : null }
-            <h4>{meetup.group.name}</h4>
+                <Button as={Link} to={`/meetups/${meetup.id}/edit`}>Edit Meetup</Button> : null }
+            <h4><Link to={`/groups/${meetup.group.id}`}>{meetup.group.name}</Link></h4>
             <h4>{meetup.admin_id}</h4>
             <h4>When: {moment(meetup.datetime).format('MMM Do YYYY')}</h4>
             <h4>Where: {meetup.location}</h4>

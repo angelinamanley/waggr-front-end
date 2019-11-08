@@ -8,7 +8,7 @@ class GroupForum extends React.Component {
 
 
     state = { 
-        comment: null, 
+        comment: '', 
     }
 
 
@@ -54,7 +54,7 @@ class GroupForum extends React.Component {
               </Comment>
             )}
              <Form onSubmit={this.handleCommentSubmit} >
-      <Form.TextArea onChange={event => this.setState({comment: event.target.value})}/>
+      <Form.TextArea value={this.state.comment} onChange={event => this.setState({comment: event.target.value})}/>
       <Button content='Add Comment' labelPosition='left' icon='edit' primary />
     </Form>
           </Comment.Group>

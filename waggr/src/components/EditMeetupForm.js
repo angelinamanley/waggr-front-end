@@ -7,7 +7,7 @@ import LocationSearchInput from './LocationSearchInput'
 
 
 
-class MeetupForm extends React.Component{ 
+class EditMeetupForm extends React.Component{ 
 
     state = { 
         name: null, 
@@ -15,6 +15,7 @@ class MeetupForm extends React.Component{
         datetime: "", 
         location: null, 
         groupId: null, 
+        meetup: null
 
     }
 
@@ -23,8 +24,10 @@ class MeetupForm extends React.Component{
     }
 
     componentDidMount(){
-      this.setState({groupId: parseInt(this.props.match.params.id)})
+        API.getMeetup(this.props.match.params.id).then(group => this.setState({ group }))
     }
+
+
 
     handleInputChange = (key, value) => {
         this.setState({
@@ -87,7 +90,7 @@ class MeetupForm extends React.Component{
           onChange={this.handleChange}
         />
 
-        <LocationSearchInput selectLocation={this.selectLocation}/>
+      <LocationSearchInput selectLocation={this.selectLocation}/>
 
         <Form.Button>Submit</Form.Button>
 
@@ -102,4 +105,4 @@ class MeetupForm extends React.Component{
 
 }
 
-export default MeetupForm
+export default EditMeetupForm

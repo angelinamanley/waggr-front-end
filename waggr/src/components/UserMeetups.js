@@ -15,7 +15,7 @@ export default class UserMeetups extends React.Component {
             <Card fluid color='yellow' 
               key={meetup.id}
               as={NavLink}
-              to={`/meetup/${meetup.id}`}
+              to={`/meetups/${meetup.id}`}
               
             >
               <Card.Content>
