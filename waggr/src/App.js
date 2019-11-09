@@ -55,6 +55,11 @@ class App extends React.Component {
     API.editProfilePicture(id, data).then(newUser => this.setState({ user: newUser}))  
   }
 
+  removeDog = (id) => {
+    let newDogs = this.state.user.dogs.filter(dog => dog.id !== id )
+    this.setState({ user: {...this.state.user, dogs: newDogs }})
+  }
+
   render() {
     return (
       <div>
@@ -75,7 +80,7 @@ class App extends React.Component {
         <Route exact path='/addgroup' component={routerProps => <AddGroupForm user={this.state.user} addGrouptoGroups={this.addGrouptoGroups} {...routerProps} /> }/>
         <Route exact path='/groups/:id/edit' component={routerProps => <EditGroupForm user={this.state.user} editGroupinGroups={this.editGroupinGroups} group={this.state.selectedGroup} {...routerProps} /> }/>
         <Route exact path='/users/:id' component={routerProps => <UserShowPage selectDog={this.selectDog} selectedUser={this.state.selectedUser} {...routerProps} />} />
-        <Route exact path='/dogs/:id/edit' component={routerProps => <EditDogForm {...routerProps} />}/>
+        <Route exact path='/dogs/:id/edit' component={routerProps => <EditDogForm removeDog={this.removeDog} {...routerProps} />}/>
       </div>
 
       //

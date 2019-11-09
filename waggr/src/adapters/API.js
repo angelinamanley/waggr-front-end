@@ -235,7 +235,36 @@ const editGroup = ( group, id ) => {
 
   const getMeetup = (id) => fetch(`${MEETUPS_URL}/${id}`).then(handleServerResponse)
   const getDog = (id) => fetch(`${DOGS_URL}/${id}`).then(handleServerResponse)
+  const deleteMeetup = (id) => fetch(`${MEETUPS_URL}/${id}`, 
+  {
+    method: 'DELETE'
+  }
+  ).then(handleServerResponse)
 
+
+  const editDog = (id, dog) => fetch(`${DOGS_URL}/${id}`, {
+  method: 'PATCH', 
+  headers: jsonHeaders(), 
+  body: JSON.stringify({dog})
+  })
+  .then(handleServerResponse)
+  
+  const deleteDog = (id) => fetch(`${DOGS_URL}/${id}`, 
+  {
+    method: 'DELETE'
+  }
+  ).then(handleServerResponse)
+
+
+  const editMeetup = (id, meetup) => {
+    return fetch(`${MEETUPS_URL}/${id}`, {
+        method: 'PATCH', 
+        headers: jsonHeaders(authHeader()), 
+        body: JSON.stringify({meetup})
+    })
+    .then(handleServerResponse)
+        .catch(handleError) 
+}
 
   export default {
       addDog,
@@ -262,5 +291,8 @@ const editGroup = ( group, id ) => {
     editProfilePicture, 
     getGroup, 
     getMeetup, 
-    getDog
+    getDog, 
+    deleteMeetup, 
+    editMeetup, 
+    editDog, deleteDog
   }

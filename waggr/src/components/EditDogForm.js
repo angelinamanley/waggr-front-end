@@ -8,7 +8,7 @@ import API from "../adapters/API";
 class EditDogForm extends React.Component{
 
     state = { 
-        name: "", 
+        name: "",
         breed: "", 
         birthday: "", 
         gender: "", 
@@ -20,10 +20,12 @@ class EditDogForm extends React.Component{
 
   
     componentDidMount(){ 
-      API.getDog(this.props.match.params.id).then(dog => this.setState({ dog }))
+      API.getDog(this.props.match.params.id).then(dog => this.setState({ id: dog.id, 
+        name: dog.name, breed: dog.breed, birthday: dog.birthday, gender: dog.gender, bio: dog.bio, photo: dog.photo}))
     }
   
       handleInputChange = (key, value) => {
+        console.log(key, value)
         this.setState({
           [key]: value
         })
@@ -31,7 +33,7 @@ class EditDogForm extends React.Component{
     
       submit = e => {
         e.preventDefault()
-        API.addDog({ name: this.state.name, breed: this.state.breed, birthday: this.state.birthday, gender: this.state.gender, bio: this.state.bio, photo: this.state.photo, user_id: this.props.user.id}).then(API.getUser(this.props.user.id).then(user => this.props.refreshUser(user))).then(() => this.props.history.push('/dashboard'))
+        API.editDog(this.props.match.params.id, { name: this.state.name, breed: this.state.breed, birthday: this.state.birthday, gender: this.state.gender, bio: this.state.bio, photo: this.state.photo, user_id: this.props.user.id}).then(() => this.props.history.push('/dashboard'))
       }
 
       showWidget = () => {
@@ -49,11 +51,15 @@ class EditDogForm extends React.Component{
       }
     }
 
+    deleteDog = () => {
+    API.deleteDog(parseInt(this.props.match.params.id)).then(() => this.props.removeDog(parseInt(this.props.match.params.id))).then(() => this.props.history.push('/dashboard'))
+    }
+
         render(){
           
       return(
           <Container>
-            <Image size='mini' src={this.state.dog.photo} />
+             {this.state.photo? <Image size='small' circular src={this.state.photo} /> : null}
              <Button secondary onClick={this.showWidget}>Upload your pup's picture!  </Button>
         <Form onSubmit={this.submit} >
         <Form.Input
@@ -62,7 +68,7 @@ class EditDogForm extends React.Component{
           type="text"
           placeholder="name"
           autoComplete="name"
-          value={this.state.dog.name}
+          value={this.state.name}
           onChange={e => this.handleInputChange(e.target.name, e.target.value)}
         />
         
@@ -72,7 +78,7 @@ class EditDogForm extends React.Component{
         name="breed"
         search
         selection
-        value={this.state.dog.breed}
+        value={this.state.breed}
         options={allBreeds}
         onChange={(event,data) => this.setState({breed: data.value})}
         />
@@ -81,7 +87,7 @@ class EditDogForm extends React.Component{
           <Radio
             label='Female'
             value='Female'
-            checked={this.state.dog.gender === "Female"}
+            checked={this.state.gender === "Female"}
             onChange={() => this.setState({gender: "female"})}
           />
         </Form.Field>
@@ -89,7 +95,7 @@ class EditDogForm extends React.Component{
           <Radio
             label='Male'
             value='Male'
-            checked={this.state.dog.gender === 'male'}
+            checked={this.state.gender === 'male'}
             onChange={() => this.setState({gender: "male"})}
           />
         </Form.Field>
@@ -99,7 +105,7 @@ class EditDogForm extends React.Component{
           name="birthday"
           type="date"
           autoComplete="date"
-          value={this.state.dog.birthday}
+          value={this.state.birthday}
           onChange={e => this.handleInputChange(e.target.name, e.target.value)}
         />
 
@@ -109,15 +115,17 @@ class EditDogForm extends React.Component{
           type="text"
           placeholder="Tell us more about your dog!"
           autoComplete="name"
-          value={this.state.dog.bio}
+          value={this.state.bio}
           onChange={e => this.handleInputChange(e.target.name, e.target.value)}
         />      
 
        
         
 
-        <Form.Button>Submit</Form.Button>
+        <Form.Button primary>Submit</Form.Button>
         </Form>
+        <h4>or</h4>
+        <Button size="mini" secondary onClick={ ()=>this.deleteDog()}>Remove Dog</Button>
         </Container>
       )}
 

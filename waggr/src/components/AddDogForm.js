@@ -1,6 +1,6 @@
 import React from 'react';
 import allBreeds from '../config/data'
-import { Container, Form, Dropdown, Radio, Button } from 'semantic-ui-react'
+import { Container, Form, Dropdown, Radio, Button, Image } from 'semantic-ui-react'
 import API from "../adapters/API";
 
 
@@ -13,14 +13,9 @@ class AddDogForm extends React.Component{
         birthday: "", 
         gender: "", 
         bio: "", 
-        photo: ""
+        photo: null
     }
-
-   
-
-  
-    
-        handleInputChange = (key, value) => {
+      handleInputChange = (key, value) => {
         this.setState({
           [key]: value
         })
@@ -50,6 +45,7 @@ class AddDogForm extends React.Component{
           
       return(
           <Container>
+             {this.state.photo? <Image size='small' circular src={this.state.photo} /> : null}
              <Button secondary onClick={this.showWidget}>Upload your pup's picture!  </Button>
         <Form onSubmit={this.submit} >
         <Form.Input

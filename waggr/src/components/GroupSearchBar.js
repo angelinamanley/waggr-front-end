@@ -27,6 +27,7 @@ export default class GroupSearchBar extends React.Component {
         onChange={e => this.setState({ searchTerm: e.target.value })}
         placeholder="Find a group"
         />
+
         <Form.Button primary icon><Icon name='search'/></Form.Button>
         <Button secondary icon onClick={this.clearSearchTerm}><Icon name='x'/></Button>
         </Form.Group>
