@@ -1,7 +1,8 @@
 import React from 'react'
-import { Form, Button, Container } from 'semantic-ui-react'
+import { Form, Button, Segment, Grid, Header, Image} from 'semantic-ui-react'
 import API from '../adapters/API'
 import {NavLink} from 'react-router-dom'
+import logo from './common/waggrlogo.png'
 
 class LoginForm extends React.Component {
   state = {
@@ -18,6 +19,7 @@ class LoginForm extends React.Component {
   submit = e => {
     e.preventDefault()
     API.login({ email: this.state.email, password: this.state.password })
+    .then(console.log)
     .then(user => {
         this.props.login(user)}
     )
@@ -25,33 +27,49 @@ class LoginForm extends React.Component {
 
   render() {
     return (
-        <div> 
-            <Container verticalAlign="middle">
+      <div className="login">
+      <Grid textAlign="center" verticalAlign="middle">
+        <Grid.Column style={{ paddingTop: "25%"  }}>
+          <Image src={logo} size="medium" centered />
+        <Header as="h3" color="teal" textAlign="center">
+              Log-in to your account
+            </Header>
       <Form
+      size="small"
         onSubmit={this.submit}
         onChange={e => this.handleInputChange(e.target.name, e.target.value)}
       >
+   
         <Form.Input
+        style={{ width:"200px" }} 
           name="email"
           type="email"
           placeholder="email"
+          icon='user'
+          iconPosition='left'
           autoComplete="email"
           value={this.state.email}
         />
         <Form.Input
+        style={{ width:"200px" }} 
           name="password"
           type="password"
+          icon="lock"
+          iconPosition="left"
           placeholder="password"
           autoComplete="password"
           value={this.state.password}
         />
-        <Form.Button>Submit</Form.Button>
+        <Form.Button secondary>Login</Form.Button>
+  
       </Form>
-     <p>or Sign up</p>
-     <Button as={NavLink} to="/signup">Sign Up here</Button>
-     </Container>
+     <h5>New to Us? </h5>
+     <Button secondary as={NavLink} to="/signup">Sign Up</Button>
+   
+     </Grid.Column>
+        </Grid>
       </div>
-    )
+     )
   }
 }
 

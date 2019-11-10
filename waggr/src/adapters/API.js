@@ -40,6 +40,10 @@ const jsonHeaders = (more = {}) => ({
       return { code: 503 }
     } else if (res.status === 500) {
       return { code: 500, error: 'Something went wrong' }
+    } else if (res.status === 406) {
+        return { code: 406, error: 'Not acceptable' }
+      } else if (res.status === 404) {
+        return {code: 404, error: 'Not found' }
     } else {
       return res.text().then(text => {
         try {
@@ -47,7 +51,7 @@ const jsonHeaders = (more = {}) => ({
         } catch (error) {
           return res
         }
-      })
+      })  
     }
   }
   
