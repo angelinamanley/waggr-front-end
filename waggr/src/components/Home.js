@@ -15,7 +15,7 @@ const Home = props => {
       <Image size='tiny' verticalAlign='middle' circular src={Logo} /> <span>Home</span>
   
       </Container>
-      <Divider  fluid/>
+      <Divider  fluid="true" />
      
     </div>
   

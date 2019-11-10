@@ -9,6 +9,8 @@ class Map extends React.Component {
     meetups: null
   }
 
+  
+
   componentDidMount(){
 
     API.getMeetups().then(meetups => this.setState({meetups}))
