@@ -15,8 +15,8 @@ class EditMeetupForm extends React.Component{
         description: null, 
         datetime: "", 
         location: null, 
-        groupId: null, 
-        meetup: null
+        latitude: null, 
+        longitude: null
 
     }
 
@@ -25,7 +25,16 @@ class EditMeetupForm extends React.Component{
     }
 
     componentDidMount(){
-        API.getMeetup(this.props.match.params.id).then(meetup => this.setState({ meetup }))
+        API.getMeetup(this.props.match.params.id).then(meetup => 
+          this.setState({ 
+            name: meetup.name, 
+            description: meetup.description, 
+            datetime: meetup.datetime, 
+            location: meetup.location, 
+            latitude: meetup.latitude, 
+            longitude: meetup.longitude, 
+            groupId: meetup.group.id
+           }))
     }
 
 
@@ -37,13 +46,13 @@ class EditMeetupForm extends React.Component{
       }
 
     handleDeleteClick = id => {
-      API.deleteMeetup(id).then(() => this.props.history.push(`/groups/${this.state.meetup.group.id}`))
+      API.deleteMeetup(id).then(() => this.props.history.push(`/groups/${this.state.groupId}`))
 
     }
     
       submit = e => {
         e.preventDefault()
-        API.editMeetup(this.state.meetup.id, {name: this.state.name, description: this.state.description, datetime: this.state.datetime, location: this.state.location, group_id: this.state.groupId, admin_id: this.props.user.id }).then(meetup => this.props.history.push(`/meetups/${meetup.id}`))
+        API.editMeetup(this.props.match.params.id, {name: this.state.name, description: this.state.description, datetime: this.state.datetime, location: this.state.location,  admin_id: this.props.user.id, latitude: this.state.latitude, longitude: this.state.longitude}).then(meetup => this.props.history.push(`/meetups/${meetup.id}`))
       }
 
       handleChange = (event, {name, value}) => {
@@ -55,14 +64,14 @@ class EditMeetupForm extends React.Component{
 
     render(){
 
-            if (!this.state.meetup) {
+            if (!this.state.name) {
                 return( <div>Loading...</div> )
             } else{
 
         return(
     
             <Container>
-                <h3>Edit {this.state.meetup.name}</h3> 
+                <h3>Edit {this.state.name}</h3> 
             
             <Form 
         onSubmit={this.submit}
@@ -73,26 +82,26 @@ class EditMeetupForm extends React.Component{
           type="name"
           placeholder="Name of Event"
           autoComplete="name"
-          value={this.state.meetup.name}
+          value={this.state.name}
         />
         <Form.Input
           name="description"
           type="text"
           placeholder="Write something about the event"
           autoComplete="text"
-          value={this.state.meetup.description}
+          value={this.state.description}
         />
              <Form.Input
           name="location"
           type="location"
           placeholder="Enter postcode"
           autoComplete="post code"
-          value={this.state.meetup.location}
+          value={this.state.location}
         />
          <DateTimeInput
           name="datetime"
           placeholder="Date Time"
-          value={moment(this.state.meetup.datetime).format('MMMM Do YYYY, h:mm:ss a')}
+          value={moment(this.state.datetime).format('MMMM Do YYYY, h:mm:ss a')}
           iconPosition="left"
           onChange={this.handleChange}
         />
@@ -104,7 +113,7 @@ class EditMeetupForm extends React.Component{
       </Form>
    
       <h4>or</h4>
-      <Button primary onClick={()=> this.handleDeleteClick(this.state.meetup.id)}>Delete Meetup</Button>
+      <Button primary onClick={()=> this.handleDeleteClick(this.props.match.params.id)}>Delete Meetup</Button>
   
       </Container>
         )

@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, Container, Grid, Button } from "semantic-ui-react";
+import { Image, Container, Grid, Button, Icon} from "semantic-ui-react";
 import API from '../adapters/API'
 import {Link} from 'react-router-dom'
 
@@ -24,9 +24,8 @@ class DogShowPage extends React.Component {
             <Grid.Column>
       <Container>
         <Image src={dog.photo} size="medium" circular />
-        <h2>{dog.name}</h2>
+        <h2>{dog.name}{dog.gender === 'Female'? <Icon name='venus'/> : <Icon name='mars' /> }</h2>
         <ul> 
-        <li>{dog.gender}</li>
           <li>{dog.breed}</li>
           <li>{dog.birthday}</li>
           <li>{dog.bio}</li>

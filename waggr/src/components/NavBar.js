@@ -1,16 +1,16 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Menu } from 'semantic-ui-react'
+import { Menu, Responsive, Icon } from 'semantic-ui-react'
 
 const NavBar = props => {
     return (
-            <Menu color='teal' size='large' inverted borderless fluid widths={5}>
-            <Menu.Item as={NavLink} exact to="/home" >Home</Menu.Item>
-            <Menu.Item as={NavLink} exact to="/groups" >Groups</Menu.Item>
-            <Menu.Item as={NavLink} exact to="/map" >Map</Menu.Item>
-            <Menu.Item as={NavLink} exact to="/dashboard" >Dashboard</Menu.Item>
+            <Responsive as={Menu} icon='labeled' color='teal' fluid widths={4}  inverted borderless fixed='bottom' maxWidth={Responsive.onlyTablet.maxWidth} >
+            <Menu.Item as={NavLink} exact to="/home" ><Icon name='home'/>Home</Menu.Item>
+            <Menu.Item as={NavLink} exact to="/groups" ><Icon name='paw'/>Groups</Menu.Item>
+            <Menu.Item as={NavLink} exact to="/map" ><Icon name='map outline'/>Map</Menu.Item>
+            <Menu.Item as={NavLink} exact to="/dashboard" ><Icon name='setting'/>Dashboard</Menu.Item>
             {/* <Menu.Item as={NavLink} exact to="/login" onClick={()=> props.logout()}> Log Out </Menu.Item> */}
-            </Menu>
+            </Responsive>
     )
   }
 

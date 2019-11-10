@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Button, Icon } from "semantic-ui-react";
+import { Form, Button, Icon, Input } from "semantic-ui-react";
 
 export default class GroupSearchBar extends React.Component {
   state = {
@@ -8,6 +8,7 @@ export default class GroupSearchBar extends React.Component {
 
   onSubmit = event => {
       event.preventDefault()
+
       this.props.handleSearchClick(this.state.searchTerm)
   }
 
@@ -21,7 +22,13 @@ export default class GroupSearchBar extends React.Component {
   
   render() {
     return (
-      <Form onSubmit={event => this.onSubmit(event)} >
+      <div>
+      <Input action={ {icon : 'search', onClick : event => this.onSubmit(event)}} onChange={e => this.setState({ searchTerm: e.target.value })} fluid  placeholder="Search" />
+      
+      
+      
+      
+      {/* <Form onSubmit={event => this.onSubmit(event)} >
           <Form.Group>
       <Form.Input
         onChange={e => this.setState({ searchTerm: e.target.value })}
@@ -31,7 +38,8 @@ export default class GroupSearchBar extends React.Component {
         <Form.Button primary icon><Icon name='search'/></Form.Button>
         <Button secondary icon onClick={this.clearSearchTerm}><Icon name='x'/></Button>
         </Form.Group>
-        </Form>
+        </Form> */}
+        </div>
         
     );
   }

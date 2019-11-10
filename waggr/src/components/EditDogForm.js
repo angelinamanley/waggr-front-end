@@ -59,8 +59,8 @@ class EditDogForm extends React.Component{
           
       return(
           <Container>
-             {this.state.photo? <Image size='small' circular src={this.state.photo} /> : null}
-             <Button secondary onClick={this.showWidget}>Upload your pup's picture!  </Button>
+             {this.state.photo? <Image size='mini' circular src={this.state.photo} /> : null}   <Button secondary onClick={this.showWidget}>Upload your pup's picture!  </Button>
+          
         <Form onSubmit={this.submit} >
         <Form.Input
         label="Name"
@@ -88,15 +88,15 @@ class EditDogForm extends React.Component{
             label='Female'
             value='Female'
             checked={this.state.gender === "Female"}
-            onChange={() => this.setState({gender: "female"})}
+            onChange={() => this.setState({gender: "Female"})}
           />
         </Form.Field>
         <Form.Field>
           <Radio
             label='Male'
             value='Male'
-            checked={this.state.gender === 'male'}
-            onChange={() => this.setState({gender: "male"})}
+            checked={this.state.gender === 'Male'}
+            onChange={() => this.setState({gender: "Male"})}
           />
         </Form.Field>
 
@@ -118,10 +118,6 @@ class EditDogForm extends React.Component{
           value={this.state.bio}
           onChange={e => this.handleInputChange(e.target.name, e.target.value)}
         />      
-
-       
-        
-
         <Form.Button primary>Submit</Form.Button>
         </Form>
         <h4>or</h4>
