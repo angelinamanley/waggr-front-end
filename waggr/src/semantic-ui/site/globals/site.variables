@@ -5,5 +5,5 @@
 @primaryColor: #14B89C;
 @pageBackground: #ffffff;
 @secondaryColor : #4517FD;
-@fontName          : 'Roboto';
+@fontName          : 'Quicksand';
 @importGoogleFonts : true;

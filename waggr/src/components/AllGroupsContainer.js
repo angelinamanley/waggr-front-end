@@ -46,9 +46,9 @@ filterGroups = () => {
                 as={Link}
                 to={`/groups/${group.id}`}
               >
-                <Card.Content>
+                <Card.Content centered>
                   <Image floated="right" src={group.photo} />
-                  <Card.Header>{group.name}</Card.Header>
+                  <Card.Header style={{textAlign : "center"}}>{group.name}</Card.Header>
                 </Card.Content>
               </Card>
             ))}

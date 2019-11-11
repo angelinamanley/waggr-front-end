@@ -179,7 +179,7 @@ const jsonHeaders = (more = {}) => ({
       const postAttendance = ( userId, meetupId ) => {
       return fetch(ATTENDANCES_URL, {
           method: 'POST',
-          headers: jsonHeaders(),
+          headers: jsonHeaders(authHeader()),
           body: JSON.stringify({ user_id: userId, meetup_id: meetupId })
         })
           .then(handleServerResponse)
@@ -198,7 +198,7 @@ const deletePost = (id) => {
     const postGroup = ( group ) => {
     return fetch(GROUPS_URL, {
       method: 'POST',
-      headers: jsonHeaders(),
+      headers: jsonHeaders(authHeader()),
       body: JSON.stringify(group)
     })
       .then(handleServerResponse)

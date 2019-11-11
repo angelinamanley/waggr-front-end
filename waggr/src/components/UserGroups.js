@@ -10,7 +10,7 @@ render(){
     if(!this.props.user){
         return <div>Loading..</div>
     } else if (this.props.user.groups.length === 0)
-      { return( <Message>You haven't joined any groups yet.</Message>) }
+      { return( <Message color="violet" style={{width: '85%', marginRight: "auto", marginLeft: "auto", fontSize: '120%'}}>You haven't joined any groups yet.</Message>) }
     else {
       return(
 

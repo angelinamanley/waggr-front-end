@@ -8,7 +8,7 @@ export default class UserMeetups extends React.Component {
     if (!this.props.user) {
       return <div>Loading..</div>;
     } else if (this.props.user.groups.length === 0)
-    { return( <Message>You haven't joined any meetups yet.</Message>) }
+    { return( <Message color="violet" style={{width: '85%', marginRight: "auto", marginLeft: "auto", fontSize: '120%'}}>You haven't joined any meetups yet.</Message>) }
     else {
       return (
         <div>

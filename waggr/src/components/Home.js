@@ -11,16 +11,21 @@ const Home = props => {
   return (
     <div>
       <div id="header-div">
-    <Container fluid style={{paddingTop : '13px', paddingBottom: '5px'}} textAlign='center'>
-     <h2 color="teal"> <Image size='mini' verticalAlign='middle' circular src={Logo} /> waggr </h2>
-  
+    <Container fluid style={{paddingTop : '5px', paddingBottom: '1px'}} textAlign='center'>
+    <div>  </div>
+    <div style={{fontSize: '200%', fontWeight: 'bold', color: '#14B89C'}}> <Image style={{ maxWidth: '15%'}} verticalAlign='middle'  src={Logo} />waggr</div>
+   
       </Container>
       <Divider  color="black" fluid="true" />
      
     </div>
-    <h2>Your Groups</h2>
+    <div id="header" style={{marginLeft: '5%'}}> <h2>Your Groups</h2>
+    </div>
+   
       <UserGroups userSelectGroup={props.userSelectGroup} user={props.user}/>
-      <h2> Your Meetups </h2>
+      <div id="header" style={{marginLeft: '5%'}}><h2> Your Meetups </h2>
+      </div>  
+      
       <UserMeetups user={props.user} />
 
     
