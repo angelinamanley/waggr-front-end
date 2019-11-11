@@ -17,7 +17,6 @@ class DogsContainer extends React.Component{
             <Card.Header>
             No dogs...yet! 
                 </Card.Header></Card.Content></Card>
-                <Button primary as={NavLink} to='/add_dog' >Add Dog </Button>
                 </Container> )
         } else { return(
                 <Container>
@@ -38,7 +37,6 @@ class DogsContainer extends React.Component{
 
 
             </Card.Group>
-            <Button primary as={NavLink} to='/add_dog' >Add Dog </Button>
             </Container>
 
             ) 

@@ -22,7 +22,7 @@ class LoginForm extends React.Component {
     .then(data => {
       console.log(data)
       if (data.error) {
-        throw Error(data.error)
+        alert(data.error)
       } else {
         this.props.login(data)
       }

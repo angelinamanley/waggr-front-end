@@ -25,7 +25,7 @@ class SignUpForm extends React.Component{
     
       submit = e => {
         e.preventDefault()
-        API.signup({ email: this.state.email, password: this.state.password, password_confirmation: this.state.password_confirmation, first_name: this.state.first_name, last_name: this.state.last_name}).then(
+        API.signup({ email: this.state.email, password: this.state.password, password_confirmation: this.state.password_confirmation, first_name: this.state.first_name, last_name: this.state.last_name, aboutme: this.state.aboutme, photo: this.state.photo}).then(
           user => this.props.login(user)
         )
       }
@@ -83,13 +83,6 @@ class SignUpForm extends React.Component{
           value={this.state.first_name}
         />
         <Form.Input
-          name="last_name"
-          type="text"
-          placeholder="Last Name"
-          autoComplete="name"
-          value={this.state.last_name}
-        />
-         <Form.Input
           name="last_name"
           type="text"
           placeholder="Last Name"

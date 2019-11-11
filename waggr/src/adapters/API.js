@@ -11,8 +11,6 @@ const ATTENDANCES_URL = `${API_ENDPOINT}attendances`
 const MEMBERSHIPS_URL = `${API_ENDPOINT}memberships`
 const ADDLOCATION_URL = `${API_ENDPOINT}addlocation`
 
-
-
 const jsonHeaders = (more = {}) => ({
     'Content-Type': 'application/json',
     Accept: 'application/json',

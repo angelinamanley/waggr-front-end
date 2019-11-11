@@ -3,6 +3,7 @@ import DogsContainer from './DogsContainer'
 import { Button, Image} from 'semantic-ui-react'
 import { NavLink } from 'react-router-dom'
 import AccountSettings from './AccountSettings'
+import AddDogButton from './AddDogButton'
 //user profile pic, user dogs, user groups, user upcoming meetups 
 
 
@@ -48,6 +49,7 @@ class Dashboard extends React.Component{
 
                     <h1>{this.props.user.first_name} <Button as={NavLink} exact to="/login" onClick={()=> this.props.logout()} secondary size='mini'>Log Out </Button> </h1>
                     <DogsContainer dogs={this.props.user.dogs} />
+                    <AddDogButton />
                     <AccountSettings />
                     <Button secondary onClick={this.showWidget}>Edit Profile Picture</Button>
                     </React.Fragment>

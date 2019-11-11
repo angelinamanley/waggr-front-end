@@ -22,8 +22,10 @@ class UserShowPage extends React.Component {
     return(
 
        <div>
-        <Image src={this.state.user.photo} circular />
-  
+        <Image size="small" src={this.state.user.photo} circular />
+        <h2>{this.state.user.first_name}</h2>
+        <h4>{this.state.user.aboutme}</h4>
+        <h3>{this.state.user.first_name}'s dogs</h3> 
         <DogsContainer  dogs={this.state.user.dogs} />
         <h3>{this.state.user.first_name}'s Meetups</h3>
         <UserMeetups user={this.state.user} />
