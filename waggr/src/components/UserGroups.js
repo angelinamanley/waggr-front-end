@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card,  Image } from 'semantic-ui-react'
+import {Card,  Image, Message } from 'semantic-ui-react'
 import {NavLink} from 'react-router-dom'
 
 
@@ -9,9 +9,15 @@ render(){
 
     if(!this.props.user){
         return <div>Loading..</div>
-    } else {
-    return(
+    } else if (this.props.user.groups.length === 0)
+      { return( <Message>You haven't joined any groups yet.</Message>) }
+    else {
+      return(
+
+      
         <div>
+          
+          
             <Card.Group centered>
         {this.props.user.groups.map(group => 
             <Card
@@ -24,9 +30,8 @@ render(){
                 <Card.Header>{group.name}</Card.Header>
               </Card.Content>
             </Card>
-    
-)   
+            )   
 
-} </Card.Group></div>)
+} </Card.Group></div>) 
 } }
 }

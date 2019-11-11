@@ -35,16 +35,19 @@ class App extends React.Component {
 
   componentDidMount() {
     API.validateUser().then(user => {
-      if (user.errors) { this.props.history.push("/login");
+      if (user.errors) {
+        alert(user.errors)
+        this.props.history.push('/login')
       } else {
-      this.setState({ user })
+        this.setState({ user })
       }
     })
   }
 
   login = user => {
-    this.setState({ user }, () => this.props.history.push("/home"));
-  };
+
+  this.setState({ user }, () => this.props.history.push("/home"));
+   }
 
   logout = () => {
     API.logout();

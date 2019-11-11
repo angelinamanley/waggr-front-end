@@ -14,7 +14,7 @@ export default class AllMeetupGroupMenu extends React.Component {
         const { activeItem } = this.state;
 
         return(
-        <Menu compact fluid inverted widths={2}color="pink" >
+        <Menu compact fluid widths={2} color="teal"  >
         <Menu.Item
           name="Search Groups"
           active={activeItem === "chat"}

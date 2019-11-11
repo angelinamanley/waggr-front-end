@@ -12,13 +12,13 @@ const Home = props => {
     <div>
       <div id="header-div">
     <Container fluid style={{paddingTop : '13px', paddingBottom: '5px'}} textAlign='center'>
-      <Image size='tiny' verticalAlign='middle' circular src={Logo} /> <span>Home</span>
+     <h2 color="teal"> <Image size='mini' verticalAlign='middle' circular src={Logo} /> waggr </h2>
   
       </Container>
-      <Divider  fluid="true" />
+      <Divider  color="black" fluid="true" />
      
     </div>
-  
+    <h2>Your Groups</h2>
       <UserGroups userSelectGroup={props.userSelectGroup} user={props.user}/>
       <h2> Your Meetups </h2>
       <UserMeetups user={props.user} />

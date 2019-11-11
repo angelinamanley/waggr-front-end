@@ -40,10 +40,6 @@ const jsonHeaders = (more = {}) => ({
       return { code: 503 }
     } else if (res.status === 500) {
       return { code: 500, error: 'Something went wrong' }
-    } else if (res.status === 406) {
-        return { code: 406, error: 'Not acceptable' }
-      } else if (res.status === 404) {
-        return {code: 404, error: 'Not found' }
     } else {
       return res.text().then(text => {
         try {
@@ -51,7 +47,7 @@ const jsonHeaders = (more = {}) => ({
         } catch (error) {
           return res
         }
-      })  
+      })
     }
   }
   
@@ -76,7 +72,7 @@ const jsonHeaders = (more = {}) => ({
       })
       .catch(handleError)
 
-      const signup = userDetails =>
+  const signup = userDetails =>
       fetch(SIGNUP_URL, {
         method: 'POST',
         headers: jsonHeaders(),
@@ -121,13 +117,9 @@ const jsonHeaders = (more = {}) => ({
     localStorage.removeItem('token')
   }
 
-    const getGroups = () => { 
-        return fetch(GROUPS_URL).then(handleServerResponse)
-    }
-   
-    const getGroup = (id) => { 
-      return fetch(`${GROUPS_URL}/${id}`).then(handleServerResponse)
-    }
+  const getGroups = () => fetch(GROUPS_URL).then(handleServerResponse)
+  const getGroup = id => fetch(`${GROUPS_URL}/${id}`).then(handleServerResponse)
+
 
 
     const joinGroup = (data) => {
@@ -236,8 +228,7 @@ const editGroup = ( group, id ) => {
  }
 
   const getMeetups = () => fetch(MEETUPS_URL).then(handleServerResponse)
-
-  const getMeetup = (id) => fetch(`${MEETUPS_URL}/${id}`).then(handleServerResponse)
+   const getMeetup = (id) => fetch(`${MEETUPS_URL}/${id}`).then(handleServerResponse)
   const getDog = (id) => fetch(`${DOGS_URL}/${id}`).then(handleServerResponse)
   const deleteMeetup = (id) => fetch(`${MEETUPS_URL}/${id}`, 
   {

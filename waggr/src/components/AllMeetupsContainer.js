@@ -36,7 +36,7 @@ filterMeetups = () => {
   
       return (
         <React.Fragment>
-          All Meetups
+          <h4>All Meetups</h4>
           {/* <Button as={Link} to='/addgroup' size='mini' primary icon><Icon name="plus circle"/></Button> */}
           <GroupSearchBar handleSearchClick={this.handleSearchClick} />
           <Container>

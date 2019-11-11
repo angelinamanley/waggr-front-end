@@ -19,29 +19,34 @@ class LoginForm extends React.Component {
   submit = e => {
     e.preventDefault()
     API.login({ email: this.state.email, password: this.state.password })
-    .then(console.log)
-    .then(user => {
-        this.props.login(user)}
-    )
-  }
+    .then(data => {
+      console.log(data)
+      if (data.error) {
+        throw Error(data.error)
+      } else {
+        this.props.login(data)
+      }
+  })
+  .catch(error => alert(error))
+}
 
   render() {
     return (
       <div className="login">
       <Grid textAlign="center" verticalAlign="middle">
-        <Grid.Column style={{ paddingTop: "25%"  }}>
+        <Grid.Column style={{ paddingTop: "35%"  }}>
           <Image src={logo} size="medium" centered />
-        <Header as="h3" color="teal" textAlign="center">
+        {/* <Header as="h3" color="teal" textAlign="center">
               Log-in to your account
-            </Header>
+            </Header> */}
       <Form
-      size="small"
+      size="large"
         onSubmit={this.submit}
         onChange={e => this.handleInputChange(e.target.name, e.target.value)}
       >
    
         <Form.Input
-        style={{ width:"200px" }} 
+        style={{ width:"230px" }} 
           name="email"
           type="email"
           placeholder="email"
@@ -51,7 +56,7 @@ class LoginForm extends React.Component {
           value={this.state.email}
         />
         <Form.Input
-        style={{ width:"200px" }} 
+        style={{ width:"230px" }} 
           name="password"
           type="password"
           icon="lock"

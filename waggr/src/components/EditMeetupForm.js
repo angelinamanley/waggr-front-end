@@ -16,7 +16,9 @@ class EditMeetupForm extends React.Component{
         datetime: "", 
         location: null, 
         latitude: null, 
-        longitude: null
+        longitude: null, 
+        groupId: null, 
+        
 
     }
 

@@ -59,8 +59,8 @@ class MapContainer extends React.Component {
   };
 
   render() {
-    if (!this.props.meetups || !this.props.user) {
-      return <div>loading</div>
+    if (!this.props.meetups || !this.props.longitude || !this.props.latitude ) {
+      return <div>Enter a location to start searching for meetups!</div>
     } else{
 
       // const userCoords = {lat: this.props.user.latitude, lng: this.props.user.longitude}
@@ -69,9 +69,9 @@ class MapContainer extends React.Component {
         google={this.props.google}
         zoom={13}
         style={mapStyles}
-        initialCenter={{ lat: this.props.user.latitude, lng: this.props.user.longitude }}
+        initialCenter={{ lat: this.props.latitude, lng: this.props.longitude }}
       >
-        <Marker position={ {lat: this.props.user.latitude, lng: this.props.user.longitude }} />
+        <Marker position={ {lat: this.props.latitude, lng: this.props.longitude }} />
         {this.displayMarkers()}
         <InfoWindow
           marker={this.state.activeMarker}
