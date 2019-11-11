@@ -2,6 +2,7 @@ import React from 'react';
 import allBreeds from '../config/data'
 import { Container, Form, Dropdown, Radio, Button, Image } from 'semantic-ui-react'
 import API from "../adapters/API";
+import DogPic from './common/dog-placeholder.png'
 
 
 
@@ -23,7 +24,13 @@ class AddDogForm extends React.Component{
     
       submit = e => {
         e.preventDefault()
-        API.addDog({ name: this.state.name, breed: this.state.breed, birthday: this.state.birthday, gender: this.state.gender, bio: this.state.bio, photo: this.state.photo, user_id: this.props.user.id}).then(dog => this.props.addDogtoUser(dog)).then(() => this.props.history.push('/dashboard'))
+        let dogPhoto
+        if (this.state.photo === null || this.state.photo === "") {
+           dogPhoto = "https://res.cloudinary.com/angelinashin/image/upload/v1573498535/me6jytfvdhbx1lpatka0.png"
+        } else {
+           dogPhoto = this.state.photo
+        }
+        API.addDog({ name: this.state.name, breed: this.state.breed, birthday: this.state.birthday, gender: this.state.gender, bio: this.state.bio, photo: dogPhoto, user_id: this.props.user.id}).then(dog => this.props.addDogtoUser(dog)).then(() => this.props.history.push('/dashboard'))
       }
 
       showWidget = () => {

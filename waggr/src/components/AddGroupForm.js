@@ -22,12 +22,20 @@ class AddGroupForm extends React.Component {
     });
   };
 
+  
+
   submit = e => {
     e.preventDefault();
+    let groupPhoto
+    if (this.state.photo === null || this.state.photo === "") {
+      groupPhoto = "https://res.cloudinary.com/angelinashin/image/upload/v1573500085/vyfus5leriqaxmncuz5w.jpg"
+   } else {
+      groupPhoto = this.state.photo
+   }
     API.postGroup({
       name: this.state.name,
       description: this.state.description,
-      photo: this.state.photo,
+      photo: groupPhoto,
       admin_id: this.props.user.id
     })
       .then(() => this.props.history.push("/groups"));
@@ -38,7 +46,7 @@ class AddGroupForm extends React.Component {
   }
 
    widget = window.cloudinary.createUploadWidget({ 
-    cloudName: "angelinashin", uploadPreset: "zdjpntym", sources: [ 'local', 'url'],  cropping: true, croppingAspectRatio : 1, showSkipCropButton: false}, (error, result) => { this.checkUploadResult(result) });
+    cloudName: "angelinashin", uploadPreset: "cswhfpzj", sources: [ 'local', 'url'],  cropping: true, croppingAspectRatio : 1.4, showSkipCropButton: true}, (error, result) => { this.checkUploadResult(result) });
 
 
   checkUploadResult = (resultEvent) => {

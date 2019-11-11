@@ -39,7 +39,7 @@ class GroupForum extends React.Component {
         </div>
       );
     } else {
-      let sortedComments = this.props.group.posts.sort((a, b) => b.valueOf() - a.valueOf())
+      
       
       return (
 
@@ -52,7 +52,8 @@ class GroupForum extends React.Component {
       <Form.TextArea value={this.state.comment} onChange={event => this.setState({comment: event.target.value})}/>
       <Button content='Add Comment' labelPosition='left' icon='edit' primary />
     </Form>
-            {sortedComments.map(post => 
+            {this.props.group.posts.length === 0? null : 
+            this.props.group.posts.sort((a, b) => moment(b.created_at).format('X')-moment(a.created_at).format('X')).map(post => 
               <Comment key={post.id}>
                   <Comment.Avatar  src={post.user.photo}/>
                 <Comment.Content>

@@ -40,9 +40,11 @@ class GroupInfo extends React.Component {
       const membership = this.props.group.users.find(user => user.id === this.props.user.id)
       const admin = this.props.group.admin_id === this.props.user.id 
       return (
-        <Container>
+        <div>
+        <Image centered  src={this.props.group.photo} style={{width : "100%"}} size="small" />
+        
+
         <h2>{this.props.group.name} </h2>
-        <Image centered circular src={this.props.group.photo} size="tiny" />
           <p>{this.props.group.description} </p>
           { admin? <Button as={Link} to={`/groups/${this.props.group.id}/edit`} size='mini' color="yellow" label="Edit Group" /> : null}
           {!membership
@@ -53,8 +55,8 @@ class GroupInfo extends React.Component {
               Leave Group
             </Button> : null
           )}
-        </Container>
-      )
+      </div>
+          )
 
   } }
 }

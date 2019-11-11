@@ -35,7 +35,7 @@ class Map extends React.Component {
       <div>
         <h3>Search for meetups by location </h3>
         <LocationSearchInput selectLocation={this.selectLocation}/>
-        <MapComponent meetups={this.state.meetups} latitude={this.state.latitude} longitude={this.state.longitude} user={this.props.user}/>
+        <MapComponent allProps={this.props} meetups={this.state.meetups} latitude={this.state.latitude} longitude={this.state.longitude} user={this.props.user}/>
       </div>
     );
   }

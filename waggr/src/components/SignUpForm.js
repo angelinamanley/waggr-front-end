@@ -26,9 +26,14 @@ class SignUpForm extends React.Component{
     
       submit = e => {
         e.preventDefault()
-        console.log(this.state.password === this.state.password_confirmation)
+        let profilePic
+        if (this.state.photo === null || this.state.photo === "") {
+          profilePic = "https://res.cloudinary.com/angelinashin/image/upload/v1573498751/ggxpkzje457qy9s8awnk.png"
+       } else {
+          profilePic = this.state.photo
+       }
         if (this.state.password === this.state.password_confirmation) {
-          API.signup({ email: this.state.email, password: this.state.password, password_confirmation: this.state.password_confirmation, first_name: this.state.first_name, last_name: this.state.last_name, aboutme: this.state.aboutme, photo: this.state.photo}).then(
+          API.signup({ email: this.state.email, password: this.state.password, password_confirmation: this.state.password_confirmation, first_name: this.state.first_name, last_name: this.state.last_name, aboutme: this.state.aboutme, photo: profilePic}).then(
             user => this.props.login(user)) 
           } else {
           alert("Password and password confirmation do not match.  Please try again")

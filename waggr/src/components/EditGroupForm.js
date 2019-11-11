@@ -48,8 +48,8 @@ class EditDogForm extends React.Component {
     this.widget.open()
   }
 
-   widget = window.cloudinary.createUploadWidget({ 
-    cloudName: "angelinashin", uploadPreset: "zdjpntym", sources: [ 'local', 'url'],  cropping: true, croppingAspectRatio : 1, showSkipCropButton: false}, (error, result) => { this.checkUploadResult(result) });
+  widget = window.cloudinary.createUploadWidget({ 
+    cloudName: "angelinashin", uploadPreset: "cswhfpzj", sources: [ 'local', 'url'],  cropping: true, croppingAspectRatio : 1.4, showSkipCropButton: true}, (error, result) => { this.checkUploadResult(result) });
 
 
   checkUploadResult = (resultEvent) => {
