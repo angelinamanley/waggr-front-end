@@ -12,6 +12,12 @@ export default class GroupSearchBar extends React.Component {
       this.props.handleSearchClick(this.state.searchTerm)
   }
 
+  handleChange = event => {
+    event.preventDefault()
+    this.setState({ searchTerm: event.target.value })
+    this.props.handleSearchClick(this.state.searchTerm)
+}
+
     clearSearchTerm = () => {
     this.setState({
         searchTerm: ''
@@ -23,7 +29,7 @@ export default class GroupSearchBar extends React.Component {
   render() {
     return (
       <div>
-      <Input action={ {icon : 'search', onClick : event => this.onSubmit(event)}} onChange={e => this.setState({ searchTerm: e.target.value })} fluid  placeholder="Search" />
+      <Input action={ {icon : 'x', onClick : () => this.clearSearchTerm()}} onChange={e => this.handleChange(e)} fluid  placeholder="Search" />
       
       
       

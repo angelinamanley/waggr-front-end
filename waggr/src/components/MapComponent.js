@@ -1,6 +1,6 @@
 import React from "react";
 import {Button} from 'semantic-ui-react'
-import {Link} from 'react-router-dom'
+import {BrowserRouter, Link} from 'react-router-dom'
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from "google-maps-react";
 import apiKey from "../config/config_keys"
 
@@ -78,7 +78,7 @@ class MapContainer extends React.Component {
           visible={this.state.showingInfoWindow}
           onClose={this.handleClose}
         >
-          <div>{this.state.selectedPlace.name}<Button onClick={() => this.props.history.push('/dashboard')}></Button></div>
+          <div>{this.state.selectedPlace.name}<Link to='/dashboard'/></div>
         </InfoWindow>
       </Map>
     );

@@ -1,6 +1,7 @@
 import React from "react";
-import { Container, Button, Comment, Form, Icon } from "semantic-ui-react";
+import { Container, Button, Comment, Form, Icon, Message } from "semantic-ui-react";
 import API from "../adapters/API";
+import {Link} from 'react-router-dom'
 import moment from "moment";
 
 
@@ -9,7 +10,7 @@ class GroupForum extends React.Component {
 
     state = { 
         comment: '', 
-        errors: [],
+        errors: "",
         errorView: false
     }
 
@@ -18,12 +19,12 @@ class GroupForum extends React.Component {
 
     handleCommentSubmit = e => {
       e.preventDefault()
-      if (this.state.comment || this.state.comment === ''){
-         this.setState({error : })
-      }
+      if (this.state.comment === null|| this.state.comment === ''){
+         this.setState({errors : "Please enter a comment before submitting", errorView : true})
+      } else {
         API.postComment({group_id: this.props.group.id, user_id: this.props.user.id, content: this.state.comment})
         .then(post => this.props.addPostToGroup(post)).then(this.setState({ comment: ""}))
-        // 
+      }
     }
 
     handleCommentDelete = (id) => {
@@ -38,19 +39,24 @@ class GroupForum extends React.Component {
         </div>
       );
     } else {
-
-    
+      let sortedComments = this.props.group.posts.sort((a, b) => b.valueOf() - a.valueOf())
+      
       return (
 
         <React.Fragment>
             <Container>
-          <Comment.Group>
+          {this.state.errorView? <Message negative>{this.state.errors}</Message> : null}
         
-            {this.props.group.posts.map(post => 
+          <Comment.Group>
+          <Form onSubmit={this.handleCommentSubmit} >
+      <Form.TextArea value={this.state.comment} onChange={event => this.setState({comment: event.target.value})}/>
+      <Button content='Add Comment' labelPosition='left' icon='edit' primary />
+    </Form>
+            {sortedComments.map(post => 
               <Comment key={post.id}>
-                  <Comment.Avatar as="a" src={post.user.photo}/>
+                  <Comment.Avatar  src={post.user.photo}/>
                 <Comment.Content>
-                  <Comment.Author>{post.user.first_name}</Comment.Author>
+                  <Comment.Author as={Link} to={`/users/${post.user.id}`}>{post.user.first_name}</Comment.Author>
                   <Comment.Metadata>{moment(post.created_at).fromNow()} {this.props.user.id === post.user.id? <Icon onClick={()=> this.handleCommentDelete(post.id)} name='x' color='pink'/> : null} </Comment.Metadata>
                   <Comment.Text>
                     <p>{post.content}</p>
@@ -58,10 +64,7 @@ class GroupForum extends React.Component {
                 </Comment.Content>
               </Comment>
             )}
-             <Form onSubmit={this.handleCommentSubmit} >
-      <Form.TextArea value={this.state.comment} onChange={event => this.setState({comment: event.target.value})}/>
-      <Button content='Add Comment' labelPosition='left' icon='edit' primary />
-    </Form>
+            
           </Comment.Group>
           </Container>
         </React.Fragment>

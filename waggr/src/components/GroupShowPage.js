@@ -34,7 +34,7 @@ class GroupShowPage extends React.Component {
   addPostToGroup = (post) => {
     // let newPosts = []
     // newPosts = [...this.state.group.posts, post]
-   this.setState({group: {...this.state.group, posts: [...this.state.group.posts, post]}})
+   this.setState({group: {...this.state.group, posts: [post, ...this.state.group.posts ]}})
  }
 
   removePost = (id ) => {
