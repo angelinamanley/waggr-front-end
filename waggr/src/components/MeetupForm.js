@@ -34,7 +34,7 @@ class MeetupForm extends React.Component{
     
       submit = e => {
         e.preventDefault()
-        API.postMeetup({name: this.state.name, description: this.state.description, datetime: this.state.datetime, location: this.state.location, group_id: this.state.groupId, admin_id: this.props.user.id, latitude: this.state.latitude, longitutde: this.state.longitude }).then(meetup => this.props.history.push(`/meetups/${meetup.id}`))
+        API.postMeetup({name: this.state.name, description: this.state.description, datetime: this.state.datetime, location: this.state.location, group_id: this.state.groupId, admin_id: this.props.user.id, latitude: this.state.latitude, longitude: this.state.longitude }).then(meetup => this.props.history.push(`/meetups/${meetup.id}`))
       }
 
       handleChange = (event, {name, value}) => {
@@ -72,13 +72,13 @@ class MeetupForm extends React.Component{
           autoComplete="text"
           value={this.state.description}
         />
-             <Form.Input
+             {/* <Form.Input
           name="location"
           type="location"
           placeholder="Enter postcode"
           autoComplete="post code"
           value={this.state.location}
-        />
+        /> */}
          <DateTimeInput
           name="datetime"
           placeholder="Date Time"

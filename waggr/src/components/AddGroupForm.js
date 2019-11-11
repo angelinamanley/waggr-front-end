@@ -30,9 +30,6 @@ class AddGroupForm extends React.Component {
       photo: this.state.photo,
       admin_id: this.props.user.id
     })
-      .then( group => 
-        this.props.addGrouptoGroups(group)
-      )
       .then(() => this.props.history.push("/groups"));
   };
 

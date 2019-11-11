@@ -1,5 +1,6 @@
 import React from 'react';
-import { Container, Form, Button } from 'semantic-ui-react'
+import { Container, Button } from 'semantic-ui-react'
+import {Form, Input, TextArea} from 'semantic-ui-react-form-validator'
 import API from '../adapters/API';
 
 
@@ -25,9 +26,13 @@ class SignUpForm extends React.Component{
     
       submit = e => {
         e.preventDefault()
-        API.signup({ email: this.state.email, password: this.state.password, password_confirmation: this.state.password_confirmation, first_name: this.state.first_name, last_name: this.state.last_name, aboutme: this.state.aboutme, photo: this.state.photo}).then(
-          user => this.props.login(user)
-        )
+        console.log(this.state.password === this.state.password_confirmation)
+        if (this.state.password === this.state.password_confirmation) {
+          API.signup({ email: this.state.email, password: this.state.password, password_confirmation: this.state.password_confirmation, first_name: this.state.first_name, last_name: this.state.last_name, aboutme: this.state.aboutme, photo: this.state.photo}).then(
+            user => this.props.login(user)) 
+          } else {
+          alert("Password and password confirmation do not match.  Please try again")
+        }
       }
 
       showWidget = () => {
@@ -54,50 +59,62 @@ class SignUpForm extends React.Component{
         onSubmit={this.submit}
         onChange={e => this.handleInputChange(e.target.name, e.target.value)}
       >
-        <Form.Input
+        <Input
           name="email"
           type="email"
+          validators={['required']}
+          errorMessages={['this field is required']} 
           placeholder="email"
           autoComplete="email"
           value={this.state.email}
         />
-        <Form.Input
+        <Input
           name="password"
           type="password"
+          validators={['required']}
+          errorMessages={['this field is required']} 
           placeholder="password"
           autoComplete="new-password"
           value={this.state.password}
         />
-             <Form.Input
+             <Input
           name="password_confirmation"
           type="password"
           placeholder="password confirmation"
+          validators={['required']}
+          errorMessages={['this field is required']} 
           autoComplete="new-password"
           value={this.state.password_confirmation}
         />
-             <Form.Input
+             <Input
           name="first_name"
           type="text"
+          validators={['required']}
+          errorMessages={['this field is required']} 
           placeholder="First Name"
           autoComplete="name"
           value={this.state.first_name}
         />
-        <Form.Input
+        <Input
           name="last_name"
           type="text"
+          validators={['required']}
+          errorMessages={['this field is required']} 
           placeholder="Last Name"
           autoComplete="name"
           value={this.state.last_name}
         />
-         <Form.TextArea
+         <TextArea
           name="aboutme"
-          type="text"
+          type="textarea"
+          validators={['required']}
+          errorMessages={['this field is required']} 
           placeholder="Tell us more about you "
           autoComplete="text"
           value={this.state.aboutme}
         />
 
-        <Form.Button>Submit</Form.Button>
+        <Button>Submit</Button>
 
       </Form>
       </Container>

@@ -35,8 +35,8 @@ class App extends React.Component {
 
   componentDidMount() {
     API.validateUser().then(user => {
-      if (user.errors) {
-        alert(user.errors)
+      if (user.errors || user.error) {
+        // alert(user.errors)
         this.props.history.push('/login')
       } else {
         this.setState({ user })
@@ -45,8 +45,13 @@ class App extends React.Component {
   }
 
   login = user => {
+    console.log(user)
+    if (user.error) {
+      alert(user.error)
+      this.props.history.push('/login')
+    } else {
   this.setState({ user }, () => this.props.history.push("/home"));
-   }
+  }}
 
   logout = () => {
     API.logout();
@@ -81,7 +86,7 @@ class App extends React.Component {
         <Route exact path='/addgroup' component={routerProps => <AddGroupForm user={this.state.user} addGrouptoGroups={this.addGrouptoGroups} {...routerProps} /> }/>
         <Route exact path='/groups/:id/edit' component={routerProps => <EditGroupForm user={this.state.user} editGroupinGroups={this.editGroupinGroups} group={this.state.selectedGroup} {...routerProps} /> }/>
         <Route exact path='/users/:id' component={routerProps => <UserShowPage selectDog={this.selectDog} selectedUser={this.state.selectedUser} {...routerProps} />} />
-        <Route exact path='/dogs/:id/edit' component={routerProps => <EditDogForm removeDog={this.removeDog} {...routerProps} />}/>
+        <Route exact path='/dogs/:id/edit' component={routerProps => <EditDogForm removeDog={this.removeDog} user={this.state.user} {...routerProps} />}/>
       </div>
 
       //

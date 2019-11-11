@@ -21,11 +21,11 @@ class LoginForm extends React.Component {
     API.login({ email: this.state.email, password: this.state.password })
     .then(data => {
       console.log(data)
-      if (data.error) {
-        alert(data.error)
-      } else {
+      // if (data.error) {
+      //   alert(data.error)
+      // } else {
         this.props.login(data)
-      }
+      // }
   })
   .catch(error => alert(error))
 }

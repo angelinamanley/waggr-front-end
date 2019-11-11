@@ -9,13 +9,18 @@ class GroupForum extends React.Component {
 
     state = { 
         comment: '', 
+        errors: [],
+        errorView: false
     }
 
 
   
 
     handleCommentSubmit = e => {
-        e.preventDefault()
+      e.preventDefault()
+      if (this.state.comment || this.state.comment === ''){
+         this.setState({error : })
+      }
         API.postComment({group_id: this.props.group.id, user_id: this.props.user.id, content: this.state.comment})
         .then(post => this.props.addPostToGroup(post)).then(this.setState({ comment: ""}))
         // 

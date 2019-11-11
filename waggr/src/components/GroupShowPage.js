@@ -21,6 +21,16 @@ class GroupShowPage extends React.Component {
     this.setState({ menuSelect: menuItem });
   };
 
+  handleJoinClick = group => {
+    let newGroupUsers = [...this.state.group.users, this.props.user]
+    this.setState({group: {...this.state.group, users: newGroupUsers }})
+  }
+
+  handleLeaveClick = () => {
+    let newGroupUsers = this.state.group.users.filter(user => user.id !== this.props.user.id)
+    this.setState({ group: {...this.state.group, users: newGroupUsers}})
+  }
+
   addPostToGroup = (post) => {
     // let newPosts = []
     // newPosts = [...this.state.group.posts, post]
@@ -49,7 +59,7 @@ class GroupShowPage extends React.Component {
 
     return (
       <div>
-        <GroupInfo user={this.props.user} group={this.state.group} />
+        <GroupInfo handleLeaveClick={this.handleLeaveClick} handleJoinClick={this.handleJoinClick} user={this.props.user} group={this.state.group} />
         <GroupShowMenu handleMenuSelect={this.handleMenuSelect} />
         {component}
       </div>

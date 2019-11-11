@@ -72,16 +72,16 @@ class AddDogForm extends React.Component{
           <Radio
             label='Female'
             value='Female'
-            checked={this.state.gender === 'female'}
-            onChange={() => this.setState({gender: "female"})}
+            checked={this.state.gender === 'Female'}
+            onChange={() => this.setState({gender: "Female"})}
           />
         </Form.Field>
         <Form.Field>
           <Radio
             label='Male'
             value='Male'
-            checked={this.state.gender === 'male'}
-            onChange={() => this.setState({gender: "male"})}
+            checked={this.state.gender === 'Male'}
+            onChange={() => this.setState({gender: "Male"})}
           />
         </Form.Field>
 

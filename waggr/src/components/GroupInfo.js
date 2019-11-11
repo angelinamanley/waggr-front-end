@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Container } from "semantic-ui-react";
+import { Button, Container, Image } from "semantic-ui-react";
 import {Link} from 'react-router-dom'
 import API from "../adapters/API";
 
@@ -14,7 +14,7 @@ class GroupInfo extends React.Component {
     API.joinGroup({
       group_id: this.props.group.id,
       user_id: this.props.user.id
-    }).then(this.setState({ membership: true }));
+    }).then(group => this.props.handleJoinClick(group))
   };
 
   findMembershipId = () =>
@@ -23,9 +23,7 @@ class GroupInfo extends React.Component {
     ).id;
 
   handleLeaveClick = () => {
-    API.leaveGroup(this.findMembershipId()).then(
-      this.setState({ membership: false })
-    );
+    API.leaveGroup(this.findMembershipId()).then(()=> this.props.handleLeaveClick())
   };
 
   render() {
@@ -44,11 +42,8 @@ class GroupInfo extends React.Component {
       return (
         <Container>
         <h2>{this.props.group.name} </h2>
+        <Image centered circular src={this.props.group.photo} size="tiny" />
           <p>{this.props.group.description} </p>
-          <p>Are you a member?
-              {membership?  "yes"
-              : "no"}
-          </p>
           { admin? <Button as={Link} to={`/groups/${this.props.group.id}/edit`} size='mini' color="yellow" label="Edit Group" /> : null}
           {!membership
            ? (
