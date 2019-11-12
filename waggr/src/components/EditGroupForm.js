@@ -34,6 +34,10 @@ class EditDogForm extends React.Component {
     });
   };
 
+  handleDeleteClick = id => {
+    API.deleteGroup(id).then(() => this.props.removeGroupFromUser(id)).then(() => this.props.history.push('/home'))
+  }
+
   submit = e => {
     e.preventDefault();
     API.editGroup({
@@ -66,10 +70,10 @@ class EditDogForm extends React.Component {
     return (
       <Container>
           <h2>Edit Group</h2>
-        <Button onClick={this.showWidget}>Upload Picture</Button>
+        <Button secondary onClick={this.showWidget}>Upload Picture</Button>
         <Form onSubmit={this.submit}>
           <Form.Input
-            label="Name"
+            label="Name"  
             name="name"
             type="text"
             placeholder="name"
@@ -92,8 +96,11 @@ class EditDogForm extends React.Component {
             }
           />
 
-          <Form.Button>Submit</Form.Button>
+          <Form.Button primary>Submit</Form.Button>
         </Form>
+        <h4>or</h4>
+      <Button primary onClick={()=> this.handleDeleteClick(this.props.match.params.id)}>Delete Group</Button>
+  
       </Container>
     );
   }

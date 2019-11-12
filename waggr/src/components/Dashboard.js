@@ -4,6 +4,8 @@ import { Button, Image} from 'semantic-ui-react'
 import { NavLink } from 'react-router-dom'
 import AccountSettings from './AccountSettings'
 import AddDogButton from './AddDogButton'
+import Spinner from './common/Spinner';
+
 //user profile pic, user dogs, user groups, user upcoming meetups 
 
 
@@ -40,7 +42,7 @@ class Dashboard extends React.Component{
 
         render(){ 
             if (!this.props.user) {
-                return <div> Loading Info</div>}
+                return <Spinner />}
                 else{
 
             return( 

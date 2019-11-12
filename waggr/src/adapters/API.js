@@ -248,6 +248,12 @@ const editGroup = ( group, id ) => {
   }
   ).then(handleServerResponse)
 
+  const deleteGroup = (id) => fetch(`${GROUPS_URL}/${id}`, 
+  {
+    method: 'DELETE'
+  }
+  ).then(handleServerResponse)
+
 
   const editMeetup = (id, meetup) => {
     return fetch(`${MEETUPS_URL}/${id}`, {
@@ -287,5 +293,5 @@ const editGroup = ( group, id ) => {
     getDog, 
     deleteMeetup, 
     editMeetup, 
-    editDog, deleteDog
+    editDog, deleteDog, deleteGroup
   }

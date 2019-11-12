@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Image, Button, Icon, Container } from "semantic-ui-react";
+import { Card, Image, Container } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import Spinner from "./common/Spinner";
 import GroupSearchBar from "./GroupSearchBar";

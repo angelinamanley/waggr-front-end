@@ -38,6 +38,11 @@ class App extends React.Component {
     this.setState({user: {...this.state.user, groups: newGroups}})
   }
 
+  removeGroupFromUser = id => {
+    let newGroups = this.state.user.groups.filter( group => group.id !== parseInt(id))
+    this.setState({ user: {...this.state.user, groups: newGroups}})
+  }
+
   componentDidMount() {
     API.validateUser().then(user => {
       if (user.errors) {
@@ -91,7 +96,7 @@ class App extends React.Component {
         <Route exact path="/meetups/:id" component={routerProps => <MeetupShowPage selectUser={this.selectUser} user={this.state.user} addAttendance={this.addAttendance} removeAttendance={this.removeAttendance} meetup={this.state.selectedMeetup} {...routerProps} />}/>
         <Route exact path="/meetups/:id/edit" component={routerProps => <EditMeetupForm user={this.state.user} addAttendance={this.addAttendance} removeAttendance={this.removeAttendance} meetup={this.state.selectedMeetup} {...routerProps} />}/>
         <Route exact path='/addgroup' component={routerProps => <AddGroupForm user={this.state.user} addGrouptoGroups={this.addGrouptoGroups} addGrouptoUser={this.addGrouptoUser} {...routerProps} /> }/>
-        <Route exact path='/groups/:id/edit' component={routerProps => <EditGroupForm user={this.state.user} editGroupinGroups={this.editGroupinGroups} group={this.state.selectedGroup} {...routerProps} /> }/>
+        <Route exact path='/groups/:id/edit' component={routerProps => <EditGroupForm removeGroupFromUser={this.removeGroupFromUser} user={this.state.user} editGroupinGroups={this.editGroupinGroups} group={this.state.selectedGroup} {...routerProps} /> }/>
         <Route exact path='/users/:id' component={routerProps => <UserShowPage selectDog={this.selectDog} selectedUser={this.state.selectedUser} {...routerProps} />} />
         <Route exact path='/dogs/:id/edit' component={routerProps => <EditDogForm removeDog={this.removeDog} user={this.state.user} {...routerProps} />}/>
         </div>

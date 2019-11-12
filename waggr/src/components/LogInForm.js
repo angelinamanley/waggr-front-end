@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Button, Segment, Grid, Header, Image} from 'semantic-ui-react'
+import { Form, Button, Grid, Image} from 'semantic-ui-react'
 import API from '../adapters/API'
 import {NavLink} from 'react-router-dom'
 import logo from './common/waggrlogo.png'

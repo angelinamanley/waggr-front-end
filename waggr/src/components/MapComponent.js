@@ -1,6 +1,6 @@
 import React from "react";
 import {Button} from 'semantic-ui-react'
-import {BrowserRouter, Link} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from "google-maps-react";
 import apiKey from "../config/config_keys"
 

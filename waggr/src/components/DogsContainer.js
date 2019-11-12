@@ -1,6 +1,6 @@
 import React from 'react';
-import {Card, Image, Button, Container } from 'semantic-ui-react'
-import {Link, NavLink} from 'react-router-dom'
+import {Card, Image, Container } from 'semantic-ui-react'
+import {Link} from 'react-router-dom'
 
 class DogsContainer extends React.Component{
 
