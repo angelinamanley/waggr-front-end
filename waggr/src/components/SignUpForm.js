@@ -1,7 +1,9 @@
 import React from 'react';
-import { Container, Button } from 'semantic-ui-react'
+import { Container, Button, Message, Image, Divider, Segment } from 'semantic-ui-react'
 import {Form, Input, TextArea} from 'semantic-ui-react-form-validator'
+
 import API from '../adapters/API';
+import Logo from './common/icon.png'
 
 
 
@@ -15,7 +17,7 @@ class SignUpForm extends React.Component{
         first_name: null, 
         last_name: null, 
         aboutme: null, 
-        photo: null 
+        photo: "https://res.cloudinary.com/angelinashin/image/upload/v1573498751/ggxpkzje457qy9s8awnk.png"
     }
 
     handleInputChange = (key, value) => {
@@ -34,9 +36,9 @@ class SignUpForm extends React.Component{
        }
         if (this.state.password === this.state.password_confirmation) {
           API.signup({ email: this.state.email, password: this.state.password, password_confirmation: this.state.password_confirmation, first_name: this.state.first_name, last_name: this.state.last_name, aboutme: this.state.aboutme, photo: profilePic}).then(
-            user => this.props.login(user)) 
+            user => this.props.login(user)).catch(error => this.setState({errorMessage: error.errors[0]}))
           } else {
-          alert("Password and password confirmation do not match.  Please try again")
+          this.setState( {passwordMatchError: "Password and password confirmation do not match.  Please try again"})
         }
       }
 
@@ -58,8 +60,30 @@ class SignUpForm extends React.Component{
     render(){
         return( 
             <div>
-                <Container>
-                <Button secondary onClick={this.showWidget}>Upload a Profile Picture </Button>
+
+<Container  style={{paddingTop : '5px', paddingBottom: '0px'}} textAlign='center'>
+ 
+ <div style={{fontSize: '200%', fontWeight: 'bold', color: '#14B89C', paddingTop : '2px', paddingBottom: '0px'}} textAlign='center'> <Image style={{ maxWidth: '15%'}} verticalAlign='middle'  src={Logo} />waggr</div>
+   </Container> 
+   <Divider />
+
+                <div id="signupform" style={{ marginRight: '2em', marginLeft: '2em'}}>
+          
+              <h2>Sign Up</h2>
+              <Image src={this.state.photo} centered circular size='tiny'/>
+              <div style={{textAlign: "center", marginTop: "1em", marginBottom: "1em"}}>
+                <Button size='tiny' secondary onClick={this.showWidget}>Upload a Profile Picture </Button>
+               </div>
+                {
+          this.state.errorMessage? 
+          <div><Message negative>{this.state.errorMessage}</Message></div>
+          : null 
+        }
+          {
+          this.state.passwordMatchError? 
+          <div><Message negative>{this.state.passwordMatchError}</Message></div>
+          : null 
+        }
             <Form 
         onSubmit={this.submit}
         onChange={e => this.handleInputChange(e.target.name, e.target.value)}
@@ -76,8 +100,8 @@ class SignUpForm extends React.Component{
         <Input
           name="password"
           type="password"
-          validators={['required']}
-          errorMessages={['this field is required']} 
+          validators={['required', 'minStringLength:6']}
+          errorMessages={['this field is required', 'Please enter a minimum of 6 characters']}
           placeholder="password"
           autoComplete="new-password"
           value={this.state.password}
@@ -86,8 +110,8 @@ class SignUpForm extends React.Component{
           name="password_confirmation"
           type="password"
           placeholder="password confirmation"
-          validators={['required']}
-          errorMessages={['this field is required']} 
+          validators={['required', 'minStringLength:6']}
+          errorMessages={['this field is required', 'Please enter a minimum of 6 characters']} 
           autoComplete="new-password"
           value={this.state.password_confirmation}
         />
@@ -118,11 +142,12 @@ class SignUpForm extends React.Component{
           autoComplete="text"
           value={this.state.aboutme}
         />
-
-        <Button>Submit</Button>
-
+    <div style={{textAlign: "center"}}>
+        <Button className="signUpBtn" style={{textAlign: "center"}} primary>Submit</Button>
+        </div>
       </Form>
-      </Container>
+      <Button size='mini'>Back To Login</Button>
+      </div>
       </div>
         )
     }

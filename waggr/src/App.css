@@ -16,3 +16,8 @@ div#header-div {
   padding: 13px;
 }
 
+.signUpBtn {
+  display: flex;
+  justify-content: center;
+}
+
