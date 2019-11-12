@@ -42,8 +42,9 @@ class SignUpForm extends React.Component{
         }
       }
 
+
       showWidget = () => {
-        this.widget.open()
+        this.widget.open() ;
       }
   
        widget = window.cloudinary.createUploadWidget({ 
