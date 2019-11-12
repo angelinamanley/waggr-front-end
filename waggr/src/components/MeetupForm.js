@@ -1,8 +1,9 @@
 import React from 'react';
-import {Form, Container} from 'semantic-ui-react'
+import {Form, Container, Message} from 'semantic-ui-react'
 import { DateTimeInput } from 'semantic-ui-calendar-react';
 import API from '../adapters/API';
 import LocationSearchInput from './LocationSearchInput'
+import moment from 'moment';
 
 
 
@@ -15,6 +16,7 @@ class MeetupForm extends React.Component{
         datetime: "", 
         location: null, 
         groupId: null, 
+        errorView: false
 
     }
 
@@ -34,8 +36,12 @@ class MeetupForm extends React.Component{
     
       submit = e => {
         e.preventDefault()
+        if (moment(this.state.datetime) < moment())
+        { this.setState({ errorView: true})
+
+        } else {
         API.postMeetup({name: this.state.name, description: this.state.description, datetime: this.state.datetime, location: this.state.location, group_id: this.state.groupId, admin_id: this.props.user.id, latitude: this.state.latitude, longitude: this.state.longitude }).then(meetup => this.props.history.push(`/meetups/${meetup.id}`))
-      }
+      } }
 
       handleChange = (event, {name, value}) => {
         if (this.state.hasOwnProperty(name)) {
@@ -51,14 +57,16 @@ class MeetupForm extends React.Component{
             } else{
 
         return(
+         
             <Container>
                 <h3>Create a new Meetup</h3> 
-
+                { this.state.errorView? <Message negative>You cannot submit a date in the past!</Message> : null}
             <Form 
         onSubmit={this.submit}
         onChange={e => this.handleInputChange(e.target.name, e.target.value)}
       >
         <Form.Input
+          required
           name="name"
           type="name"
           placeholder="Name of Event"
@@ -66,6 +74,7 @@ class MeetupForm extends React.Component{
           value={this.state.name}
         />
         <Form.Input
+          required
           name="description"
           type="text"
           placeholder="Write something about the event"
@@ -80,6 +89,7 @@ class MeetupForm extends React.Component{
           value={this.state.location}
         /> */}
          <DateTimeInput
+         required
           name="datetime"
           placeholder="Date Time"
           value={this.state.datetime}

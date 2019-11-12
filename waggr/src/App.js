@@ -1,6 +1,6 @@
 import React from "react";
 import API from "./adapters/API";
-import { Route } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Home from "./components/Home";
 import LogInForm from "./components/LogInForm";
 import Dashboard from "./components/Dashboard";
@@ -40,7 +40,7 @@ class App extends React.Component {
 
   componentDidMount() {
     API.validateUser().then(user => {
-      if (user.errors || user.error) {
+      if (user.errors) {
         // alert(user.errors)
         this.props.history.push('/login')
       } else {
@@ -74,8 +74,10 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      
+        <Router>
         { this.state.user? <NavBar logout={this.logout} user={this.user} /> : null}
+        <div className="main" style={{paddingBottom : '30%'}}>
         <Route exact path="/login" component={routerProps => <LogInForm login={this.login} {...routerProps} /> }/>
         <Route exact path="/home" component={routerProps =>  <Home user={this.state.user}  selectGroup={this.selectGroup} userSelectGroup={this.userSelectGroup} {...routerProps} />} />
         <Route exact path="/dashboard" component={routerProps=> <Dashboard editProfilePicture={this.editProfilePicture} logout={this.logout}  user={this.state.user} {...routerProps} /> }/>
@@ -92,8 +94,10 @@ class App extends React.Component {
         <Route exact path='/groups/:id/edit' component={routerProps => <EditGroupForm user={this.state.user} editGroupinGroups={this.editGroupinGroups} group={this.state.selectedGroup} {...routerProps} /> }/>
         <Route exact path='/users/:id' component={routerProps => <UserShowPage selectDog={this.selectDog} selectedUser={this.state.selectedUser} {...routerProps} />} />
         <Route exact path='/dogs/:id/edit' component={routerProps => <EditDogForm removeDog={this.removeDog} user={this.state.user} {...routerProps} />}/>
-      </div>
+        </div>
 
+        </Router>
+        
       //
     );
   }

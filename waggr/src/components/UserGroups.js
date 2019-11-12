@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card,  Image, Message } from 'semantic-ui-react'
+import {Card,  Image, Message, Container } from 'semantic-ui-react'
 import {NavLink} from 'react-router-dom'
 
 
@@ -15,9 +15,8 @@ render(){
       return(
 
       
-        <div>
-          
-          
+        
+          <Container>
             <Card.Group centered>
         {this.props.user.groups.map(group => 
             <Card style={{width:'85%'}}
@@ -32,6 +31,6 @@ render(){
             </Card>
             )   
 
-} </Card.Group></div>) 
+} </Card.Group> </Container>) 
 } }
 }

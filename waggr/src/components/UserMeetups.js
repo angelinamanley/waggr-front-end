@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import {Card,  Image, Message } from 'semantic-ui-react'
+import {Card,  Image, Message, Container } from 'semantic-ui-react'
 
 
 export default class UserMeetups extends React.Component {
@@ -8,13 +8,13 @@ export default class UserMeetups extends React.Component {
     if (!this.props.user) {
       return <div>Loading..</div>;
     } else if (this.props.user.groups.length === 0)
-    { return( <Message color="violet" style={{width: '85%', marginRight: "auto", marginLeft: "auto", fontSize: '120%'}}>You haven't joined any meetups yet.</Message>) }
+    { return( <Message color="violet" style={{width: '88%', marginRight: "auto", marginLeft: "auto", fontSize: '120%'}}>You haven't joined any meetups yet.</Message>) }
     else {
       return (
-        <div>
+        <Container>
             <Card.Group centered>
           {this.props.user.meetups.map(meetup => (
-            <Card fluid color='yellow' 
+            <Card color='yellow' 
               key={meetup.id}
               as={NavLink}
               to={`/meetups/${meetup.id}`}
@@ -26,7 +26,7 @@ export default class UserMeetups extends React.Component {
               </Card.Content>
             </Card>
           ))}</Card.Group>
-        </div>
+        </Container>
       );
     }
   }

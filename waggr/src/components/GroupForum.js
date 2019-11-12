@@ -23,7 +23,7 @@ class GroupForum extends React.Component {
          this.setState({errors : "Please enter a comment before submitting", errorView : true})
       } else {
         API.postComment({group_id: this.props.group.id, user_id: this.props.user.id, content: this.state.comment})
-        .then(post => this.props.addPostToGroup(post)).then(this.setState({ comment: ""}))
+        .then(post => this.props.addPostToGroup(post)).then(this.setState({ comment: "", errorView: false}))
       }
     }
 

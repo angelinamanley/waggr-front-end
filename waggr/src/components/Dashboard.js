@@ -45,7 +45,7 @@ class Dashboard extends React.Component{
 
             return( 
                 <React.Fragment>
-                    <Image src={this.props.user.photo} centered circular size='medium'  />
+                    <Image src={this.props.user.photo} centered circular size='small'  />
 
                     <div style={{ textAlign: 'center'}}><h1>{this.props.user.first_name} <Button as={NavLink} exact to="/login" onClick={()=> this.props.logout()} secondary size='mini'>Log Out </Button> </h1>
                     </div>

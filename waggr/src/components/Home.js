@@ -10,20 +10,20 @@ import Logo from './common/icon.png'
 const Home = props => {
   return (
     <div>
-      <div id="header-div">
-    <Container fluid style={{paddingTop : '5px', paddingBottom: '1px'}} textAlign='center'>
-    <div>  </div>
-    <div style={{fontSize: '200%', fontWeight: 'bold', color: '#14B89C'}}> <Image style={{ maxWidth: '15%'}} verticalAlign='middle'  src={Logo} />waggr</div>
+     
+    <Container  style={{paddingTop : '5px', paddingBottom: '0px'}} textAlign='center'>
+ 
+    <div style={{fontSize: '200%', fontWeight: 'bold', color: '#14B89C', paddingTop : '2px', paddingBottom: '0px'}} textAlign='center'> <Image style={{ maxWidth: '15%'}} verticalAlign='middle'  src={Logo} />waggr</div>
    
-      </Container>
+      </Container> 
       <Divider  color="black" fluid="true" />
      
-    </div>
-    <div id="header" style={{marginLeft: '5%', marginBottom: '8px'}} > <h2>Your Groups</h2>
+   
+    <div id="header" style={{marginLeft: '5%', marginBottom: '5%'}} > <h2>Your Groups</h2>
     </div>
    
-      <UserGroups userSelectGroup={props.userSelectGroup} user={props.user}/>
-      <div id="header" style={{marginLeft: '5%'}}><h2> Your Meetups </h2>
+      <UserGroups userSelectGroup={props.userSelectGroup} user={props.user}/> 
+      <div id="header" style={{marginLeft: '5%', marginBottom: '5%', marginTop: '5%'}}><h2> Your Meetups </h2>
       </div>  
       
       <UserMeetups user={props.user} />
