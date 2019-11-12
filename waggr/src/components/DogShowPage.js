@@ -24,18 +24,18 @@ class DogShowPage extends React.Component {
       <div>
           <TopBar text={dog.name} />
         <div id="addgroupform" style={{ marginRight: '2em', marginLeft: '2em'}}>
-          <Container></Container>
+          
         <Grid centered columns={1}>
             <Grid.Column>
       <Container>
-        <Image src={dog.photo} size="medium" circular />
+        <Image src={dog.photo} size="small" centered circular />
         <h2>{dog.name}{dog.gender === 'Female'? <Icon name='venus'/> : <Icon name='mars' /> }</h2>
         <ul> 
           <li>{dog.breed}</li>
           <li>{dog.birthday}</li>
           <li>{dog.bio}</li>
         </ul>
-        <Button as={Link} to={`/dogs/${dog.id}/edit`} primary >Edit Dog</Button>
+        <Button as={Link} size="tiny" to={`/dogs/${dog.id}/edit`} primary >Edit Dog</Button>
       </Container>
       </Grid.Column>
       </Grid>

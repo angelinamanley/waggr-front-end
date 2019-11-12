@@ -3,6 +3,8 @@ import MapSearchBar from "./MapSearchBar";
 import MapComponent from "./MapComponent";
 import API from "../adapters/API";
 import LocationSearchInput from './LocationSearchInput'
+import TopBar from './TopBar'
+
 
 class Map extends React.Component {
 
@@ -33,7 +35,9 @@ class Map extends React.Component {
   render() {
     return (
       <div>
-        <h3>Search for meetups by location </h3>
+         <TopBar text={"Map it"} />
+         <div><h3>Search for meetups by location </h3></div>
+        
         <LocationSearchInput selectLocation={this.selectLocation}/>
         <MapComponent allProps={this.props} meetups={this.state.meetups} latitude={this.state.latitude} longitude={this.state.longitude} user={this.props.user}/>
       </div>

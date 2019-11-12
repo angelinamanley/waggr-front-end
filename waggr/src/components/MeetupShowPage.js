@@ -3,6 +3,7 @@ import {Container, List, Image, Button} from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 import moment from "moment"
 import API from "../adapters/API";
+import TopBar from './TopBar.js'
 
 
 class MeetupShowPage extends React.Component{
@@ -41,15 +42,17 @@ class MeetupShowPage extends React.Component{
         const {meetup} = this.state 
 
     return(
-
+        <div>
+        <TopBar text={meetup.name} />
+      <div id="addgroupform" style={{ marginRight: '1em', marginLeft: '1em'}}>
         <Container>
             <h1>{meetup.name}</h1>
             {!attending? 
-            <Button onClick={()=> this.handleAttendClick(this.props.user.id, meetup.id)} secondary>Attend</Button> :
-            <Button secondary onClick={()=>this.handleCancelClick()}> Cancel </Button> }
+            <Button size="mini" onClick={()=> this.handleAttendClick(this.props.user.id, meetup.id)} secondary>Attend</Button> :
+            <Button secondary size="mini" onClick={()=>this.handleCancelClick()}> Cancel </Button> }
             { meetup.admin_id === this.props.user.id? 
-                <Button as={Link} to={`/meetups/${meetup.id}/edit`}>Edit Meetup</Button> : null }
-            <h4><Link to={`/groups/${meetup.group.id}`}>{meetup.group.name}</Link></h4>
+                <Button size="mini" as={Link} to={`/meetups/${meetup.id}/edit`}>Edit Meetup</Button> : null }
+            <h4><Link to={`/groups/${meetup.group.id}`}>Group: {meetup.group.name}</Link></h4>
             <h4>{meetup.admin_id}</h4>
             <h4>When: {moment(meetup.datetime).format('MMM Do YYYY')}</h4>
             <h4>Where: {meetup.location}</h4>
@@ -68,7 +71,8 @@ class MeetupShowPage extends React.Component{
             </List>
 
         </Container>
-
+           </div>
+           </div>
 
 
     ) } }

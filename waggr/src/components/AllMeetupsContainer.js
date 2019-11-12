@@ -36,13 +36,15 @@ filterMeetups = () => {
   
       return (
         <React.Fragment>
-          <h4>All Meetups</h4>
+     
           {/* <Button as={Link} to='/addgroup' size='mini' primary icon><Icon name="plus circle"/></Button> */}
           <GroupSearchBar handleSearchClick={this.handleSearchClick} />
           <Container>
           <Card.Group centered>
             {filteredMeetups.map(meetup => (
               <Card
+              style={{width: '85%'}}
+              color='violet' 
                 key={meetup.id}
                 as={Link}
                 to={`/meetups/${meetup.id}`}

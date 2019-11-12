@@ -3,6 +3,7 @@ import UserGroups from './UserGroups'
 import UserMeetups from './UserMeetups'
 import { Container, Grid, Image, Header , Divider } from "semantic-ui-react";
 import Logo from './common/icon.png'
+import TopBar from './TopBar'
 
 
 //search component for groups goes here as well as an explore component
@@ -11,25 +12,21 @@ const Home = props => {
   return (
     <div>
      
-    <Container  style={{paddingTop : '5px', paddingBottom: '0px'}} textAlign='center'>
- 
-    <div style={{fontSize: '200%', fontWeight: 'bold', color: '#14B89C', paddingTop : '2px', paddingBottom: '0px'}} textAlign='center'> <Image style={{ maxWidth: '15%'}} verticalAlign='middle'  src={Logo} />waggr</div>
-   
-      </Container> 
-      <Divider  color="black" fluid="true" />
+     <TopBar text={"waggr"} />
      
    
-    <div id="header" style={{marginLeft: '5%', marginBottom: '5%'}} > <h2>Your Groups</h2>
-    </div>
+    <div id="header"style={{ marginRight: '2em', marginLeft: '2em', marginBottom: '5%'}} > 
+    <h3>Your Groups</h3>
+   
    
       <UserGroups userSelectGroup={props.userSelectGroup} user={props.user}/> 
-      <div id="header" style={{marginLeft: '5%', marginBottom: '5%', marginTop: '5%'}}><h2> Your Meetups </h2>
-      </div>  
+    <h3> Your Meetups </h3>
+     
       
       <UserMeetups user={props.user} />
-
+      </div>  
+      </div>
     
-     </div>
   )
 };
 

@@ -3,7 +3,7 @@ import { Image } from 'semantic-ui-react'
 import DogsContainer from './DogsContainer'
 import UserMeetups from './UserMeetups'
 import API from '../adapters/API'
-
+import TopBar from './TopBar.js'
 
 class UserShowPage extends React.Component {
 
@@ -21,17 +21,20 @@ class UserShowPage extends React.Component {
     } else {
     return(
 
-       <div>
-        <Image size="small" src={this.state.user.photo} circular />
-        <h2>{this.state.user.first_name}</h2>
-        <h4>{this.state.user.aboutme}</h4>
+      <div>
+      <TopBar text={this.state.user.first_name} />
+    <div id="usershowpage" style={{ marginRight: '2em', marginLeft: '2em'}}>
+        <Image centered size="small" src={this.state.user.photo} circular />
+        <div style={{ textAlign: 'center', fontSize: '120%', marginTop: '2%'}}>
+          <b>{this.state.user.aboutme}</b>
+        </div>
         <h3>{this.state.user.first_name}'s dogs</h3> 
         <DogsContainer  dogs={this.state.user.dogs} />
         <h3>{this.state.user.first_name}'s Meetups</h3>
         <UserMeetups user={this.state.user} />
 
         </div>
-    
+        </div>
         
     )
 
