@@ -29,7 +29,7 @@ export default class GroupSearchBar extends React.Component {
   render() {
     return (
       <div>
-      <Input action={ {icon : 'x', onClick : () => this.clearSearchTerm()}} onChange={e => this.handleChange(e)} fluid  placeholder="Search" />
+      <Input action={ {icon : 'x', onClick : () => this.clearSearchTerm()}} onChange={e => this.handleChange(e)} placeholder="Search" />
       
       
       

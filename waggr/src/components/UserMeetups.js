@@ -21,7 +21,7 @@ export default class UserMeetups extends React.Component {
               
             >
               <Card.Content>
-                <Image floated="right" seize="mini" src={meetup.photo} />
+                <Image floated="right" size="mini" src={meetup.photo} />
                 <Card.Header size='medium'>{meetup.name}</Card.Header>
               </Card.Content>
             </Card>

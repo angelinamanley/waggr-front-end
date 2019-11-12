@@ -22,6 +22,7 @@ class GroupShowPage extends React.Component {
   };
 
   handleJoinClick = group => {
+    this.props.addGrouptoUser(group)
     let newGroupUsers = [...this.state.group.users, this.props.user]
     this.setState({group: {...this.state.group, users: newGroupUsers }})
   }

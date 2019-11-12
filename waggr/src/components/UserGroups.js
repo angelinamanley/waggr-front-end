@@ -20,13 +20,13 @@ render(){
           
             <Card.Group centered>
         {this.props.user.groups.map(group => 
-            <Card
+            <Card style={{width:'85%'}}
               key={group.id}
               as={NavLink}
               to={`/groups/${group.id}`}
             >
               <Card.Content>
-                <Image floated="right"  src={group.photo} />
+                <Image floated="left"  size="small" src={group.photo} />
                 <Card.Header>{group.name}</Card.Header>
               </Card.Content>
             </Card>

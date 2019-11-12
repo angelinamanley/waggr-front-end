@@ -5,7 +5,7 @@ import { Menu } from "semantic-ui-react";
   
 
 export default class AllMeetupGroupMenu extends React.Component {
-    state = { activeItem: "chat" };
+    state = { activeItem: "Search Groups" };
 
     handleItemClick = (e, { name }) => this.setState({ activeItem: name }, ()=>this.props.handleMenuSelect(name));
   
@@ -14,18 +14,20 @@ export default class AllMeetupGroupMenu extends React.Component {
         const { activeItem } = this.state;
 
         return(
-        <Menu compact fluid widths={2} color="teal"  >
-        <Menu.Item
+          <div id="menu" style={{fontSize: "120%", fontWeight: 'bold', color: '#14B89C'}} > 
+        <Menu size='massive' pointing fluid widths={2} secondary color="teal"  >
+        <Menu.Item 
           name="Search Groups"
-          active={activeItem === "chat"}
+          active={activeItem === "Search Groups"}
           onClick={this.handleItemClick}
         />
         <Menu.Item
           name="Search Meetups"
-          active={activeItem === "meetups"}
+          active={activeItem === "Search Meetups"}
           onClick={this.handleItemClick}
         />
         </Menu>
+        </div>
 
         )
     }

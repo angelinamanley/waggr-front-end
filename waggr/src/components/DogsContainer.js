@@ -21,17 +21,19 @@ class DogsContainer extends React.Component{
         } else { return(
                 <Container>
                     <Card.Group centered>
-                <h3>Your Dogs</h3>
+              
 
             {this.props.dogs.map(dog=> 
                 <Card key={dog.id} as={Link} to={`/dogs/${dog.id}`} >
+                    
+                   
                     <Card.Content>
-                        <Image circular
+                    <Image circular
                         floated='left'
-                        size='small'
+                        size='tiny'
                         src={dog.photo}
                         />
-                        <Card.Header>{dog.name}</Card.Header>
+                        <Card.Header >{dog.name}</Card.Header>
                     </Card.Content>
             </Card> )}
 

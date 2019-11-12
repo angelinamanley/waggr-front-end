@@ -19,7 +19,7 @@ const Home = props => {
       <Divider  color="black" fluid="true" />
      
     </div>
-    <div id="header" style={{marginLeft: '5%'}}> <h2>Your Groups</h2>
+    <div id="header" style={{marginLeft: '5%', marginBottom: '8px'}} > <h2>Your Groups</h2>
     </div>
    
       <UserGroups userSelectGroup={props.userSelectGroup} user={props.user}/>
