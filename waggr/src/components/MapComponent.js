@@ -58,6 +58,10 @@ class MapContainer extends React.Component {
     }
   };
 
+  handleInfoLinkClick = e => {
+    this.props.history.push(e.target.href)
+  }
+
   render() {
     if (!this.props.meetups || !this.props.longitude || !this.props.latitude ) {
       return <div>Enter a location to start searching for meetups!</div>
@@ -78,7 +82,9 @@ class MapContainer extends React.Component {
           visible={this.state.showingInfoWindow}
           onClose={this.handleClose}
         >
-          <div>{this.state.selectedPlace.name}<Link to='/dashboard'/></div>
+          <a onClick={this.handleInfoLinkClick} href={`/meetups/`}>
+          <div>{this.state.selectedPlace.name}</div>
+          </a>
         </InfoWindow>
       </Map>
     );

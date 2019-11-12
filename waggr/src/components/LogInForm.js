@@ -27,7 +27,7 @@ class LoginForm extends React.Component {
         this.props.login(data)
       // }
   })
-  .catch(error => alert(error))
+  .catch(error => this.setState({errorMessage: error.error}))
 }
 
   render() {
@@ -45,7 +45,11 @@ class LoginForm extends React.Component {
         onChange={e => this.handleInputChange(e.target.name, e.target.value)}
       >
    
+   {
+          this.state.errorMessage
+        }
         <Form.Input
+        error={!!this.state.errorMessage}
         style={{ width:"230px" }} 
           name="email"
           type="email"
@@ -56,6 +60,7 @@ class LoginForm extends React.Component {
           value={this.state.email}
         />
         <Form.Input
+        error={!!this.state.errorMessage}
         style={{ width:"230px" }} 
           name="password"
           type="password"

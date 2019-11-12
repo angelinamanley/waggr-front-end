@@ -21,8 +21,9 @@ const jsonHeaders = (more = {}) => ({
     ...more
   })
   
-  const handleError = () => {
-    console.error('something went wrong')
+  const handleError = (e) => {
+    // console.error('something went wrong', e)
+    throw e
   }
   
   const handleServerResponse = res => {
@@ -39,12 +40,8 @@ const jsonHeaders = (more = {}) => ({
     } else if (res.status === 500) {
       return { code: 500, error: 'Something went wrong' }
     } else {
-      return res.text().then(text => {
-        try {
-          return JSON.parse(text)
-        } catch (error) {
-          return res
-        }
+      return res.json().then(data  => {
+          throw data
       })
     }
   }
