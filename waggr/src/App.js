@@ -1,6 +1,6 @@
 import React from "react";
 import API from "./adapters/API";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./components/Home";
 import LogInForm from "./components/LogInForm";
 import Dashboard from "./components/Dashboard";
@@ -80,7 +80,7 @@ class App extends React.Component {
   render() {
     return (
       
-        <Router>
+        <div>
         { this.state.user? <NavBar logout={this.logout} user={this.user} /> : null}
         <div className="main" style={{paddingBottom : '30%'}}>
         <Route exact path="/login" component={routerProps => <LogInForm login={this.login} {...routerProps} /> }/>
@@ -101,7 +101,7 @@ class App extends React.Component {
         <Route exact path='/dogs/:id/edit' component={routerProps => <EditDogForm removeDog={this.removeDog} user={this.state.user} {...routerProps} />}/>
         </div>
 
-        </Router>
+        </div>
         
       //
     );

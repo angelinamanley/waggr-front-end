@@ -2,6 +2,7 @@ import React from "react";
 import { Image, Container, Grid, Button, Icon} from "semantic-ui-react";
 import API from '../adapters/API'
 import {Link} from 'react-router-dom'
+import TopBar from './TopBar.js'
 
 class DogShowPage extends React.Component {
 
@@ -20,6 +21,10 @@ class DogShowPage extends React.Component {
   } else {
     const { dog} = this.state
     return (
+      <div>
+          <TopBar text={dog.name} />
+        <div id="addgroupform" style={{ marginRight: '2em', marginLeft: '2em'}}>
+          <Container></Container>
         <Grid centered columns={1}>
             <Grid.Column>
       <Container>
@@ -34,6 +39,8 @@ class DogShowPage extends React.Component {
       </Container>
       </Grid.Column>
       </Grid>
+      </div>
+      </div>
     );
   }}
 };

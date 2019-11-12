@@ -21,7 +21,7 @@ export default class GroupMeetups extends React.Component {
     } else {
   return (
    
-      <div>
+      <div style={{ marginRight: '1em', marginLeft: '1em'}}>
       <Button primary as={Link} to={`/groups/${this.props.group.id}/createmeetup`}>Add a new Meetup</Button>
       <List>
       {this.props.group.meetups.map(meetup => 

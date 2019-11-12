@@ -50,7 +50,7 @@ class GroupForum extends React.Component {
           <Comment.Group>
           <Form onSubmit={this.handleCommentSubmit} >
       <Form.TextArea value={this.state.comment} onChange={event => this.setState({comment: event.target.value})}/>
-      <Button content='Add Comment' labelPosition='left' icon='edit' primary />
+      <Button size='mini' content='Add Comment' labelPosition='right' icon='edit' primary />
     </Form>
             {this.props.group.posts.length === 0? null : 
             this.props.group.posts.sort((a, b) => moment(b.created_at).format('X')-moment(a.created_at).format('X')).map(post => 
@@ -59,7 +59,7 @@ class GroupForum extends React.Component {
                 <Comment.Content>
                   <Comment.Author as={Link} to={`/users/${post.user.id}`}>{post.user.first_name}</Comment.Author>
                   <Comment.Metadata>{moment(post.created_at).fromNow()} {this.props.user.id === post.user.id? <Icon onClick={()=> this.handleCommentDelete(post.id)} name='x' color='pink'/> : null} </Comment.Metadata>
-                  <Comment.Text>
+                  <Comment.Text style={{height: '10%'}}>
                     <p>{post.content}</p>
                   </Comment.Text>
                 </Comment.Content>

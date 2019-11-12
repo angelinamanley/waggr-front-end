@@ -5,6 +5,8 @@ import { NavLink } from 'react-router-dom'
 import AccountSettings from './AccountSettings'
 import AddDogButton from './AddDogButton'
 import Spinner from './common/Spinner';
+import TopBar from './TopBar'
+import AccountSettingsList from './AccountSettingsList';
 
 //user profile pic, user dogs, user groups, user upcoming meetups 
 
@@ -46,17 +48,19 @@ class Dashboard extends React.Component{
                 else{
 
             return( 
-                <React.Fragment>
+                <div >
+
+                    <TopBar text={"Dashboard"} />
+                    <div id="dashboard" style={{ marginRight: '2em', marginLeft: '2em'}}>
                     <Image src={this.props.user.photo} centered circular size='small'  />
 
-                    <div style={{ textAlign: 'center'}}><h1>{this.props.user.first_name} <Button as={NavLink} exact to="/login" onClick={()=> this.props.logout()} secondary size='mini'>Log Out </Button> </h1>
+                    <div style={{ textAlign: 'center'}}><h1>{this.props.user.first_name}</h1>
                     </div>
                     <h3>Your Dogs</h3>
                     <DogsContainer dogs={this.props.user.dogs} />
-                    <AddDogButton />
-                    <AccountSettings />
-                    <Button secondary onClick={this.showWidget}>Edit Profile Picture</Button>
-                    </React.Fragment>
+                    <AccountSettingsList logout={this.props.logout} showWidget={this.showWidget} />
+                    </div>
+                    </div>
 
                     
                     

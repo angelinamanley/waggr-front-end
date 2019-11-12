@@ -12,7 +12,7 @@ export default class GroupShowMenu extends React.Component {
     const { activeItem } = this.state;
 
     return (
-      <Menu color="yellow" inverted widths={3}>
+      <Menu color="teal" size='tiny' tabular  widths={3}>
         <Menu.Item
           name="about"
           active={activeItem === "about"}

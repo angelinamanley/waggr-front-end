@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Image } from "semantic-ui-react";
+import { Button, Image, Icon } from "semantic-ui-react";
 import {Link} from 'react-router-dom'
 import API from "../adapters/API";
 
@@ -40,13 +40,14 @@ class GroupInfo extends React.Component {
       const membership = this.props.group.users.find(user => user.id === this.props.user.id)
       const admin = this.props.group.admin_id === this.props.user.id 
       return (
-        <div>
+        <div >
         <Image centered  src={this.props.group.photo} style={{width : "100%"}} size="small" />
         
+        <div style={{ marginRight: '2em', marginLeft: '2em'}}>
 
         <h2>{this.props.group.name} </h2>
           <p>{this.props.group.description} </p>
-          { admin? <Button as={Link} to={`/groups/${this.props.group.id}/edit`} size='mini' color="yellow" label="Edit Group" /> : null}
+          { admin? <Button icon labelPosition='left' as={Link} to={`/groups/${this.props.group.id}/edit`} size='mini' secondary ><Icon name="edit"/>Edit Group</Button>: null}
           {!membership
            ? (
             <Button size='mini' secondary onClick={() => this.handleJoinClick()}> Join us! </Button>
@@ -55,7 +56,7 @@ class GroupInfo extends React.Component {
               Leave Group
             </Button> : null
           )}
-      </div>
+      </div></div>
           )
 
   } }

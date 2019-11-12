@@ -2,6 +2,7 @@ import React from 'react';
 import allBreeds from '../config/data'
 import { Container, Form, Dropdown, Radio, Button, Image } from 'semantic-ui-react'
 import API from "../adapters/API";
+import TopBar from './TopBar.js'
 
 
 
@@ -58,10 +59,15 @@ class EditDogForm extends React.Component{
         render(){
           
       return(
+        <div>
+        <TopBar text={'Edit Dog'} />
+      <div id="editdogform" style={{ marginRight: '2em', marginLeft: '2em'}}>
           <Container>
-             {this.state.photo? <Image size='mini' circular src={this.state.photo} /> : null}   <Button secondary onClick={this.showWidget}>Upload your pup's picture!  </Button>
-          
-        <Form onSubmit={this.submit} >
+             {this.state.photo? <Image size='small' centered circular src={this.state.photo} /> : null}   
+             <div style={{marginTop: '3%'}}>
+             <Button size="mini" secondary onClick={this.showWidget}>Upload your pup's picture!  </Button>
+             </div>
+        <Form  size='small' onSubmit={this.submit} >
         <Form.Input
         label="Name"
           name="name"
@@ -120,9 +126,11 @@ class EditDogForm extends React.Component{
         />      
         <Form.Button primary>Submit</Form.Button>
         </Form>
-        <h4>or</h4>
-        <Button size="mini" secondary onClick={ ()=>this.deleteDog()}>Remove Dog</Button>
+        <h4></h4>
+        <Button size="mini"  onClick={ ()=>this.deleteDog()}>Remove Dog</Button>
         </Container>
+        </div>
+        </div>
       )}
 
 }

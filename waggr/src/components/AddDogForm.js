@@ -2,7 +2,7 @@ import React from 'react';
 import allBreeds from '../config/data'
 import { Container, Form, Dropdown, Radio, Button, Image } from 'semantic-ui-react'
 import API from "../adapters/API";
-import DogPic from './common/dog-placeholder.png'
+import TopBar from './TopBar.js'
 
 
 
@@ -51,10 +51,17 @@ class AddDogForm extends React.Component{
         render(){
           
       return(
+        <div>
+          <TopBar text={'Add A Dog'} />
+        <div id="addgroupform" style={{ marginRight: '2em', marginLeft: '2em'}}>
           <Container>
-             {this.state.photo? <Image size='small' circular src={this.state.photo} /> : null}
-             <Button secondary onClick={this.showWidget}>Upload your pup's picture!  </Button>
-        <Form onSubmit={this.submit} >
+            
+             {this.state.photo? <Image centered size='tiny' circular src={this.state.photo} /> : null}
+             <div style={{marginTop: '3%'}}>
+
+             <Button size='mini' secondary onClick={this.showWidget}>Upload your pup's picture!  </Button>
+            </div>
+        <Form size="small" onSubmit={this.submit} >
         <Form.Input
         label="Name"
           name="name"
@@ -114,9 +121,11 @@ class AddDogForm extends React.Component{
        
         
 
-        <Form.Button>Submit</Form.Button>
+        <Form.Button primary>Submit</Form.Button>
         </Form>
         </Container>
+        </div>
+        </div>
       )}
 
 }

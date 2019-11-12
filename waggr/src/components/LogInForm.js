@@ -3,6 +3,7 @@ import { Form, Button, Grid, Image} from 'semantic-ui-react'
 import API from '../adapters/API'
 import {NavLink} from 'react-router-dom'
 import logo from './common/waggrlogo.png'
+import waggr from './common/waggrlogo2.png'
 
 class LoginForm extends React.Component {
   state = {
@@ -34,8 +35,10 @@ class LoginForm extends React.Component {
     return (
       <div className="login">
       <Grid textAlign="center" verticalAlign="middle">
-        <Grid.Column style={{ paddingTop: "35%"  }}>
-          <Image src={logo} size="medium" centered />
+        <Grid.Column style={{ paddingTop: "30%"  }}>
+          
+          <Image src={waggr} size="tiny" centered />
+          <div style={{fontSize: '400%', paddingTop: '3%', paddingBottom: '15%', color: '#14B89C'}}><b>waggr</b></div>
         {/* <Header as="h3" color="teal" textAlign="center">
               Log-in to your account
             </Header> */}

@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Form, Button, Image } from "semantic-ui-react";
 import API from "../adapters/API";
+import TopBar from './TopBar.js'
 
 class AddGroupForm extends React.Component {
   state = {
@@ -46,7 +47,7 @@ class AddGroupForm extends React.Component {
   }
 
    widget = window.cloudinary.createUploadWidget({ 
-    cloudName: "angelinashin", uploadPreset: "cswhfpzj", sources: [ 'local', 'url'],  cropping: true, croppingAspectRatio : 1.4, showSkipCropButton: false}, (error, result) => { this.checkUploadResult(result) });
+    cloudName: "angelinashin", uploadPreset: "cswhfpzj", sources: [ 'local', 'url'],  cropping: true, croppingAspectRatio : 1.5, showSkipCropButton: false}, (error, result) => { this.checkUploadResult(result) });
 
 
   checkUploadResult = (resultEvent) => {
@@ -58,11 +59,17 @@ class AddGroupForm extends React.Component {
 
   render() {
     return (
+
+      <div>
+        <TopBar text={"Create a Group"} />
+      <div id="addgroupform" style={{ marginRight: '1em', marginLeft: '1em'}}>
+
       <Container>
-          <h3>Create a Group</h3>
           <Image src={this.state.photo}  size="small" />
-        <Button onClick={this.showWidget}>Upload Picture</Button>
-        <Form onSubmit={this.submit}>
+          <div style={{marginTop: '2%'}}>
+        <Button secondary onClick={this.showWidget}>Upload Picture</Button>
+        </div>
+        <Form onSubmit={this.submit}> 
           <Form.Input
             label="Name"
             name="name"
@@ -87,9 +94,11 @@ class AddGroupForm extends React.Component {
             }
           />
 
-          <Form.Button>Submit</Form.Button>
+          <Form.Button primary>Submit</Form.Button>
         </Form>
       </Container>
+      </div>
+      </div>
     );
   }
 }

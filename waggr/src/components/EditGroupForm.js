@@ -1,6 +1,8 @@
 import React from "react";
-import { Container, Form, Button } from "semantic-ui-react";
+import { Container, Form, Button, Image } from "semantic-ui-react";
 import API from "../adapters/API";
+import TopBar from './TopBar.js'
+
 
 class EditDogForm extends React.Component {
   state = {
@@ -53,7 +55,7 @@ class EditDogForm extends React.Component {
   }
 
   widget = window.cloudinary.createUploadWidget({ 
-    cloudName: "angelinashin", uploadPreset: "cswhfpzj", sources: [ 'local', 'url'],  cropping: true, croppingAspectRatio : 1.4, showSkipCropButton: true}, (error, result) => { this.checkUploadResult(result) });
+    cloudName: "angelinashin", uploadPreset: "cswhfpzj", sources: [ 'local', 'url'],  cropping: true, croppingAspectRatio : 1.5, showSkipCropButton: false}, (error, result) => { this.checkUploadResult(result) });
 
 
   checkUploadResult = (resultEvent) => {
@@ -68,9 +70,15 @@ class EditDogForm extends React.Component {
       return <div>loading form...</div>
     }
     return (
+      <div>
+      <TopBar text={"Edit Group"} />
+    <div id="editgroupform" style={{ marginRight: '2em', marginLeft: '2em'}}>
+
       <Container>
-          <h2>Edit Group</h2>
+      <Image src={this.state.photo}  size="small" />
+          <div style={{marginTop: '2%'}}>
         <Button secondary onClick={this.showWidget}>Upload Picture</Button>
+        </div>
         <Form onSubmit={this.submit}>
           <Form.Input
             label="Name"  
@@ -85,7 +93,7 @@ class EditDogForm extends React.Component {
           />
 
           <Form.TextArea
-            label="description"
+            label="Description"
             name="description"
             type="text"
             placeholder="Tell us more about your group!"
@@ -98,10 +106,12 @@ class EditDogForm extends React.Component {
 
           <Form.Button primary>Submit</Form.Button>
         </Form>
-        <h4>or</h4>
-      <Button primary onClick={()=> this.handleDeleteClick(this.props.match.params.id)}>Delete Group</Button>
+            <h2></h2>
+      <Button size="mini" onClick={()=> this.handleDeleteClick(this.props.match.params.id)}>Delete Group</Button>
   
       </Container>
+      </div>
+      </div>
     );
   }
 }
