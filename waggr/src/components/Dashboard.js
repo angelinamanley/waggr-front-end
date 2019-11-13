@@ -2,7 +2,6 @@ import React from 'react';
 import DogsContainer from './DogsContainer'
 import { Button, Image} from 'semantic-ui-react'
 import { NavLink } from 'react-router-dom'
-import AccountSettings from './AccountSettings'
 import AddDogButton from './AddDogButton'
 import Spinner from './common/Spinner';
 import TopBar from './TopBar'

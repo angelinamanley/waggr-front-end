@@ -1,6 +1,6 @@
 import React from 'react';
 import allBreeds from '../config/data'
-import { Container, Form, Dropdown, Radio, Button, Image } from 'semantic-ui-react'
+import { Container, Form, Dropdown, Radio, Button, Image, Message} from 'semantic-ui-react'
 import API from "../adapters/API";
 import TopBar from './TopBar.js'
 
@@ -14,7 +14,8 @@ class AddDogForm extends React.Component{
         birthday: "", 
         gender: "", 
         bio: "", 
-        photo: null
+        photo: null, 
+        errorMessage : false
     }
       handleInputChange = (key, value) => {
         this.setState({
@@ -30,8 +31,12 @@ class AddDogForm extends React.Component{
         } else {
            dogPhoto = this.state.photo
         }
+        if (!this.state.name ) {
+          this.setState({ errorMessage : true })
+        } else {
+        
         API.addDog({ name: this.state.name, breed: this.state.breed, birthday: this.state.birthday, gender: this.state.gender, bio: this.state.bio, photo: dogPhoto, user_id: this.props.user.id}).then(dog => this.props.addDogtoUser(dog)).then(() => this.props.history.push('/dashboard'))
-      }
+      } }
 
       showWidget = () => {
       this.widget.open()
@@ -62,7 +67,10 @@ class AddDogForm extends React.Component{
              <Button size='mini' secondary onClick={this.showWidget}>Upload your pup's picture!  </Button>
             </div>
         <Form size="small" onSubmit={this.submit} >
+        {this.state.errorMessage? <Message negative>Please fill in your dog's name.</Message> : null}
+
         <Form.Input
+        required
         label="Name"
           name="name"
           type="text"

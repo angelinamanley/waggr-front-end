@@ -15,7 +15,7 @@ export default class UserMeetups extends React.Component {
             <Card.Group centered>
           {this.props.user.meetups.map(meetup => (
             <Card color='violet' 
-           
+              fluid
               key={meetup.id}
               as={NavLink}
               to={`/meetups/${meetup.id}`}

@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Form, Button, Image } from "semantic-ui-react";
+import { Container, Form, Button, Image, Message} from "semantic-ui-react";
 import API from "../adapters/API";
 import TopBar from './TopBar.js'
 
@@ -8,7 +8,7 @@ class EditDogForm extends React.Component {
   state = {
     name: null, 
     description: null, 
-    photo: null
+    photo: null,
   };
 
 
@@ -42,13 +42,14 @@ class EditDogForm extends React.Component {
 
   submit = e => {
     e.preventDefault();
+ 
     API.editGroup({
       name: this.state.name,
       description: this.state.description,
       photo: this.state.photo,
     }, this.state.id)
       .then(() => this.props.history.push("/groups"));
-  };
+  } 
 
      showWidget = () => {
     this.widget.open()
@@ -66,7 +67,7 @@ class EditDogForm extends React.Component {
   }
 
   render() {
-    if (!this.state.name){
+    if (!this.state){
       return <div>loading form...</div>
     }
     return (
@@ -75,12 +76,14 @@ class EditDogForm extends React.Component {
     <div id="editgroupform" style={{ marginRight: '2em', marginLeft: '2em'}}>
 
       <Container>
+
       <Image src={this.state.photo}  size="small" />
           <div style={{marginTop: '2%'}}>
         <Button secondary onClick={this.showWidget}>Upload Picture</Button>
         </div>
         <Form onSubmit={this.submit}>
           <Form.Input
+          required
             label="Name"  
             name="name"
             type="text"
@@ -93,6 +96,7 @@ class EditDogForm extends React.Component {
           />
 
           <Form.TextArea
+          required
             label="Description"
             name="description"
             type="text"

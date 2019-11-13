@@ -4,6 +4,8 @@ import { DateTimeInput } from 'semantic-ui-calendar-react';
 import API from '../adapters/API';
 import LocationSearchInput from './LocationSearchInput'
 import moment from 'moment';
+import TopBar from './TopBar.js'
+
 
 
 
@@ -57,9 +59,11 @@ class MeetupForm extends React.Component{
             } else{
 
         return(
-         
+          <div>
+          <TopBar text={"Create a Meetup"} />
+        <div id="meetupform" style={{ marginRight: '2em', marginLeft: '2em'}}>
+    
             <Container>
-                <h3>Create a new Meetup</h3> 
                 { this.state.errorView? <Message negative>You cannot submit a date in the past!</Message> : null}
             <Form 
         onSubmit={this.submit}
@@ -103,6 +107,7 @@ class MeetupForm extends React.Component{
 
       </Form>
       </Container>
+      </div></div>
         )
     }
 

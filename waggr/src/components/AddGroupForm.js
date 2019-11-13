@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Form, Button, Image } from "semantic-ui-react";
+import { Container, Form, Button, Image, Message } from "semantic-ui-react";
 import API from "../adapters/API";
 import TopBar from './TopBar.js'
 
@@ -7,7 +7,8 @@ class AddGroupForm extends React.Component {
   state = {
     name: "",
     description: "",
-    photo: ""
+    photo: "", 
+    errorMessage : false
   };
 
   checkUploadResult = resultEvent => {
@@ -33,13 +34,16 @@ class AddGroupForm extends React.Component {
    } else {
       groupPhoto = this.state.photo
    }
+   if (!this.state.name || !this.state.desription) {
+     this.setState({ errorMessage : true })
+   } else {
     API.postGroup({
       name: this.state.name,
       description: this.state.description,
       photo: groupPhoto,
       admin_id: this.props.user.id
     }).then(group => this.props.addGrouptoUser(group))
-      .then(() => this.props.history.push("/groups"));
+      .then(() => this.props.history.push("/groups")) }
   };
 
      showWidget = () => {
@@ -65,6 +69,7 @@ class AddGroupForm extends React.Component {
       <div id="addgroupform" style={{ marginRight: '1em', marginLeft: '1em'}}>
 
       <Container>
+        {this.state.errorMessage? <Message negative>Please fill in all fields.</Message> : null}
           <Image src={this.state.photo}  size="small" />
           <div style={{marginTop: '2%'}}>
         <Button secondary onClick={this.showWidget}>Upload Picture</Button>

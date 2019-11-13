@@ -1,9 +1,11 @@
 import React from 'react';
-import {Form, Container, Button} from 'semantic-ui-react'
+import {Form, Container, Button, Message} from 'semantic-ui-react'
 import { DateTimeInput } from 'semantic-ui-calendar-react';
 import API from '../adapters/API';
 import LocationSearchInput from './LocationSearchInput'
 import moment from "moment";
+import TopBar from './TopBar.js'
+
 
 
 
@@ -18,6 +20,7 @@ class EditMeetupForm extends React.Component{
         latitude: null, 
         longitude: null, 
         groupId: null, 
+        errorView : false 
         
 
     }
@@ -54,8 +57,12 @@ class EditMeetupForm extends React.Component{
     
       submit = e => {
         e.preventDefault()
+        if (moment(this.state.datetime) < moment())
+        { this.setState({ errorView: true})
+
+        } else {
         API.editMeetup(this.props.match.params.id, {name: this.state.name, description: this.state.description, datetime: this.state.datetime, location: this.state.location,  admin_id: this.props.user.id, latitude: this.state.latitude, longitude: this.state.longitude}).then(meetup => this.props.history.push(`/meetups/${meetup.id}`))
-      }
+      } }
 
       handleChange = (event, {name, value}) => {
         if (this.state.hasOwnProperty(name)) {
@@ -66,15 +73,18 @@ class EditMeetupForm extends React.Component{
 
     render(){
 
-            if (!this.state.name) {
+            if (!this.state) {
                 return( <div>Loading...</div> )
             } else{
 
         return(
+          <div>
+          <TopBar text={"Edit Meetup"} />
+        <div id="meetupform" style={{ marginRight: '2em', marginLeft: '2em'}}>
     
-            <Container>
-                <h3>Edit {this.state.name}</h3> 
-            
+            <Container>      
+       { this.state.errorView? <Message negative>You cannot submit a date in the past!</Message> : null}
+
             <Form 
         onSubmit={this.submit}
         onChange={e => this.handleInputChange(e.target.name, e.target.value)}
@@ -115,9 +125,10 @@ class EditMeetupForm extends React.Component{
       </Form>
    
       <h4>or</h4>
-      <Button primary onClick={()=> this.handleDeleteClick(this.props.match.params.id)}>Delete Meetup</Button>
+      <Button size='mini' onClick={()=> this.handleDeleteClick(this.props.match.params.id)}>Delete Meetup</Button>
   
       </Container>
+      </div></div>
         )
     }
 

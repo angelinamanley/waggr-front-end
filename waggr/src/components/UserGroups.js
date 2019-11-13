@@ -19,7 +19,7 @@ render(){
           <Container>
             <Card.Group centered>
         {this.props.user.groups.map(group => 
-            <Card 
+            <Card fluid
             color='violet' 
               key={group.id}
               as={NavLink}

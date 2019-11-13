@@ -3,6 +3,8 @@ import {Button} from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from "google-maps-react";
 import apiKey from "../config/config_keys"
+import Spinner from './common/Spinner';
+
 
 const mapStyles = {
   width: "100%",
@@ -63,9 +65,13 @@ class MapContainer extends React.Component {
   }
 
   render() {
-    if (!this.props.meetups || !this.props.longitude || !this.props.latitude ) {
-      return <div>Enter a location to start searching for meetups!</div>
-    } else{
+    if (!this.props.meetups) {
+      return <Spinner />}
+      else {
+  
+    // if (!this.props.meetups || !this.props.longitude || !this.props.latitude ) {
+    //   return <div>Enter a location to start searching for meetups!</div>
+    // } else{
 
       // const userCoords = {lat: this.props.user.latitude, lng: this.props.user.longitude}
     return (
@@ -73,7 +79,7 @@ class MapContainer extends React.Component {
         google={this.props.google}
         zoom={13}
         style={mapStyles}
-        initialCenter={{ lat: this.props.latitude, lng: this.props.longitude }}
+        initialCenter={{ lat: 51.5132612, lng: -0.12290489999998044}}
       >
         <Marker position={ {lat: this.props.latitude, lng: this.props.longitude }} />
         {this.displayMarkers()}

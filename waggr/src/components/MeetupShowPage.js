@@ -60,7 +60,7 @@ class MeetupShowPage extends React.Component{
             <h4>Attendees:</h4>
             <List>
             {meetup.attendances.map(attendance => 
-                <List.Item > 
+                <List.Item key={attendance.user.id} > 
                     <Image avatar src={attendance.user.photo} />
                     <List.Content>
                         <List.Header as={Link} to={`/users/${attendance.user.id}`}>{attendance.user.first_name}</List.Header>
