@@ -2,7 +2,6 @@ import React from 'react'
 import { Form, Button, Grid, Image} from 'semantic-ui-react'
 import API from '../adapters/API'
 import {NavLink} from 'react-router-dom'
-import logo from './common/waggrlogo.png'
 import waggr from './common/waggrlogo2.png'
 
 class LoginForm extends React.Component {

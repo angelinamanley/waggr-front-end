@@ -1,6 +1,6 @@
 import React from "react";
 import API from "./adapters/API";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Route} from "react-router-dom";
 import Home from "./components/Home";
 import LogInForm from "./components/LogInForm";
 import Dashboard from "./components/Dashboard";

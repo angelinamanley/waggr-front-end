@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image, List, Icon } from 'semantic-ui-react'
+import { List, Icon } from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 
 const AccountSettingsList = props => (

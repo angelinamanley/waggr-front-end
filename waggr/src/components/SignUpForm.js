@@ -5,10 +5,8 @@ import {
   Message,
   Image,
   Divider,
-  Segment, 
-  Form, 
-  Input, 
-  TextArea 
+  Form
+
 } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import API from "../adapters/API";

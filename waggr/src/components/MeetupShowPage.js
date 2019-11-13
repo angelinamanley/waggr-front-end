@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 import moment from "moment"
 import API from "../adapters/API";
 import TopBar from './TopBar.js'
-import MeetupMap from './MeetupMap.js'
+// import MeetupMap from './MeetupMap.js'
 
 
 class MeetupShowPage extends React.Component{

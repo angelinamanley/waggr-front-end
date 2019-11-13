@@ -1,8 +1,6 @@
 import React from "react";
 import UserGroups from './UserGroups'
 import UserMeetups from './UserMeetups'
-import { Container, Grid, Image, Header , Divider } from "semantic-ui-react";
-import Logo from './common/icon.png'
 import TopBar from './TopBar'
 
 

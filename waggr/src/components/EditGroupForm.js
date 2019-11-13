@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Form, Button, Image, Message} from "semantic-ui-react";
+import { Container, Form, Button, Image} from "semantic-ui-react";
 import API from "../adapters/API";
 import TopBar from './TopBar.js'
 
@@ -110,7 +110,7 @@ class EditDogForm extends React.Component {
 
           <Form.Button primary>Submit</Form.Button>
         </Form>
-            <h2></h2>
+            <br></br>
       <Button size="mini" onClick={()=> this.handleDeleteClick(this.props.match.params.id)}>Delete Group</Button>
   
       </Container>

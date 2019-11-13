@@ -126,7 +126,7 @@ class EditDogForm extends React.Component{
         />      
         <Form.Button primary>Submit</Form.Button>
         </Form>
-        <h4></h4>
+        <b4></b4>
         <Button size="mini"  onClick={ ()=>this.deleteDog()}>Remove Dog</Button>
         </Container>
         </div>

@@ -1,5 +1,4 @@
 import React from "react";
-import MapSearchBar from "./MapSearchBar";
 import MapComponent from "./MapComponent";
 import API from "../adapters/API";
 import LocationSearchInput from './LocationSearchInput'
