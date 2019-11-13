@@ -4,6 +4,8 @@ import {Link} from 'react-router-dom'
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from "google-maps-react";
 import apiKey from "../config/config_keys"
 import Spinner from './common/Spinner';
+import Logo from './common/waggrlogo4.png'
+import PinkLogo from './common/pinklogo.png'
 
 
 const mapStyles = {
@@ -30,14 +32,16 @@ class MapContainer extends React.Component {
     return this.props.meetups.map((meetup, index) => {
       return (
         <Marker
+          icon={{ url: PinkLogo, scaledSize: new this.props.google.maps.Size(35,45)}}
           key={index}
-          id={index}
+          id={meetup.id}
           name={meetup.name}
           position={{
             lat: meetup.latitude,
             lng: meetup.longitude
           }}
           onClick={this.handleMarkerClick}
+          // onClick={console.log}
         />
       );
     });
@@ -75,20 +79,22 @@ class MapContainer extends React.Component {
 
       // const userCoords = {lat: this.props.user.latitude, lng: this.props.user.longitude}
     return (
+      
       <Map
         google={this.props.google}
         zoom={13}
         style={mapStyles}
-        initialCenter={{ lat: 51.5132612, lng: -0.12290489999998044}}
+        initialCenter={{ lat: this.props.latitude, lng: this.props.longitude}}
+        center={{ lat: this.props.latitude, lng: this.props.longitude}}
       >
-        <Marker position={ {lat: this.props.latitude, lng: this.props.longitude }} />
+        <Marker icon={{url: Logo, scaledSize: new this.props.google.maps.Size(35,45)}} position={ {lat: this.props.latitude, lng: this.props.longitude }} />
         {this.displayMarkers()}
         <InfoWindow
           marker={this.state.activeMarker}
           visible={this.state.showingInfoWindow}
           onClose={this.handleClose}
         >
-          <a onClick={this.handleInfoLinkClick} href={`/meetups/`}>
+          <a onClick={this.handleInfoLinkClick} href={`/meetups/${this.state.activeMarker.id}`}>
           <div>{this.state.selectedPlace.name}</div>
           </a>
         </InfoWindow>

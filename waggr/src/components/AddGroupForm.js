@@ -34,16 +34,14 @@ class AddGroupForm extends React.Component {
    } else {
       groupPhoto = this.state.photo
    }
-   if (!this.state.name || !this.state.desription) {
-     this.setState({ errorMessage : true })
-   } else {
+  
     API.postGroup({
       name: this.state.name,
       description: this.state.description,
       photo: groupPhoto,
       admin_id: this.props.user.id
-    }).then(group => this.props.addGrouptoUser(group))
-      .then(() => this.props.history.push("/groups")) }
+    }).then(group => {this.props.addGrouptoUser(group)
+      this.props.history.push(`/groups/${group.id}`)})
   };
 
      showWidget = () => {
@@ -77,6 +75,7 @@ class AddGroupForm extends React.Component {
         <Form onSubmit={this.submit}> 
           <Form.Input
             label="Name"
+            required
             name="name"
             type="text"
             placeholder="name"
@@ -91,6 +90,7 @@ class AddGroupForm extends React.Component {
             label="description"
             name="description"
             type="text"
+            required
             placeholder="Tell us more about your group!"
             autoComplete="text"
             value={this.state.description}

@@ -5,9 +5,11 @@ import {
   Message,
   Image,
   Divider,
-  Segment
+  Segment, 
+  Form, 
+  Input, 
+  TextArea 
 } from "semantic-ui-react";
-import { Form, Input, TextArea } from "semantic-ui-react-form-validator";
 import { Link } from "react-router-dom";
 import API from "../adapters/API";
 import Logo from "./common/icon.png";
@@ -68,7 +70,8 @@ class SignUpForm extends React.Component {
       cloudName: "angelinashin",
       uploadPreset: "zdjpntym",
       cropping: true,
-      croppingAspectRatio: 1,
+      croppingAspectRatio: 1
+      , sources: [ 'local', 'url'],
       showSkipCropButton: false
     },
     (error, result) => {
@@ -78,7 +81,6 @@ class SignUpForm extends React.Component {
 
   checkUploadResult = resultEvent => {
     if (resultEvent.event === "success") {
-      console.log(resultEvent.info.secure_url);
       this.setState({ photo: resultEvent.info.secure_url });
     }
   };
@@ -142,8 +144,9 @@ class SignUpForm extends React.Component {
               this.handleInputChange(e.target.name, e.target.value)
             }
           >
-            <Input
+            <Form.Input
               name="email"
+              required
               type="email"
               validators={["required"]}
               errorMessages={["this field is required"]}
@@ -151,9 +154,10 @@ class SignUpForm extends React.Component {
               autoComplete="email"
               value={this.state.email}
             />
-            <Input
+            <Form.Input
               name="password"
               type="password"
+              required
               validators={["required", "minStringLength:6"]}
               errorMessages={[
                 "this field is required",
@@ -163,9 +167,10 @@ class SignUpForm extends React.Component {
               autoComplete="new-password"
               value={this.state.password}
             />
-            <Input
+            <Form.Input
               name="password_confirmation"
               type="password"
+              required
               placeholder="password confirmation"
               validators={["required", "minStringLength:6"]}
               errorMessages={[
@@ -175,17 +180,19 @@ class SignUpForm extends React.Component {
               autoComplete="new-password"
               value={this.state.password_confirmation}
             />
-            <Input
+            <Form.Input
               name="first_name"
               type="text"
+              required
               validators={["required"]}
               errorMessages={["this field is required"]}
               placeholder="First Name"
               autoComplete="name"
               value={this.state.first_name}
             />
-            <Input
+            <Form.Input
               name="last_name"
+              required
               type="text"
               validators={["required"]}
               errorMessages={["this field is required"]}
@@ -193,10 +200,10 @@ class SignUpForm extends React.Component {
               autoComplete="name"
               value={this.state.last_name}
             />
-            <TextArea
+            <Form.TextArea
               name="aboutme"
               type="textarea"
-              validators={["required"]}
+              required
               errorMessages={["this field is required"]}
               placeholder="Tell us more about you "
               autoComplete="text"

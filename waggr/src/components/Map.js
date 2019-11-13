@@ -10,8 +10,9 @@ class Map extends React.Component {
 
   state = {
     meetups: null,
-    location: "", 
-    longitude: ""
+    location: "",
+    longitude: -0.12444, 
+    latitude: 51.5116571
   }
 
   

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Image, Divider} from 'semantic-ui-react'
-import Logo from './common/icon.png'
+import Logo from './common/anothericon.png'
 const TopBar = props => {
   return (
     <div> 
@@ -20,7 +20,7 @@ const TopBar = props => {
         textAlign="center"
       >
         {" "}
-        <Image style={{ maxWidth: "15%" }} verticalAlign="middle" src={Logo} />
+        <Image style={{ maxWidth: "10%", width: '10'}} verticalAlign="middle" src={Logo} />
         {props.text}
       </div>
     </Container>
