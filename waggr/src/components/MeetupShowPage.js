@@ -57,6 +57,11 @@ class MeetupShowPage extends React.Component{
             <h4>When: {moment(meetup.datetime).format('MMM Do YYYY')}</h4>
             <h4>Where: {meetup.location}</h4>
             <h4>{meetup.description}</h4>
+
+                
+
+
+
             <h4>Attendees:</h4>
             <List>
             {meetup.attendances.map(attendance => 
