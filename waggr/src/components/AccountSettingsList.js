@@ -10,7 +10,7 @@ const AccountSettingsList = props => (
         <List.Header>Add Dog</List.Header>
       </List.Content>
     </List.Item>
-    <List.Item as={Link} to='/editaccount'>
+    {/* <List.Item as={Link} to='/editaccount'>
         <List.Icon color="violet" name="edit" />
       <List.Content>
         <List.Header>Edit Account Details</List.Header>
@@ -21,7 +21,7 @@ const AccountSettingsList = props => (
       <List.Content>
         <List.Header>Change Password</List.Header>
       </List.Content>
-    </List.Item>
+    </List.Item> */}
     <List.Item onClick={props.showWidget}>
         <List.Icon color="violet" name="id badge" />
       <List.Content>

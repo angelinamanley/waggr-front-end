@@ -3,7 +3,7 @@ import { Image, Container, Grid, Button, Icon} from "semantic-ui-react";
 import API from '../adapters/API'
 import {Link} from 'react-router-dom'
 import TopBar from './TopBar.js'
-
+import moment from 'moment'
 class DogShowPage extends React.Component {
 
   state = { 
@@ -20,6 +20,12 @@ class DogShowPage extends React.Component {
     return <div> Loading Info</div>;
   } else {
     const { dog} = this.state
+    let ageNum = moment().diff(dog.birthday, 'years')
+    let ageText 
+    moment().diff(dog.birthday, 'years') > 1?  ageText = " years old" :  ageText = " year old"
+    
+
+
     return (
       <div>
           <TopBar text={dog.name} />
@@ -32,7 +38,7 @@ class DogShowPage extends React.Component {
         <h2>{dog.name}{dog.gender === 'Female'? <Icon name='venus'/> : <Icon name='mars' /> }</h2>
         <ul> 
           <li>{dog.breed}</li>
-          <li>{dog.birthday}</li>
+          <li>{ageNum}{ageText}</li>
           <li>{dog.bio}</li>
         </ul>
         <Button as={Link} size="tiny" to={`/dogs/${dog.id}/edit`} primary >Edit Dog</Button>

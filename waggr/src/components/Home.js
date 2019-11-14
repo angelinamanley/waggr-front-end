@@ -24,7 +24,7 @@ class Home extends React.Component {
 
     } else if (menuChoice === "Your Meetups") {
       component = <UserMeetups user={this.props.user} />
-      text = <h3>Your Meetings</h3>
+      text = <h3>Your Meetups</h3>
     }
 
       const { activeItem } = this.state;
@@ -34,7 +34,7 @@ class Home extends React.Component {
      
      <TopBar text={"waggr"} />
      <div style={{  marginRight: 'auto', marginLeft: 'auto', width: '70%', height: '10%', marginBottom: '5%'}}>
-     <Menu color='violet'  borderless  inverted size='large'    widths={2}>
+     <Menu color='purple'  borderless  inverted size='large'    widths={2}>
         <Menu.Item
          style={{ fontWeight: 'bold'}}
           name="Your Groups"

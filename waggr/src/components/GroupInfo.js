@@ -14,7 +14,7 @@ class GroupInfo extends React.Component {
     API.joinGroup({
       group_id: this.props.group.id,
       user_id: this.props.user.id
-    }).then(group => this.props.handleJoinClick(group))
+    }).then(() => this.props.handleJoinClick(this.props.group))
   };
 
   findMembershipId = () =>
