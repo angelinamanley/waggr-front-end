@@ -2,7 +2,7 @@ import React from "react";
 import UserGroups from './UserGroups'
 import UserMeetups from './UserMeetups'
 import TopBar from './TopBar'
-import { Menu, Segment } from 'semantic-ui-react'
+import { Menu } from 'semantic-ui-react'
 
 //search component for groups goes here as well as an explore component
 

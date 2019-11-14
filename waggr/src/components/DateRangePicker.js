@@ -12,7 +12,6 @@ class DateRangePicker extends React.Component{
 
     handleSelect = range => { 
 
-        console.log(range)
         this.setState({ startDate: moment(range.startDate).format('LLL'), endDate: moment(range.endDate).format('LLL')}, ()=> this.props.setDateRange(this.state.startDate, this.state.endDate))
     }
 
