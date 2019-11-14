@@ -5,6 +5,7 @@
   "dependencies": {
     "gulp": "^4.0.2",
     "react": "^16.11.0",
+    "react-date-range": "^0.9.4",
     "react-dom": "^16.11.0",
     "react-dropzone": "^10.1.10",
     "react-google-maps": "^9.4.5",
