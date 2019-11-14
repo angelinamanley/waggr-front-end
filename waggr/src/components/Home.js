@@ -36,6 +36,7 @@ class Home extends React.Component {
      <div style={{  marginRight: 'auto', marginLeft: 'auto', width: '70%', height: '10%', marginBottom: '5%'}}>
      <Menu color='violet'  borderless  inverted size='large'    widths={2}>
         <Menu.Item
+         style={{ fontWeight: 'bold'}}
           name="Your Groups"
           active={activeItem === "Your Groups"}
           color='teal'
@@ -43,6 +44,7 @@ class Home extends React.Component {
           onClick={this.handleItemClick}
         />
         <Menu.Item
+                 style={{ fontWeight: 'bold'}}
           name="Your Meetups"
           fitted='horizontally'
           active={activeItem === "Your Meetups"}

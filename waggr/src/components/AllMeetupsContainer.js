@@ -46,11 +46,10 @@ sortMeetups = (meetups) => {
      
           {/* <Button as={Link} to='/addgroup' size='mini' primary icon><Icon name="plus circle"/></Button> */}
           <GroupSearchBar handleSearchClick={this.handleSearchClick} />
-          <Container>
-          <List divided>
+          <div style={{width : '85%', marginRight: 'auto', marginLeft: 'auto'}}>
+            <List fluid divided>
             {filteredMeetups.map(meetup => (
               <List.Item
-              style={{width: '85%'}}
               color='violet' 
                 key={meetup.id}
                 as={Link}
@@ -65,7 +64,7 @@ sortMeetups = (meetups) => {
               </List.Item>
             ))}
             </List>
-            </Container>
+            </div>
             </React.Fragment>
       )
     }
