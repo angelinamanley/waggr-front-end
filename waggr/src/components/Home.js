@@ -33,21 +33,23 @@ class Home extends React.Component {
     <div>
      
      <TopBar text={"waggr"} />
-     
-     <Menu color='white' borderless inverted size='large'    widths={3}>
+     <div style={{  marginRight: 'auto', marginLeft: 'auto', width: '70%', height: '10%', marginBottom: '5%'}}>
+     <Menu color='violet'  borderless  inverted size='large'    widths={2}>
         <Menu.Item
           name="Your Groups"
           active={activeItem === "Your Groups"}
           color='teal'
+          fitted='horizontally'
           onClick={this.handleItemClick}
         />
         <Menu.Item
           name="Your Meetups"
+          fitted='horizontally'
           active={activeItem === "Your Meetups"}
           onClick={this.handleItemClick}
         />
       </Menu>
-
+      </div>
     <div id="header"style={{ marginRight: '2em', marginLeft: '2em', marginBottom: '5%'}} > 
 
     

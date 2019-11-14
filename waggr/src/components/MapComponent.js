@@ -4,6 +4,8 @@ import apiKey from "../config/config_keys"
 import Spinner from './common/Spinner';
 import Logo from './common/waggrlogo4.png'
 import PinkLogo from './common/pinklogo.png'
+import moment from 'moment'
+
 
 
 const mapStyles = {
@@ -34,6 +36,7 @@ class MapContainer extends React.Component {
           key={index}
           id={meetup.id}
           name={meetup.name}
+          datetime={meetup.datetime}
           position={{
             lat: meetup.latitude,
             lng: meetup.longitude
@@ -41,6 +44,7 @@ class MapContainer extends React.Component {
           onClick={this.handleMarkerClick}
           // onClick={console.log}
         />
+        
       );
     });
   };
@@ -93,7 +97,11 @@ class MapContainer extends React.Component {
           onClose={this.handleClose}
         >
           <a onClick={this.handleInfoLinkClick} href={`/meetups/${this.state.activeMarker.id}`}>
-          <div>{this.state.selectedPlace.name}</div>
+          <div><h4>{this.state.selectedPlace.name}</h4>
+          {moment(this.state.selectedPlace.datetime).format('LLL')}
+        
+          </div>
+
           </a>
         </InfoWindow>
       </Map>

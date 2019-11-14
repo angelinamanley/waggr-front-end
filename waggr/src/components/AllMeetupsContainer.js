@@ -1,9 +1,11 @@
 import React from "react";
-import { Card, Image, Container } from "semantic-ui-react";
+import { List, Image, Container } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import Spinner from "./common/Spinner";
 import GroupSearchBar from "./GroupSearchBar";
 import API from '../adapters/API'
+import moment from 'moment'
+import Logo from './common/waggrlogo4.png'
 
 class AllMeetupsContainer extends React.Component {
   state = {
@@ -28,11 +30,16 @@ filterMeetups = () => {
     this.setState({ searchTerm: value });
 }
 
+sortMeetups = (meetups) => {
+  return meetups.sort((a, b) => moment(a.datetime).format('X')-moment(b.datetime).format('X')) 
+
+}
+
   render() {
     if (!this.state.meetups) {
       return <Spinner />
     } else {
-      const filteredMeetups = this.filterMeetups()
+      const filteredMeetups = this.sortMeetups(this.filterMeetups())
   
       return (
         <React.Fragment>
@@ -40,22 +47,24 @@ filterMeetups = () => {
           {/* <Button as={Link} to='/addgroup' size='mini' primary icon><Icon name="plus circle"/></Button> */}
           <GroupSearchBar handleSearchClick={this.handleSearchClick} />
           <Container>
-          <Card.Group centered>
+          <List divided>
             {filteredMeetups.map(meetup => (
-              <Card
+              <List.Item
               style={{width: '85%'}}
               color='violet' 
                 key={meetup.id}
                 as={Link}
                 to={`/meetups/${meetup.id}`}
               >
-                <Card.Content>
-                  <Image floated="right" src={meetup.photo} />
-                  <Card.Header>{meetup.name}</Card.Header>
-                </Card.Content>
-              </Card>
+          <Image size='mini' src={Logo}/>
+
+                <List.Content>
+                  <List.Header>{meetup.name}</List.Header>
+                  <List.Description>{moment(meetup.datetime).format('LLL')}</List.Description>
+                </List.Content>
+              </List.Item>
             ))}
-            </Card.Group>
+            </List>
             </Container>
             </React.Fragment>
       )
