@@ -1,22 +1,23 @@
-.App {
-  text-align: center;
+.navbar {
+  background-color: teal;
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 3rem; 
+  z-index: 99; 
+  display: flex; 
+  justify-content: space-around;
+
 }
 
-.App-logo {
-  height: 40vmin;
+
+div#header-div {
+  padding: 13px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.signUpBtn {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #09d3ac;
-}

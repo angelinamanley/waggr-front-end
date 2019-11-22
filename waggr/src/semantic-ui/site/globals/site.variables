@@ -1,0 +1,9 @@
+/*******************************
+     User Global Variables
+*******************************/
+
+@primaryColor: #14B89C;
+@pageBackground: #ffffff;
+@secondaryColor : #4517FD;
+@fontName          : 'Quicksand';
+@importGoogleFonts : true;
