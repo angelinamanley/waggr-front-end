@@ -1,4 +1,4 @@
-const API_ENDPOINT = "http://localhost:3000/";
+const API_ENDPOINT = "https://waggr-backend.herokuapp.com/";
 const POSTS_URL = `${API_ENDPOINT}posts`;
 const MEETUPS_URL = `${API_ENDPOINT}meetups`;
 const LOGIN_URL = `${API_ENDPOINT}login`;
