@@ -6,6 +6,7 @@
   },
   "private": true,
   "dependencies": {
+    "google-maps-react": "^2.0.2",
     "gulp": "^4.0.2",
     "react": "^16.11.0",
     "react-date-range": "^0.9.4",
@@ -45,5 +46,4 @@
     "@semantic-ui-react/craco-less": "^1.1.0",
     "semantic-ui-less": "^2.4.1"
   }
-  
 }
