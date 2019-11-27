@@ -1,6 +1,5 @@
 import React from "react";
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from "google-maps-react";
-import apiKey from "../config/config_keys"
 import Spinner from './common/Spinner';
 import Logo from './common/waggrlogo4.png'
 import PinkLogo from './common/pinklogo.png'
