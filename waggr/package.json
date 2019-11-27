@@ -1,6 +1,9 @@
 {
   "name": "waggr",
   "version": "0.1.0",
+  "engines": {
+    "node": "12.7.0"
+  },
   "private": true,
   "dependencies": {
     "gulp": "^4.0.2",
@@ -42,12 +45,5 @@
     "@semantic-ui-react/craco-less": "^1.1.0",
     "semantic-ui-less": "^2.4.1"
   }, 
-  {
-    "name": "myapp",
-    "description": "a really cool app",
-    "version": "1.0.0",
-    "engines": {
-      "node": "6.11.1"
-    }
-  }
+  
 }
